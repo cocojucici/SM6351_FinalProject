@@ -1,0 +1,12 @@
+/* Source: Dribbble's palette for Alexandru's Abyssal Bloom.
+   Semantic roles are recommendations, not original author tokens. */
+:root {
+  --color-background: #010206;
+  --color-surface: #042156;
+  --color-border: #3a5362;
+  --color-primary: #1745a4;
+  --color-secondary: #06619b;
+  --color-highlight: #1899c5;
+  --color-text: #c9ccd1;
+  --color-contrast: #9f705d;
+}
