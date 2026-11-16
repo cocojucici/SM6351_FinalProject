@@ -1,0 +1,62 @@
+{
+  "title": "CITES Trade Database: Sphyrna lewini fin products, 2015–2024",
+  "publisher": "CITES Secretariat; compiled and maintained by UNEP-WCMC",
+  "accessed_date": "2026-11-04",
+  "response_date_utc": "2026-11-04T13:57:02Z",
+  "source_url": "https://trade.cites.org/en/cites_trade/exports/download?filters%5Btime_range_start%5D=2015&filters%5Btime_range_end%5D=2024&filters%5Btaxon_concepts_ids%5D%5B%5D=6544&filters%5Bselection_taxon%5D=taxonomic_cascade&filters%5Breport_type%5D=comptab&filters%5Bcsv_separator%5D=comma",
+  "database_url": "https://trade.cites.org/en/cites_trade",
+  "guide_url": "https://trade.cites.org/cites_trade_guidelines/en-CITES_Trade_Database_Guide.pdf",
+  "taxon_id": 6544,
+  "taxon": "Sphyrna lewini",
+  "years": [
+    2015,
+    2024
+  ],
+  "download_type": "Live-query comparative tabulation (comptab), not the full shipment database",
+  "database_version": "Live query accessed 2026-11-04; not labelled as the static 2026.1 release",
+  "raw_file": "cites-sphyrna-lewini-2015-2024-comptab.csv",
+  "raw_sha256": "a06c0cc08b405945bc72d66b96b2d2076c3027589b9b5412b4a73dcf62895586",
+  "raw_bytes": 41814,
+  "raw_comparative_rows": 399,
+  "fin_product_comparative_rows": 245,
+  "retained_kg_comparative_rows": 146,
+  "normalized_reporting_side_rows": 194,
+  "non_fin_rows_excluded": 154,
+  "fin_rows_excluded_by_unit": {
+    "(blank)": 64,
+    "g": 1,
+    "Number of specimens": 33,
+    "cm3": 1
+  },
+  "taxon_lookup_url": "https://trade.cites.org/api/v1/auto_complete_taxon_concepts?locale=en&taxonomy=CITES&taxon_concept_query=Sphyrna+lewini&visibility=cites_trade",
+  "term_codes_url": "https://trade.cites.org/api/v1/terms?locale=en",
+  "product_codes": {
+    "fins": "FIN",
+    "fin (dried)": "DFN",
+    "fin (wet)": "FFN"
+  },
+  "selected_appendices": [
+    "II"
+  ],
+  "reporting_sides": {
+    "E": 103,
+    "I": 91
+  },
+  "default_filters": {
+    "term": "fins",
+    "reporter": "E",
+    "source": "all",
+    "unit": "kg"
+  },
+  "conventions": [
+    "FIN, DFN and FFN are separate selectable products; never summed together.",
+    "Only explicitly reported kg rows are retained. No unit conversion is applied.",
+    "Blank and Number of specimens units, g and cm3 are excluded from the kg series.",
+    "Importer and exporter quantities are split into independent rows; absent side quantities are omitted, not zero-filled.",
+    "All countries, purposes and sources are included by default. Wild-only filtering uses W.",
+    "Direct trade and re-exports are retained; quantities are not unique animals, harvest, or population pressure.",
+    "Counts are comparative-table rows for the selected reporting side, not original transactions or shipments.",
+    "No matching annual record is null; a reported numeric zero remains zero.",
+    "Later-year reporting coverage may be incomplete or revised; temporal alignment does not establish policy effectiveness."
+  ]
+}

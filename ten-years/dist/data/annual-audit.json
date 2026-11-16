@@ -1,0 +1,1202 @@
+[
+  {
+    "Year": 2015,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "7302.97",
+    "Data_rows": 7
+  },
+  {
+    "Year": 2016,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "15622.92",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2017,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "14410.17",
+    "Data_rows": 8
+  },
+  {
+    "Year": 2018,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "6253.55",
+    "Data_rows": 8
+  },
+  {
+    "Year": 2019,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "8177.66",
+    "Data_rows": 9
+  },
+  {
+    "Year": 2020,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "14248.061",
+    "Data_rows": 9
+  },
+  {
+    "Year": 2021,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "43126.301",
+    "Data_rows": 16
+  },
+  {
+    "Year": 2022,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "28909.014",
+    "Data_rows": 12
+  },
+  {
+    "Year": 2023,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "18241.69",
+    "Data_rows": 8
+  },
+  {
+    "Year": 2024,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "10513.76",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2015,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "7741.31",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2016,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "9119.71",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2017,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "5827.51",
+    "Data_rows": 6
+  },
+  {
+    "Year": 2018,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "2934.30",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2019,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "6993.40",
+    "Data_rows": 7
+  },
+  {
+    "Year": 2020,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "11759.21",
+    "Data_rows": 7
+  },
+  {
+    "Year": 2021,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "18792.32",
+    "Data_rows": 15
+  },
+  {
+    "Year": 2022,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "2765.16",
+    "Data_rows": 3
+  },
+  {
+    "Year": 2023,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "1953.244",
+    "Data_rows": 4
+  },
+  {
+    "Year": 2024,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "79.2",
+    "Data_rows": 1
+  },
+  {
+    "Year": 2015,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "6401.97",
+    "Data_rows": 6
+  },
+  {
+    "Year": 2016,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "15622.92",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2017,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "14410.17",
+    "Data_rows": 8
+  },
+  {
+    "Year": 2018,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "6253.55",
+    "Data_rows": 8
+  },
+  {
+    "Year": 2019,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "8162.26",
+    "Data_rows": 8
+  },
+  {
+    "Year": 2020,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "13871.261",
+    "Data_rows": 8
+  },
+  {
+    "Year": 2021,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "38395.161",
+    "Data_rows": 14
+  },
+  {
+    "Year": 2022,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "26704.114",
+    "Data_rows": 9
+  },
+  {
+    "Year": 2023,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "18241.69",
+    "Data_rows": 8
+  },
+  {
+    "Year": 2024,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "10478.76",
+    "Data_rows": 4
+  },
+  {
+    "Year": 2015,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "7741.31",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2016,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "9119.71",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2017,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "5762.51",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2018,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "2934.30",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2019,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "6993.40",
+    "Data_rows": 7
+  },
+  {
+    "Year": 2020,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "11759.21",
+    "Data_rows": 7
+  },
+  {
+    "Year": 2021,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "16397.59",
+    "Data_rows": 12
+  },
+  {
+    "Year": 2022,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "2765.16",
+    "Data_rows": 3
+  },
+  {
+    "Year": 2023,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "1953.244",
+    "Data_rows": 4
+  },
+  {
+    "Year": 2024,
+    "Term": "fins",
+    "Term.code": "FIN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "79.2",
+    "Data_rows": 1
+  },
+  {
+    "Year": 2015,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2016,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2017,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2018,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2019,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2020,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2021,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2022,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2023,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "6279.61",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2024,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "7178.61",
+    "Data_rows": 9
+  },
+  {
+    "Year": 2015,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2016,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2017,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2018,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2019,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2020,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2021,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2022,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "20467.22",
+    "Data_rows": 7
+  },
+  {
+    "Year": 2023,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "20439.81",
+    "Data_rows": 11
+  },
+  {
+    "Year": 2024,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "17231.70",
+    "Data_rows": 15
+  },
+  {
+    "Year": 2015,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2016,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2017,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2018,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2019,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2020,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2021,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2022,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2023,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "6279.61",
+    "Data_rows": 5
+  },
+  {
+    "Year": 2024,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "7178.61",
+    "Data_rows": 9
+  },
+  {
+    "Year": 2015,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2016,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2017,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2018,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2019,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2020,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2021,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2022,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "20467.22",
+    "Data_rows": 7
+  },
+  {
+    "Year": 2023,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "20439.81",
+    "Data_rows": 11
+  },
+  {
+    "Year": 2024,
+    "Term": "fin (dried)",
+    "Term.code": "DFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": "17163.70",
+    "Data_rows": 14
+  },
+  {
+    "Year": 2015,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2016,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2017,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2018,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2019,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2020,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2021,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2022,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2023,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2024,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": "1313",
+    "Data_rows": 2
+  },
+  {
+    "Year": 2015,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2016,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2017,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2018,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2019,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2020,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2021,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2022,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2023,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2024,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "all",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2015,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2016,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2017,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2018,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2019,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2020,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2021,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2022,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2023,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2024,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "E",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2015,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2016,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2017,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2018,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2019,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2020,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2021,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2022,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2023,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  },
+  {
+    "Year": 2024,
+    "Term": "fin (wet)",
+    "Term.code": "FFN",
+    "Reporter.type": "I",
+    "Source": "W",
+    "Unit": "kg",
+    "Quantity": null,
+    "Data_rows": 0
+  }
+]

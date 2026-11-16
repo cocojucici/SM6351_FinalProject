@@ -1,0 +1,400 @@
+Year,App.,Taxon,Class,Order,Family,Genus,Importer,Exporter,Origin,Importer reported quantity,Exporter reported quantity,Term,Unit,Purpose,Source
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CH,NL,XX,5,,specimens,g,S,O
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,MX,,,5230.10,fins,kg,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,AU,,,1,bones,,T,O
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,ZA,,8,,specimens,g,S,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,ZA,,,4,specimens,,S,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,239.41,393.01,fins,kg,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,CR,,297.83,342.05,fins,kg,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,6506.85,73.04,fins,kg,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,NI,,294.34,217.27,fins,kg,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SG,LK,,146.5,fins,kg,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SG,XX,,901,fins,kg,T,O
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,402.88,,fins,kg,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,,1024.70,live,kg,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,US,,,14,fins,,Q,O
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,IL,NL,AU,,2,live,,Z,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,IL,NL,,2,,live,,,
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,NL,AU,,18,15,live,,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,OM,AE,XX,,3,fins,,E,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PH,US,ZA,,4,fins,,E,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PH,US,,,8,fins,,E,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TR,NL,AU,,6,live,,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TR,NL,AU,6,,unspecified,,T,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,AU,US,284,,specimens,,S,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,BZ,,6,,specimens,,S,I
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,BZ,,,16,specimens,,S,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,HK,US,14,,fins,,E,W
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,HK,XX,700,,fins,g,T,I
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MX,,3,,skulls,,P,I
+2015,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,SC,,,151,specimens,,S,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,AU,,,6,derivatives,,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AU,FJ,,,96,specimens,,S,O
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AU,FJ,,,94,specimens,,S,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AU,SC,,,20,specimens,kg,S,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CA,ZA,,,41,skins,,S,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CA,ZA,,,147,specimens,,S,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,DE,FJ,,159,,specimens,,S,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,DO,US,ZA,,3,fins,,Q,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,FJ,AU,,36,,specimens,,S,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,FJ,US,ZA,,3,fins,,Q,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,327.93,337.23,fins,kg,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,,13.55,fins,,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KR,,892,892,fins,kg,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,6402.66,6401.07,fins,kg,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,NI,,387.41,953.41,fins,kg,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,NI,,,50,fins,,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,PE,,,1076,fins,,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,1109.71,7039.21,fins,kg,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,KR,CN,,,94970,meat,kg,T,O
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,MV,US,ZA,,3,fins,,Q,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PE,CR,,5,,fins,,E,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SN,US,ZA,,3,fins,,Q,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,AU,,,6,derivatives,,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,AU,,6,,live,,T,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,BZ,,,12,specimens,,S,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,DO,ZA,3,,fins,,Q,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,FJ,ZA,3,,fins,,Q,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,LK,ZA,3,,fins,,Q,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,SN,US,,3,fins,,S,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,SN,ZA,3,,fins,,Q,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,ZA,,3,,fins,,Q,W
+2016,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,ZA,US,ZA,,3,fins,,Q,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,AU,,,54.69,fins,kg,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,MX,,,5410.79,fins,kg,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CO,PA,,,100,specimens,,S,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CV,US,ZA,,3,fins,,Q,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,FJ,US,ZA,,3,fins,,Q,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,FJ,US,,3,,fins,,Q,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,FR,KE,,2,4,live,,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,173.21,801.43,fins,kg,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,3502.05,6349.38,fins,kg,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,PE,,395,941.38,fins,kg,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SC,,5.55,5.55,fins,kg,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,1686.70,675.95,fins,kg,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,US,ZA,,3,fins,,Q,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,US,,,171,fins,kg,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,KR,CN,,,82700.4,meat,kg,T,O
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,MR,US,ZA,,3,fins,,Q,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,NL,KE,,,3,live,,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PH,US,ZA,,3,fins,,Q,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SV,CR,,,15,specimens,g,S,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,AU,,2,,live,,E,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,EC,,17,,skin pieces,,S,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,EC,,3,,specimens,,S,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,FJ,ZA,3,,fins,,S,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,HK,JP,,2,specimens,,S,O
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,HK,PA,65,,fins,kg,T,I
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,KE,,2,,live,,E,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,KE,,,3,live,,T,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MM,,2,,specimens,,S,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MR,ZA,3,,fins,,Q,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,PH,ZA,3,,fins,,Q,W
+2017,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,SN,ZA,3,,fins,,Q,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,AU,,,6,live,Number of specimens,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,AU,,6,,live,,Z,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,OM,,3,,fins,,E,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,BD,US,ZA,,3,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,AU,,,24,live,Number of specimens,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,AU,,18,,live,,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,KE,,10,4,live,,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,MX,,,1352.13,fins,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,US,XX,3,,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,US,ZA,,3,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,FJ,XX,,3,,fins,,Q,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,FR,AU,,,27,live,Number of specimens,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,CN,,,3,specimens,,E,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,EC,,,50,specimens,,S,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,,212.57,fins,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KR,,900,900,fins,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,,950,fins,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,833.25,,fins,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,PE,,530,1130,fins,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,666.05,153.85,fins,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,,85.41,fins,,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,130.95,40.2,skins,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,US,ZA,,3,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,YE,,,1550,fins,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,KR,CN,,22000,22000,meat,kg,T,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,KR,HS,,14301,,bodies,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,LK,US,ZA,,3,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PH,US,ZA,,3,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,RU,KE,,,1,live,,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SA,AU,,50,,live,,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SA,KE,,1,1,live,,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TW,US,ZA,,3,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,AU,,,2,live,Number of specimens,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,AU,,2,,live,,Z,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,BD,ZA,3,,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,BD,,,325,specimens,,S,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,CN,XX,,3,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,CR,,,70,specimens,Number of specimens,S,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,EC,,,60,specimens,,S,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,FJ,ZA,3,,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,FJ,,,3,fins,,Q,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,HK,ZA,3,,fins,,Q,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,HK,ZA,3,,fins,,S,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,LK,ZA,3,,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MX,,45,,fins,,T,I
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,NI,,5,5,fins,kg,T,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,PA,,,200,specimens,,S,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,PH,,2,,specimens,,S,I
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TT,,37,,fins,,S,I
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TT,,,37,fins,,S,W
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TW,ZA,3,,fins,,E,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,ZA,,3,,fins,,Q,O
+2018,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,ZA,US,ZA,,3,fins,,Q,O
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,KE,KE,,3,fins,,E,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,KE,OM,3,,fins,,E,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,MV,OM,3,,fins,,E,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,MV,,,3,specimens,,E,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CL,PA,,,24,specimens,,S,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,KE,,,12,live,,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,MX,,,3845.85,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,US,XX,,1,trophies,Number of specimens,E,I
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CR,PA,,,124,specimens,,S,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,DE,MA,,,1,specimens,,S,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,LK,,25,25,specimens,,S,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,US,,,1,specimens,Number of specimens,S,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,,52.63,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KR,,,371,bodies,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KR,,371,,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,,60,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,3430.60,,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,NI,,916.71,,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,OM,,1139.7,1300,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,OM,,,1500,fins,,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,PE,,270,,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,,15.4,fins,kg,T,C
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,787.39,2691.21,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,,8.1,skins,kg,T,C
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,,93.5,skins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,US,,,83,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,KE,AE,OM,,3,fins,,E,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,MV,AE,OM,,3,fins,,E,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,MX,NI,,,52,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TO,AE,OM,,3,fins,,E,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,BZ,,15,,fins,Number of specimens,S,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,BZ,,,15,specimens,,S,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,CO,,,89,specimens,ml,S,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MX,,1,,bodies,Number of specimens,T,I
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,NI,,78,77.57,fins,kg,T,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TT,,37,,specimens,cm2,S,W
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TW,,8,,bones,Number of specimens,T,I
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,VN,ZA,3,,fins,Number of specimens,Q,O
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,VN,US,ZA,,3,fins,Number of specimens,Q,O
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,VN,US,,3,,fins,,Q,O
+2019,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,XX,PA,,,132,specimens,,S,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,HK,OM,3,,fins,Number of specimens,E,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,KE,,15,15,live,Number of specimens,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,TO,OM,3,,fins,Number of specimens,E,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AU,MX,,,150,specimens,Number of specimens,S,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AU,SB,,0.05,,bones,kg,P,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AU,SB,,,0.05,derivatives,kg,P,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CA,FR,,,1,derivatives,Number of specimens,T,O
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,MX,,,4917.39,fins,kg,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,TT,,,4,fins,cm3,S,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AE,OM,3,3,fins,Number of specimens,E,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,4.3,340.331,fins,kg,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,400.8,1302,fins,kg,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,4181.43,,fins,kg,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,NI,,698.93,698.93,fins,kg,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,OM,,5900,4800,fins,kg,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SG,XX,,376.8,fins,kg,T,O
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,521.75,560.61,fins,kg,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,93.5,,skins,kg,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,IT,CV,,,13,specimens,,S,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,MA,AE,OM,,3,fins,Number of specimens,E,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,MX,NI,,52,52,fins,kg,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,LK,,,1200,fins,kg,T,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,CU,,,4,specimens,,S,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,CV,,,13,specimens,,S,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MX,,180,,medicine,Number of specimens,P,I
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,PA,,100,,specimens,Number of specimens,S,W
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TT,XX,10,,fins,Number of specimens,S,I
+2020,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,VE,XX,98,,fins,Number of specimens,T,I
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,KE,,,60,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,MX,,,6782.83,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,BD,,,10,specimens,Number of specimens,S,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,ID,,,0.02,fins,kg,S,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,ID,,,0.19,meat,kg,S,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,TT,,,4,derivatives,kg,S,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,,90.861,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,2110.33,3158.33,fins,kg,T,O
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,4098.05,1433.10,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,102,,fins,Number of specimens,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,,1771,fins,,T,O
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,,771,fins,,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,380,,skins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,,206,skins,,T,O
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KE,XX,19.56,,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KR,KR,,218,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KR,,218,,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,444.75,4365.35,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,1944.61,,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,NI,,1058.21,1608.42,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,OM,,1580,1600,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SG,XX,270.4,1572.81,fins,kg,T,O
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,,257.73,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,US,NI,120,,fins,Number of specimens,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,YE,,5674.61,20653.81,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,KR,CN,,17000,17000,bodies,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,NL,MR,,,0.75,specimens,kg,S,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,NL,MR,,,300,specimens,ml,S,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,ID,,4.1,,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,LK,,1200,1200,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,PG,,35.70,5.04,fins,kg,T,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,EC,,14,,fins,kg,T,I
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,EC,,,8,specimens,Number of specimens,S,W
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MX,,7440,,medicine,Number of specimens,T,I
+2021,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,NI,,120,120,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AE,KE,,10,22,live,Number of specimens,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,MX,,,8123.41,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,NZ,ID,,123.6,powder,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,NZ,,4.1,,bones,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,SG,LK,,112.5,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,,0.1,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,CG,,890.1,,fin (dried),kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,CG,,,900,fins,kg,T,X
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,6076.59,,fin (dried),kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,239.40,,skins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,1516.65,,fin (dried),kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,,8080.85,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,7261.78,,fin (dried),kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,NI,,646,,fin (dried),kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,NI,,,736,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SC,,192,,fin (dried),kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SG,LK,,153.8,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,YE,,3884.1,,fin (dried),kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,YE,,,7245.15,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,YE,,,644.9,fins,kg,,
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,KR,CN,,34500,34500,bodies,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,MY,NZ,ID,,42,powder,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,NL,GW,,,600,specimens,Number of specimens,S,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,NZ,ID,,2875,,bones,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PA,SG,PG,,1,fins,Number of specimens,Q,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,CG,,1560,,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,CG,,,660,fins,kg,T,X
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,LK,,1203.8,2200,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,PA,PG,1,,fins,Number of specimens,Q,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,PG,,1.36,52.304,fins,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TH,NZ,ID,,9.9,powder,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TW,NZ,ID,,413.7,powder,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,CU,,9,,fins,Number of specimens,S,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MX,,6,,skulls,Number of specimens,P,I
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MX,,,100,specimens,Number of specimens,S,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,NZ,ID,,320,powder,kg,T,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,PA,,23,,fins,Number of specimens,P,I
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TT,,340,80,specimens,Number of specimens,S,W
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TW,HS,633,,bones,Number of specimens,T,I
+2022,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,VN,TW,,50,,live,Number of specimens,Z,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AU,NZ,ID,289.07,370.10,powder,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,BR,US,VE,,4,fins,Number of specimens,L,I
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,MX,,,5601.40,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,NZ,ID,,249,powder,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,NZ,,368.5,,bones,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,PG,,,99.38,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GB,US,,,4,specimens,Number of specimens,S,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GT,BZ,,,88,meat,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,,0.01,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,CG,,879,,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,US,6.09,,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,971.74,,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,591.5,,skins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KE,,59.45,,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KE,,,59.45,fins,,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,3391.70,,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,,8326.35,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,,500,live,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,,2100,skins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,6142.15,,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,,2225.56,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,NI,,465,,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,OM,,,470,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,PG,,162.12,139.62,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SC,,239.9,,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SG,CG,,134.9,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,17.61,,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SV,,,663.38,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,YE,,,576,bodies,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,YE,,8105.05,5889.90,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,YE,,856.1,3413.65,skins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,KR,CN,,11,11000,meat,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,KR,NZ,ID,29,32.74,powder,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,MY,NZ,ID,,2.48,powder,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PE,US,VE,,4,fins,Number of specimens,L,I
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PT,MR,,,0.3,fingerlings,kg,S,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PT,MR,,300,,specimens,Number of specimens,S,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,CG,,1550,,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,LK,,200,400,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,PG,,52.544,,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,YE,,,150.7,fin (dried),kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,YE,,150.7,,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TH,NZ,ID,48,77.7,powder,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TW,NZ,ID,,51.18,powder,g,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TW,NZ,ID,,340.12,powder,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,BR,VE,4,,fins,Number of specimens,L,I
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MX,,,420.1,fins,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,MX,,100,,fins,Number of specimens,S,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,NZ,ID,,72,powder,kg,T,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TT,,278,,fins,Number of specimens,S,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TT,,,278,specimens,Number of specimens,S,W
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,VN,VE,4,,fins,Number of specimens,L,I
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,VN,US,VE,,4,fins,Number of specimens,L,I
+2023,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,YE,OM,,,576,bodies,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AU,FR,MG,,1,bones,Number of specimens,T,O
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AU,FR,,,1,bones,Number of specimens,T,O
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,AU,NZ,ID,155.139,78.33,powder,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,BR,US,VE,,4,fins,Number of specimens,E,I
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,BR,US,,4,,fins,Number of specimens,E,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CA,FR,,,1,derivatives,Number of specimens,T,O
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CA,NZ,ID,,4.82,powder,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,ID,,625,,bones,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,ID,,79.2,,fins,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,KE,,,57,fins,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,CN,MX,,,3351.77,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,DE,BR,,188.41,,specimens,g,S,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,GT,BZ,,,836,meat,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,AU,,28.05,28.05,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,CD,,922.59,600,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,CG,,649.91,,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,CG,,,658,fin (wet),kg,T,X
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,3259.75,,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,ID,,261,,skin pieces,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KE,,93.8,,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,KE,,,84,fins,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,68,,fin (dried),kg,T,C
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,3356.35,,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,,35,fins,kg,T,C
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,,10222.36,fins,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,,5550,skins,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,LK,,428.3,,skin pieces,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,MX,,3079.77,1510.22,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,NI,,1710,,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,PG,,2062.18,679.03,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SC,,185.8,185.8,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SG,CG,777.1,815.5,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HK,SN,,153,,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,HR,NZ,ID,,0.84,powder,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,JP,HK,CD,,6.05,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,JP,HK,MX,,2.19,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,KR,NZ,ID,3.19,3.19,powder,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,LK,US,VE,,4,fins,Number of specimens,E,I
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,MY,HK,LK,,250,skins,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PH,AU,,,2000,meat,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,PH,US,,,1339.9,meat,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,CG,,770,,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,CG,,,655,fin (wet),kg,T,X
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,LK,,115.4,,fin (dried),kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,LK,,,115.4,fins,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,SG,TW,,12,,live,Number of specimens,Z,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TH,NZ,ID,,1.18,powder,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TW,NZ,ID,,9.06,powder,kg,T,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TZ,US,VE,,4,fins,Number of specimens,E,I
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,TZ,US,,4,,fin (dried),Number of specimens,E,I
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,BR,VE,4,,fins,Number of specimens,E,I
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,BR,XX,,4,fins,Number of specimens,E,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,GP,,5,,fins,Number of specimens,S,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,LK,VE,4,,fins,Number of specimens,E,I
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,LK,,,4,fins,Number of specimens,E,W
+2024,II,Sphyrna lewini,Elasmobranchii,Carcharhiniformes,Sphyrnidae,Sphyrna,US,TZ,VE,4,,fins,Number of specimens,E,I

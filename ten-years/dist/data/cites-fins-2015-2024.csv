@@ -1,0 +1,195 @@
+Year,Quantity,Unit,Term,Term.code,Reporter.type,Taxon,Importer,Exporter,Origin,Source,Appendix,Purpose,Comparative.row,Original.quantity
+2015,5230.1,kg,fins,FIN,E,Sphyrna lewini,CN,MX,,W,II,T,3,5230.10
+2015,393.01,kg,fins,FIN,E,Sphyrna lewini,HK,AU,,W,II,T,7,393.01
+2015,239.41,kg,fins,FIN,I,Sphyrna lewini,HK,AU,,W,II,T,7,239.41
+2015,342.05,kg,fins,FIN,E,Sphyrna lewini,HK,CR,,W,II,T,8,342.05
+2015,297.83,kg,fins,FIN,I,Sphyrna lewini,HK,CR,,W,II,T,8,297.83
+2015,73.04,kg,fins,FIN,E,Sphyrna lewini,HK,MX,,W,II,T,9,73.04
+2015,6506.85,kg,fins,FIN,I,Sphyrna lewini,HK,MX,,W,II,T,9,6506.85
+2015,217.27,kg,fins,FIN,E,Sphyrna lewini,HK,NI,,W,II,T,10,217.27
+2015,294.34,kg,fins,FIN,I,Sphyrna lewini,HK,NI,,W,II,T,10,294.34
+2015,146.5,kg,fins,FIN,E,Sphyrna lewini,HK,SG,LK,W,II,T,11,146.5
+2015,901.0,kg,fins,FIN,E,Sphyrna lewini,HK,SG,XX,O,II,T,12,901
+2015,402.88,kg,fins,FIN,I,Sphyrna lewini,HK,SV,,W,II,T,13,402.88
+2016,337.23,kg,fins,FIN,E,Sphyrna lewini,HK,AU,,W,II,T,41,337.23
+2016,327.93,kg,fins,FIN,I,Sphyrna lewini,HK,AU,,W,II,T,41,327.93
+2016,892.0,kg,fins,FIN,E,Sphyrna lewini,HK,KR,,W,II,T,43,892
+2016,892.0,kg,fins,FIN,I,Sphyrna lewini,HK,KR,,W,II,T,43,892
+2016,6401.07,kg,fins,FIN,E,Sphyrna lewini,HK,MX,,W,II,T,44,6401.07
+2016,6402.66,kg,fins,FIN,I,Sphyrna lewini,HK,MX,,W,II,T,44,6402.66
+2016,953.41,kg,fins,FIN,E,Sphyrna lewini,HK,NI,,W,II,T,45,953.41
+2016,387.41,kg,fins,FIN,I,Sphyrna lewini,HK,NI,,W,II,T,45,387.41
+2016,7039.21,kg,fins,FIN,E,Sphyrna lewini,HK,SV,,W,II,T,48,7039.21
+2016,1109.71,kg,fins,FIN,I,Sphyrna lewini,HK,SV,,W,II,T,48,1109.71
+2017,54.69,kg,fins,FIN,E,Sphyrna lewini,CN,AU,,W,II,T,63,54.69
+2017,5410.79,kg,fins,FIN,E,Sphyrna lewini,CN,MX,,W,II,T,64,5410.79
+2017,801.43,kg,fins,FIN,E,Sphyrna lewini,HK,AU,,W,II,T,70,801.43
+2017,173.21,kg,fins,FIN,I,Sphyrna lewini,HK,AU,,W,II,T,70,173.21
+2017,6349.38,kg,fins,FIN,E,Sphyrna lewini,HK,MX,,W,II,T,71,6349.38
+2017,3502.05,kg,fins,FIN,I,Sphyrna lewini,HK,MX,,W,II,T,71,3502.05
+2017,941.38,kg,fins,FIN,E,Sphyrna lewini,HK,PE,,W,II,T,72,941.38
+2017,395.0,kg,fins,FIN,I,Sphyrna lewini,HK,PE,,W,II,T,72,395
+2017,5.55,kg,fins,FIN,E,Sphyrna lewini,HK,SC,,W,II,T,73,5.55
+2017,5.55,kg,fins,FIN,I,Sphyrna lewini,HK,SC,,W,II,T,73,5.55
+2017,675.95,kg,fins,FIN,E,Sphyrna lewini,HK,SV,,W,II,T,74,675.95
+2017,1686.7,kg,fins,FIN,I,Sphyrna lewini,HK,SV,,W,II,T,74,1686.70
+2017,171.0,kg,fins,FIN,E,Sphyrna lewini,HK,US,,W,II,T,76,171
+2017,65.0,kg,fins,FIN,I,Sphyrna lewini,US,HK,PA,I,II,T,87,65
+2018,1352.13,kg,fins,FIN,E,Sphyrna lewini,CN,MX,,W,II,T,101,1352.13
+2018,212.57,kg,fins,FIN,E,Sphyrna lewini,HK,AU,,W,II,T,108,212.57
+2018,900.0,kg,fins,FIN,E,Sphyrna lewini,HK,KR,,W,II,T,109,900
+2018,900.0,kg,fins,FIN,I,Sphyrna lewini,HK,KR,,W,II,T,109,900
+2018,950.0,kg,fins,FIN,E,Sphyrna lewini,HK,LK,,W,II,T,110,950
+2018,833.25,kg,fins,FIN,I,Sphyrna lewini,HK,MX,,W,II,T,111,833.25
+2018,1130.0,kg,fins,FIN,E,Sphyrna lewini,HK,PE,,W,II,T,112,1130
+2018,530.0,kg,fins,FIN,I,Sphyrna lewini,HK,PE,,W,II,T,112,530
+2018,153.85,kg,fins,FIN,E,Sphyrna lewini,HK,SV,,W,II,T,113,153.85
+2018,666.05,kg,fins,FIN,I,Sphyrna lewini,HK,SV,,W,II,T,113,666.05
+2018,1550.0,kg,fins,FIN,E,Sphyrna lewini,HK,YE,,W,II,T,117,1550
+2018,5.0,kg,fins,FIN,E,Sphyrna lewini,US,NI,,W,II,T,139,5
+2018,5.0,kg,fins,FIN,I,Sphyrna lewini,US,NI,,W,II,T,139,5
+2019,3845.85,kg,fins,FIN,E,Sphyrna lewini,CN,MX,,W,II,T,153,3845.85
+2019,52.63,kg,fins,FIN,E,Sphyrna lewini,HK,AU,,W,II,T,159,52.63
+2019,371.0,kg,fins,FIN,I,Sphyrna lewini,HK,KR,,W,II,T,161,371
+2019,60.0,kg,fins,FIN,E,Sphyrna lewini,HK,LK,,W,II,T,162,60
+2019,3430.6,kg,fins,FIN,I,Sphyrna lewini,HK,MX,,W,II,T,163,3430.60
+2019,916.71,kg,fins,FIN,I,Sphyrna lewini,HK,NI,,W,II,T,164,916.71
+2019,1300.0,kg,fins,FIN,E,Sphyrna lewini,HK,OM,,W,II,T,165,1300
+2019,1139.7,kg,fins,FIN,I,Sphyrna lewini,HK,OM,,W,II,T,165,1139.7
+2019,270.0,kg,fins,FIN,I,Sphyrna lewini,HK,PE,,W,II,T,167,270
+2019,15.4,kg,fins,FIN,E,Sphyrna lewini,HK,SV,,C,II,T,168,15.4
+2019,2691.21,kg,fins,FIN,E,Sphyrna lewini,HK,SV,,W,II,T,169,2691.21
+2019,787.39,kg,fins,FIN,I,Sphyrna lewini,HK,SV,,W,II,T,169,787.39
+2019,83.0,kg,fins,FIN,E,Sphyrna lewini,HK,US,,W,II,T,172,83
+2019,52.0,kg,fins,FIN,E,Sphyrna lewini,MX,NI,,W,II,T,175,52
+2019,77.57,kg,fins,FIN,E,Sphyrna lewini,US,NI,,W,II,T,181,77.57
+2019,78.0,kg,fins,FIN,I,Sphyrna lewini,US,NI,,W,II,T,181,78
+2020,4917.39,kg,fins,FIN,E,Sphyrna lewini,CN,MX,,W,II,T,195,4917.39
+2020,340.331,kg,fins,FIN,E,Sphyrna lewini,HK,AU,,W,II,T,198,340.331
+2020,4.3,kg,fins,FIN,I,Sphyrna lewini,HK,AU,,W,II,T,198,4.3
+2020,1302.0,kg,fins,FIN,E,Sphyrna lewini,HK,LK,,W,II,T,199,1302
+2020,400.8,kg,fins,FIN,I,Sphyrna lewini,HK,LK,,W,II,T,199,400.8
+2020,4181.43,kg,fins,FIN,I,Sphyrna lewini,HK,MX,,W,II,T,200,4181.43
+2020,698.93,kg,fins,FIN,E,Sphyrna lewini,HK,NI,,W,II,T,201,698.93
+2020,698.93,kg,fins,FIN,I,Sphyrna lewini,HK,NI,,W,II,T,201,698.93
+2020,4800.0,kg,fins,FIN,E,Sphyrna lewini,HK,OM,,W,II,T,202,4800
+2020,5900.0,kg,fins,FIN,I,Sphyrna lewini,HK,OM,,W,II,T,202,5900
+2020,376.8,kg,fins,FIN,E,Sphyrna lewini,HK,SG,XX,O,II,T,203,376.8
+2020,560.61,kg,fins,FIN,E,Sphyrna lewini,HK,SV,,W,II,T,204,560.61
+2020,521.75,kg,fins,FIN,I,Sphyrna lewini,HK,SV,,W,II,T,204,521.75
+2020,52.0,kg,fins,FIN,E,Sphyrna lewini,MX,NI,,W,II,T,208,52
+2020,52.0,kg,fins,FIN,I,Sphyrna lewini,MX,NI,,W,II,T,208,52
+2020,1200.0,kg,fins,FIN,E,Sphyrna lewini,SG,LK,,W,II,T,209,1200
+2021,60.0,kg,fins,FIN,E,Sphyrna lewini,CN,KE,,W,II,T,216,60
+2021,6782.83,kg,fins,FIN,E,Sphyrna lewini,CN,MX,,W,II,T,217,6782.83
+2021,0.02,kg,fins,FIN,E,Sphyrna lewini,GB,ID,,W,II,S,219,0.02
+2021,90.861,kg,fins,FIN,E,Sphyrna lewini,HK,AU,,W,II,T,222,90.861
+2021,3158.33,kg,fins,FIN,E,Sphyrna lewini,HK,ID,,O,II,T,223,3158.33
+2021,2110.33,kg,fins,FIN,I,Sphyrna lewini,HK,ID,,O,II,T,223,2110.33
+2021,1433.1,kg,fins,FIN,E,Sphyrna lewini,HK,ID,,W,II,T,224,1433.10
+2021,4098.05,kg,fins,FIN,I,Sphyrna lewini,HK,ID,,W,II,T,224,4098.05
+2021,19.56,kg,fins,FIN,I,Sphyrna lewini,HK,KE,XX,W,II,T,230,19.56
+2021,218.0,kg,fins,FIN,E,Sphyrna lewini,HK,KR,KR,W,II,T,231,218
+2021,218.0,kg,fins,FIN,I,Sphyrna lewini,HK,KR,,W,II,T,232,218
+2021,4365.35,kg,fins,FIN,E,Sphyrna lewini,HK,LK,,W,II,T,233,4365.35
+2021,444.75,kg,fins,FIN,I,Sphyrna lewini,HK,LK,,W,II,T,233,444.75
+2021,1944.61,kg,fins,FIN,I,Sphyrna lewini,HK,MX,,W,II,T,234,1944.61
+2021,1608.42,kg,fins,FIN,E,Sphyrna lewini,HK,NI,,W,II,T,235,1608.42
+2021,1058.21,kg,fins,FIN,I,Sphyrna lewini,HK,NI,,W,II,T,235,1058.21
+2021,1600.0,kg,fins,FIN,E,Sphyrna lewini,HK,OM,,W,II,T,236,1600
+2021,1580.0,kg,fins,FIN,I,Sphyrna lewini,HK,OM,,W,II,T,236,1580
+2021,1572.81,kg,fins,FIN,E,Sphyrna lewini,HK,SG,XX,O,II,T,237,1572.81
+2021,270.4,kg,fins,FIN,I,Sphyrna lewini,HK,SG,XX,O,II,T,237,270.4
+2021,257.73,kg,fins,FIN,E,Sphyrna lewini,HK,SV,,W,II,T,238,257.73
+2021,20653.81,kg,fins,FIN,E,Sphyrna lewini,HK,YE,,W,II,T,240,20653.81
+2021,5674.61,kg,fins,FIN,I,Sphyrna lewini,HK,YE,,W,II,T,240,5674.61
+2021,4.1,kg,fins,FIN,I,Sphyrna lewini,SG,ID,,W,II,T,244,4.1
+2021,1200.0,kg,fins,FIN,E,Sphyrna lewini,SG,LK,,W,II,T,245,1200
+2021,1200.0,kg,fins,FIN,I,Sphyrna lewini,SG,LK,,W,II,T,245,1200
+2021,5.04,kg,fins,FIN,E,Sphyrna lewini,SG,PG,,W,II,T,246,5.04
+2021,35.7,kg,fins,FIN,I,Sphyrna lewini,SG,PG,,W,II,T,246,35.70
+2021,14.0,kg,fins,FIN,I,Sphyrna lewini,US,EC,,I,II,T,247,14
+2021,120.0,kg,fins,FIN,E,Sphyrna lewini,US,NI,,W,II,T,250,120
+2021,120.0,kg,fins,FIN,I,Sphyrna lewini,US,NI,,W,II,T,250,120
+2022,8123.41,kg,fins,FIN,E,Sphyrna lewini,CN,MX,,W,II,T,252,8123.41
+2022,112.5,kg,fins,FIN,E,Sphyrna lewini,CN,SG,LK,W,II,T,255,112.5
+2022,0.1,kg,fins,FIN,E,Sphyrna lewini,HK,AU,,W,II,T,256,0.1
+2022,890.1,kg,fin (dried),DFN,I,Sphyrna lewini,HK,CG,,W,II,T,257,890.1
+2022,900.0,kg,fins,FIN,E,Sphyrna lewini,HK,CG,,X,II,T,258,900
+2022,6076.59,kg,fin (dried),DFN,I,Sphyrna lewini,HK,ID,,W,II,T,259,6076.59
+2022,1516.65,kg,fin (dried),DFN,I,Sphyrna lewini,HK,LK,,W,II,T,261,1516.65
+2022,8080.85,kg,fins,FIN,E,Sphyrna lewini,HK,LK,,W,II,T,262,8080.85
+2022,7261.78,kg,fin (dried),DFN,I,Sphyrna lewini,HK,MX,,W,II,T,263,7261.78
+2022,646.0,kg,fin (dried),DFN,I,Sphyrna lewini,HK,NI,,W,II,T,264,646
+2022,736.0,kg,fins,FIN,E,Sphyrna lewini,HK,NI,,W,II,T,265,736
+2022,192.0,kg,fin (dried),DFN,I,Sphyrna lewini,HK,SC,,W,II,T,266,192
+2022,153.8,kg,fins,FIN,E,Sphyrna lewini,HK,SG,LK,W,II,T,267,153.8
+2022,3884.1,kg,fin (dried),DFN,I,Sphyrna lewini,HK,YE,,W,II,T,268,3884.1
+2022,7245.15,kg,fins,FIN,E,Sphyrna lewini,HK,YE,,W,II,T,269,7245.15
+2022,644.9,kg,fins,FIN,E,Sphyrna lewini,HK,YE,,,II,,270,644.9
+2022,1560.0,kg,fins,FIN,I,Sphyrna lewini,SG,CG,,W,II,T,276,1560
+2022,660.0,kg,fins,FIN,E,Sphyrna lewini,SG,CG,,X,II,T,277,660
+2022,2200.0,kg,fins,FIN,E,Sphyrna lewini,SG,LK,,W,II,T,278,2200
+2022,1203.8,kg,fins,FIN,I,Sphyrna lewini,SG,LK,,W,II,T,278,1203.8
+2022,52.304,kg,fins,FIN,E,Sphyrna lewini,SG,PG,,W,II,T,280,52.304
+2022,1.36,kg,fins,FIN,I,Sphyrna lewini,SG,PG,,W,II,T,280,1.36
+2023,5601.4,kg,fins,FIN,E,Sphyrna lewini,CN,MX,,W,II,T,293,5601.40
+2023,99.38,kg,fin (dried),DFN,E,Sphyrna lewini,CN,PG,,W,II,T,296,99.38
+2023,0.01,kg,fin (dried),DFN,E,Sphyrna lewini,HK,AU,,W,II,T,299,0.01
+2023,879.0,kg,fin (dried),DFN,I,Sphyrna lewini,HK,CG,,W,II,T,300,879
+2023,6.09,kg,fin (dried),DFN,I,Sphyrna lewini,HK,ID,US,W,II,T,301,6.09
+2023,971.74,kg,fin (dried),DFN,I,Sphyrna lewini,HK,ID,,W,II,T,302,971.74
+2023,59.45,kg,fin (dried),DFN,I,Sphyrna lewini,HK,KE,,W,II,T,304,59.45
+2023,3391.7,kg,fin (dried),DFN,I,Sphyrna lewini,HK,LK,,W,II,T,306,3391.70
+2023,8326.35,kg,fins,FIN,E,Sphyrna lewini,HK,LK,,W,II,T,307,8326.35
+2023,6142.15,kg,fin (dried),DFN,I,Sphyrna lewini,HK,MX,,W,II,T,310,6142.15
+2023,2225.56,kg,fins,FIN,E,Sphyrna lewini,HK,MX,,W,II,T,311,2225.56
+2023,465.0,kg,fin (dried),DFN,I,Sphyrna lewini,HK,NI,,W,II,T,312,465
+2023,470.0,kg,fins,FIN,E,Sphyrna lewini,HK,OM,,W,II,T,313,470
+2023,139.62,kg,fin (dried),DFN,E,Sphyrna lewini,HK,PG,,W,II,T,314,139.62
+2023,162.12,kg,fin (dried),DFN,I,Sphyrna lewini,HK,PG,,W,II,T,314,162.12
+2023,239.9,kg,fin (dried),DFN,I,Sphyrna lewini,HK,SC,,W,II,T,315,239.9
+2023,134.9,kg,fins,FIN,E,Sphyrna lewini,HK,SG,CG,W,II,T,316,134.9
+2023,17.61,kg,fin (dried),DFN,I,Sphyrna lewini,HK,SV,,W,II,T,317,17.61
+2023,663.38,kg,fins,FIN,E,Sphyrna lewini,HK,SV,,W,II,T,318,663.38
+2023,5889.9,kg,fin (dried),DFN,E,Sphyrna lewini,HK,YE,,W,II,T,320,5889.90
+2023,8105.05,kg,fin (dried),DFN,I,Sphyrna lewini,HK,YE,,W,II,T,320,8105.05
+2023,1550.0,kg,fins,FIN,I,Sphyrna lewini,SG,CG,,W,II,T,328,1550
+2023,400.0,kg,fins,FIN,E,Sphyrna lewini,SG,LK,,W,II,T,329,400
+2023,200.0,kg,fins,FIN,I,Sphyrna lewini,SG,LK,,W,II,T,329,200
+2023,52.544,kg,fins,FIN,I,Sphyrna lewini,SG,PG,,W,II,T,330,52.544
+2023,150.7,kg,fin (dried),DFN,E,Sphyrna lewini,SG,YE,,W,II,T,331,150.7
+2023,150.7,kg,fins,FIN,I,Sphyrna lewini,SG,YE,,W,II,T,332,150.7
+2023,420.1,kg,fins,FIN,E,Sphyrna lewini,US,MX,,W,II,T,337,420.1
+2024,79.2,kg,fins,FIN,I,Sphyrna lewini,CN,ID,,W,II,T,353,79.2
+2024,57.0,kg,fins,FIN,E,Sphyrna lewini,CN,KE,,W,II,T,354,57
+2024,3351.77,kg,fin (dried),DFN,E,Sphyrna lewini,CN,MX,,W,II,T,355,3351.77
+2024,28.05,kg,fin (dried),DFN,E,Sphyrna lewini,HK,AU,,W,II,T,358,28.05
+2024,28.05,kg,fin (dried),DFN,I,Sphyrna lewini,HK,AU,,W,II,T,358,28.05
+2024,600.0,kg,fin (dried),DFN,E,Sphyrna lewini,HK,CD,,W,II,T,359,600
+2024,922.59,kg,fin (dried),DFN,I,Sphyrna lewini,HK,CD,,W,II,T,359,922.59
+2024,649.91,kg,fin (dried),DFN,I,Sphyrna lewini,HK,CG,,W,II,T,360,649.91
+2024,658.0,kg,fin (wet),FFN,E,Sphyrna lewini,HK,CG,,X,II,T,361,658
+2024,3259.75,kg,fin (dried),DFN,I,Sphyrna lewini,HK,ID,,W,II,T,362,3259.75
+2024,93.8,kg,fin (dried),DFN,I,Sphyrna lewini,HK,KE,,W,II,T,364,93.8
+2024,84.0,kg,fins,FIN,E,Sphyrna lewini,HK,KE,,W,II,T,365,84
+2024,68.0,kg,fin (dried),DFN,I,Sphyrna lewini,HK,LK,,C,II,T,366,68
+2024,3356.35,kg,fin (dried),DFN,I,Sphyrna lewini,HK,LK,,W,II,T,367,3356.35
+2024,35.0,kg,fins,FIN,E,Sphyrna lewini,HK,LK,,C,II,T,368,35
+2024,10222.36,kg,fins,FIN,E,Sphyrna lewini,HK,LK,,W,II,T,369,10222.36
+2024,1510.22,kg,fin (dried),DFN,E,Sphyrna lewini,HK,MX,,W,II,T,372,1510.22
+2024,3079.77,kg,fin (dried),DFN,I,Sphyrna lewini,HK,MX,,W,II,T,372,3079.77
+2024,1710.0,kg,fin (dried),DFN,I,Sphyrna lewini,HK,NI,,W,II,T,373,1710
+2024,679.03,kg,fin (dried),DFN,E,Sphyrna lewini,HK,PG,,W,II,T,374,679.03
+2024,2062.18,kg,fin (dried),DFN,I,Sphyrna lewini,HK,PG,,W,II,T,374,2062.18
+2024,185.8,kg,fin (dried),DFN,E,Sphyrna lewini,HK,SC,,W,II,T,375,185.8
+2024,185.8,kg,fin (dried),DFN,I,Sphyrna lewini,HK,SC,,W,II,T,375,185.8
+2024,815.5,kg,fin (dried),DFN,E,Sphyrna lewini,HK,SG,CG,W,II,T,376,815.5
+2024,777.1,kg,fin (dried),DFN,I,Sphyrna lewini,HK,SG,CG,W,II,T,376,777.1
+2024,153.0,kg,fin (dried),DFN,I,Sphyrna lewini,HK,SN,,W,II,T,377,153
+2024,6.05,kg,fin (dried),DFN,E,Sphyrna lewini,JP,HK,CD,W,II,T,379,6.05
+2024,2.19,kg,fin (dried),DFN,E,Sphyrna lewini,JP,HK,MX,W,II,T,380,2.19
+2024,770.0,kg,fin (dried),DFN,I,Sphyrna lewini,SG,CG,,W,II,T,386,770
+2024,655.0,kg,fin (wet),FFN,E,Sphyrna lewini,SG,CG,,X,II,T,387,655
+2024,115.4,kg,fin (dried),DFN,I,Sphyrna lewini,SG,LK,,W,II,T,388,115.4
+2024,115.4,kg,fins,FIN,E,Sphyrna lewini,SG,LK,,W,II,T,389,115.4
