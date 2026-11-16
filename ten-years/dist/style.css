@@ -673,33 +673,45 @@
 .decade-story-page .dv-story-flow{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .decade-story-page .dv-atmosphere,.decade-story-page .dv-flow{display:none}
 html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
-.decade-story-page .dv-views,.decade-story-page .dv-badge,.decade-story-page .dv-bottom,.decade-story-page .dv-policy-title,.decade-story-page .dv-inspect-hint{display:none!important}
+.decade-story-page :is(.dv-views,.dv-badge,.dv-bottom,.dv-policy-title,.dv-inspect-hint,.dv-chart-note,.dv-forms-note,[data-axis-year]),
+.decade-story-page .dv-event-links>a{display:none!important}
 .decade-story-page .dv-toolbar{margin-top:8px}
-.decade-story-page .dv-plot-heading{width:100%;justify-content:space-between}
+.decade-story-page .dv-plot-heading{width:100%;justify-content:space-between;font-size:var(--dv-caption)}
 .decade-story-page .dv-heading{display:grid;grid-template-columns:minmax(0,1fr) 44px;column-gap:12px;row-gap:0;align-items:center}
 .decade-story-page .dv-heading :is(h1,h2){grid-column:1;grid-row:1;margin:0;font:500 28px/1.2 var(--dv-heading);letter-spacing:-.025em;color:var(--dv-ink)}
 .decade-story-page .dv-subtitle{grid-column:1;grid-row:2;margin-top:4px}
 .decade-story-page .dv-chapter-link{grid-column:2;grid-row:1/3;width:44px;height:44px;display:grid;place-items:center;text-decoration:none;border:0;font:400 24px/1 var(--dv-body);color:var(--dv-muted)}
 .decade-story-page .dv-chapter-link:hover{color:var(--dv-accent)}
 .decade-story-page .dv-header-actions .dv-text-button{white-space:nowrap}
+.decade-story-page .dv-layout .dv-text-button{font-size:var(--dv-button)!important;min-height:44px}
+.decade-story-page .dv-transport .dv-play{font-size:var(--dv-button);width:100px}
+.decade-story-page :is(.dv-metric,.dv-inspect-year,.dv-event-pager,.dv-bar-scale,.dv-years button){font-size:var(--dv-caption)}
+.decade-story-page .dv-chart text{font-size:var(--dv-caption)}
+.decade-story-page .dv-event-title{font-size:var(--dv-caption)}
+.decade-story-page .dv-bar-label{font-size:var(--dv-button)}
+.decade-story-page .dv-bar-value{font-size:clamp(var(--dv-button),2vw,25px)}
+.decade-story-page .dv-bar-row.is-missing .dv-bar-value{font-size:var(--dv-caption)}
 @media(max-width:700px){
  .decade-story-page .dv-toolbar{display:flex;margin-top:8px}
  .decade-story-page .dv-plot-heading{margin:0}
  .decade-story-page .dv-heading :is(h1,h2){font-size:24px}
  .decade-story-page .dv-heading{column-gap:8px}
- .decade-story-page .dv-header-actions .dv-text-button{max-width:none;font-size:12px!important;min-width:44px}
+ .decade-story-page .dv-header-actions .dv-text-button{max-width:none;min-width:44px}
+ .decade-story-page .dv-policy{height:88px;min-height:88px}
 }
 @media(max-width:700px) and (max-height:620px){.decade-story-page .dv-heading :is(h1,h2){font-size:20px}}
 @media(min-width:701px) and (max-height:560px){.decade-story-page .dv-heading :is(h1,h2){font-size:22px}}
 @media(prefers-reduced-motion:reduce){html:has(.decade-story-page){scroll-behavior:auto}}
 /* A single sculptural opening, with the charts kept on their own clear stages. */
 .decade-story-page .dv-intro{height:100svh;min-height:500px;padding:40px 4%;touch-action:pan-y pinch-zoom;overflow:hidden;display:block}
-.decade-story-page .dv-intro-top{display:flex;align-items:center;justify-content:space-between;font:400 14px/1.5 var(--dv-body);color:var(--dv-muted)}
-.decade-story-page .dv-intro-top button{border:0;background:none;padding:10px 0 10px 20px;min-height:44px;font:400 14px/1.5 var(--dv-body);color:var(--dv-muted)}
+.decade-story-page .dv-intro-top{width:max-content;margin-left:auto}
+.decade-story-page .dv-intro-top button{border:0;background:none;padding:10px 0 10px 12px;min-height:44px;font:500 var(--dv-button)/1.25 var(--dv-body);color:var(--dv-text)}
 .decade-story-page .dv-intro-top button[aria-pressed=false]{color:var(--dv-accent)}
+.decade-story-page .dv-intro-top button:disabled{display:none}
 .decade-story-page .dv-intro-title{position:absolute;top:30%;left:4%;margin:0;font:500 96px/1.05 var(--dv-heading);letter-spacing:-.04em;color:var(--dv-ink);width:max-content;max-width:90%}
-.decade-story-page .dv-intro-title span{display:block;margin-top:24px;font:400 20px/1.6 var(--dv-body);letter-spacing:0;color:var(--dv-muted)}
-.decade-story-page .dv-intro-meta{position:absolute;bottom:40px;left:4%;margin:0;display:flex;flex-direction:column;gap:4px;font:400 14px/1.5 var(--dv-body);color:var(--dv-muted)}
+.decade-story-page .dv-intro-title>span{display:block;margin-top:24px;font:400 var(--dv-lead)/1.5 var(--dv-body);letter-spacing:0;color:var(--dv-text)}
+.decade-story-page .dv-intro-period{white-space:nowrap}
+.decade-story-page .dv-intro-period::before{content:'· '}
 .decade-story-page .dv-intro-explore{position:absolute;bottom:40px;right:4%;display:flex;align-items:center;gap:36px;min-height:44px;color:var(--dv-ink);font:500 16px/1.25 var(--dv-body);text-decoration:none}
 .decade-story-page .dv-intro-explore span{font-size:28px;transition:transform .25s}
 .decade-story-page .dv-intro-explore:hover span{transform:translateY(5px)}
@@ -707,13 +719,15 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
 @media(max-width:1000px) and (min-width:701px){.decade-story-page .dv-intro-title{font-size:76px}}
 @media(max-width:700px){
  .decade-story-page .dv-intro{padding:16px;min-height:500px}
- .decade-story-page .dv-intro-top{font-size:12px}
- .decade-story-page .dv-intro-title{top:61%;left:16px;font-size:44px;line-height:1.05;letter-spacing:-.04em}
- .decade-story-page .dv-intro-title span{margin-top:14px;font-size:18px}
- .decade-story-page .dv-intro-meta{left:16px;bottom:20px;font-size:12px}
- .decade-story-page .dv-intro-explore{right:16px;bottom:20px;gap:12px;font-size:14px}
+ .decade-story-page .dv-intro-title{top:auto;bottom:84px;left:16px;font-size:var(--dv-h1)}
+ .decade-story-page .dv-intro-title>span{margin-top:14px}
+ .decade-story-page .dv-intro-explore{right:16px;bottom:20px;gap:12px}
 }
-@media(max-height:600px) and (min-width:701px){.decade-story-page .dv-intro{min-height:400px}.decade-story-page .dv-intro-title{top:28%;font-size:76px}}
+@media(max-width:360px){
+ .decade-story-page .dv-intro-period{display:block}
+ .decade-story-page .dv-intro-period::before{content:none}
+}
+@media(max-height:600px) and (min-width:701px){.decade-story-page .dv-intro{min-height:360px}.decade-story-page .dv-intro-title{top:24%;font-size:clamp(56px,8.5vw,76px)}}
 @media(prefers-reduced-motion:reduce){.decade-story-page .dv-intro-explore span{transition:none;transform:none!important}}
 /* The sculpture's fine glints become data-anchored highlights, with no idle motion. */
 .decade-story-page .dv-particle-cursor{fill:var(--dv-accent);opacity:.68}

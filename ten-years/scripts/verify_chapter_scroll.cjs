@@ -1,0 +1,11 @@
+const assert=require('assert/strict'),vm=require('vm'),fs=require('fs');
+const handlers=new Map(),jobs=new Map(),reduced={matches:false,addEventListener(_k,f){this.change=f;},removeEventListener(){}};let seq=0;
+const win={scrollY:0,innerHeight:720,matchMedia:()=>reduced,addEventListener:(k,f)=>handlers.set(k,f),removeEventListener:k=>handlers.delete(k),requestAnimationFrame:f=>{jobs.set(++seq,f);return seq;},cancelAnimationFrame:id=>jobs.delete(id),scrollTo({top}){this.scrollY=top;}};
+vm.runInNewContext(fs.readFileSync(require('path').join(__dirname,'../dist/chapter-scroll.js'),'utf8'),{window:win,document:{documentElement:{scrollHeight:1500}}});
+const motion=win.MarineChapterScroll.create(),target={getBoundingClientRect:()=>({top:780-win.scrollY})};
+const step=t=>{const list=[...jobs.values()];jobs.clear();list.forEach(f=>f(t));};
+motion.to(target);step(0);step(200);const early=win.scrollY;assert.ok(early>0&&early<390);step(400);assert.ok(win.scrollY>early);step(1000);assert.equal(win.scrollY,780);assert.equal(motion.getState().active,false);
+win.scrollY=0;motion.to(target);step(1100);step(1300);handlers.get('wheel')();assert.equal(jobs.size,0);assert.equal(motion.getState().active,false);
+reduced.matches=true;motion.to(target);assert.equal(win.scrollY,780);assert.equal(jobs.size,0);
+motion.destroy();assert.equal(handlers.size,0);
+console.log('PASS: eased chapter handoff reaches exact destination; user input cancels; reduced motion is instant; cleanup.');

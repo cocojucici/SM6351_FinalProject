@@ -1,0 +1,16 @@
+HTTP/2 200 
+cache-control: no-cache
+content-disposition: attachment; filename="comptab_2026-11-04 13%3A56_comma_separated.csv"; filename*=UTF-8''comptab_2026-11-04%2013%3A56_comma_separated.csv
+content-transfer-encoding: binary
+content-type: text/csv
+referrer-policy: strict-origin-when-cross-origin
+vary: Origin
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-permitted-cross-domain-policies: none
+x-request-id: 23d75353-f11c-41c6-a6f0-d813f467e750
+x-runtime: 10.562957
+x-xss-protection: 0
+content-length: 41814
+date: Wed, 04 Nov 2026 13:57:02 GMT
+

@@ -75,10 +75,10 @@ function mount(root, options = {}) {
     const title=root.querySelector('h1');
     if(chapterView==='forms'){
       const heading=document.createElement('h2');heading.textContent='Product forms';title.replaceWith(heading);
-      root.querySelector('.dv-subtitle').hidden=true;
     }else if(options.intro){
       const heading=document.createElement('h2');heading.textContent='Annual trade';title.replaceWith(heading);
     }
+    if(chapterView==='forms'||options.intro)root.querySelector('.dv-subtitle').hidden=true;
     const link=document.createElement('a');link.className='dv-chapter-link';
     link.href=chapterView==='annual'?'#product-forms':'#annual-trade';
     link.textContent=chapterView==='annual'?'↓':'↑';
@@ -109,8 +109,15 @@ function mount(root, options = {}) {
   const termNames = {fins:'Fins (FIN)', 'fin (dried)':'Dried fins (DFN)', 'fin (wet)':'Wet fins (FFN)'};
   const terms=Object.keys(termNames);
   const filters = () => ({term:q('term').value,reporter:q('reporter').value,source:q('source').value});
-  const chartCaption=next=>next==='annual'?`${caption()} · kg`:`${filters().reporter==='E'?'Exporter-reported':'Importer-reported'} · ${filters().source==='all'?'All sources':'Wild (W)'}`;
-  const caption = () => `${termNames[q('term').value]} · ${q('reporter').value === 'E' ? 'Exporter-reported' : 'Importer-reported'} · ${q('source').value === 'all' ? 'All sources' : 'Wild (W)'}`;
+  const caption=(next,includeAllSources=true)=>{
+    const {term,reporter,source}=filters();
+    const parts=[reporter==='E'?'Exporter-reported':'Importer-reported'];
+    if(next==='annual')parts.unshift(termNames[term]);
+    if(source==='W')parts.push('Wild (W)');
+    else if(includeAllSources)parts.push('All sources');
+    return parts.join(' · ');
+  };
+  const chartCaption=next=>`${caption(next,!options.intro)}${next==='annual'?' · kg':''}`;
   q('year').innerHTML='<span class="dv-year-frame" data-role="year-current" aria-hidden="true"></span><span class="dv-year-frame" data-role="year-next" aria-hidden="true"></span>';
   q('years').innerHTML = D.YEARS.map(year => `<button data-year="${year}" aria-label="View ${year}" aria-pressed="false">${year}</button>`).join('');
 
@@ -272,6 +279,7 @@ function mount(root, options = {}) {
     const comparable = entry.value !== null && previous && previous.value !== null && previous.value !== 0;
     const change = comparable ? (entry.value / previous.value - 1) * 100 : null;
     q('change').textContent = change === null ? 'N/A' : `${change >= 0 ? '+' : ''}${change.toFixed(1)}%`;
+    q('change').parentElement.hidden = !!options.intro && change === null;
     q('items').textContent = entry.rows.length ? D.fmt(entry.rows.length) : '—';
     q('year-note').textContent = entry.value === null ? 'No matching records. Missing does not mean zero trade.' : selected === 2015 ? 'The record starts here.' : previous?.value === null ? 'No previous-year record; year-on-year change is unavailable.' : 'Interpret changes alongside reporting coverage and trade composition.';
     q('chart-label').textContent=chartCaption(view);
@@ -287,7 +295,7 @@ function mount(root, options = {}) {
     });
     q('navigation-hint').textContent=view==='annual'?'Scroll / swipe to explore · continue to product forms':'Scroll / swipe to explore · reverse to return';
     q('explore-scene').textContent=view==='annual'?'01 / 02':'02 / 02';
-    q('year-note').hidden = entry.value !== null;
+    q('year-note').hidden = !!options.intro || entry.value !== null;
     q('coverage').textContent = `${data.filter(x=>x.value!==null).length} / 10 years with records`;
     root.querySelectorAll('.dv-years [data-year]').forEach(button => button.setAttribute('aria-pressed', String(+button.dataset.year === selected)));
     if(root.clientWidth<=700){
@@ -303,7 +311,7 @@ function mount(root, options = {}) {
       if (circle) {circle.setAttribute('r',point.classList.contains('dv-form-point')?'3.5':'0');circle.style.fill='';circle.style.stroke='';}
       point.querySelectorAll('text').forEach(text=>{text.style.fill='';if(text.dataset.axisYear)text.style.opacity=[2015,2024].includes(+point.dataset.year)?'1':'0';});
     });
-    q('table-caption').textContent=view==='annual'?`${caption()} · kg`:`Product forms · ${filters().reporter==='E'?'Exporter-reported':'Importer-reported'} · ${filters().source==='all'?'All sources':'Wild (W)'} · kg`;
+    q('table-caption').textContent=`${view==='forms'?'Product forms · ':''}${caption(view)} · kg`;
     const tableSeries=view==='annual'?[{term:filters().term,values:data}]:formSeries;
     q('table-body').innerHTML=tableSeries.flatMap(({term,values})=>values.map(d=>`<tr><td>${d.year}</td><td>${D.esc(termNames[term])}</td><td>${d.value===null?'No records':D.fmt(d.value)}</td><td>${d.rows.length||'—'}</td></tr>`)).join('');
     renderEvents();
@@ -330,7 +338,7 @@ function mount(root, options = {}) {
     const line=mark.querySelector('line'),circle=mark.querySelector('circle');
     line.setAttribute('x1',x);line.setAttribute('x2',x);line.setAttribute('y1',16);line.setAttribute('y2',h-26);
     circle.setAttribute('cx',x);circle.setAttribute('cy',y);circle.style.visibility=entry.value===null?'hidden':'visible';
-    q('inspect-year').textContent=`Preview · ${year}`;
+    q('inspect-year').textContent=options.intro?String(year):`Preview · ${year}`;
     q('inspect-value').textContent=entry.value===null?'No records':`${D.fmt(entry.value)} kg`;
     q('inspect-hint').textContent=keyboard?'Enter to select':'Click to select';
     const tip=q('inspect');tip.hidden=false;tip.dataset.mode=mode;

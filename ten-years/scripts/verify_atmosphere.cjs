@@ -1,0 +1,24 @@
+const assert=require('assert/strict'),fs=require('fs'),vm=require('vm'),path=require('path');
+const source=fs.readFileSync(path.join(__dirname,'../dist/app.js'),'utf8');
+const controller=source.slice(source.indexOf('function attachAtmosphere('),source.indexOf('function mount('));
+const emitter=()=>({listeners:new Map(),addEventListener(k,f){this.listeners.set(k,f);},removeEventListener(k,f){if(this.listeners.get(k)===f)this.listeners.delete(k);}});
+const reduced={...emitter(),matches:false},fine={...emitter(),matches:true};
+const document={...emitter(),hidden:false},window={...emitter(),matchMedia:q=>q.includes('reduced')?reduced:fine};
+const styles=new Map(),root={...emitter(),getBoundingClientRect:()=>({left:0,top:0,width:1000,height:500}),style:{setProperty:(k,v)=>styles.set(k,v),removeProperty:k=>styles.delete(k)}};
+let next=0,now=0;const frames=new Map();
+const sandbox={window,document,requestAnimationFrame:f=>{frames.set(++next,f);return next;},cancelAnimationFrame:id=>frames.delete(id)};
+vm.runInNewContext(controller+';globalThis.attach=attachAtmosphere;',sandbox);
+const detach=sandbox.attach(root),point=(type='mouse',clientX=1000,clientY=500)=>({pointerType:type,clientX,clientY,target:{closest:()=>null}});
+function flush(){let count=0;while(frames.size){assert.ok(++count<200,'ambient animation must become idle');const jobs=[...frames.values()];frames.clear();now+=16.67;jobs.forEach(f=>f(now));}}
+const move=root.listeners.get('pointermove');
+move(point('touch'));assert.equal(frames.size,0);
+move(point());move(point());assert.equal(frames.size,1,'pointer events share one pending frame');flush();
+assert.equal(styles.get('--dv-light-x'),'32.00px');assert.equal(styles.get('--dv-light-y'),'18.00px');
+root.listeners.get('pointerleave')();flush();assert.equal(styles.get('--dv-light-x'),'0.00px');
+move(point());reduced.matches=true;reduced.listeners.get('change')();assert.equal(frames.size,0);assert.equal(styles.get('--dv-light-x'),'0.00px');
+move(point());assert.equal(frames.size,0);
+reduced.matches=false;fine.matches=false;move(point());assert.equal(frames.size,0);
+fine.matches=true;move(point());document.hidden=true;document.listeners.get('visibilitychange')();assert.equal(frames.size,0);
+document.hidden=false;move(point());detach();assert.equal(frames.size,0);assert.equal(styles.size,0);
+for(const object of [root,document,window,reduced,fine])assert.equal(object.listeners.size,0);
+console.log('PASS: bounded mouse-only light motion; one pending frame; idle stop; pointer leave; reduced motion; coarse/small screens; hidden tab; complete cleanup.');
