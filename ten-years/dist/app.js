@@ -102,10 +102,6 @@ function mount(root, options = {}) {
     root.setAttribute('aria-label','Annual trade and product forms, 2015–2024');
     const heading=document.createElement('h2');
     if(options.intro){
-      const period=document.createElement('p');
-      period.className='dv-kicker';
-      period.textContent='CITES · 2015–2024';
-      root.querySelector('.dv-heading').prepend(period);
       const link=document.createElement('a');
       link.className='dv-chapter-link';
       link.href='#ocean-intro';
@@ -141,10 +137,12 @@ function mount(root, options = {}) {
   let position=0,targetPosition=0,progress=0,targetProgress=0,view='annual',sceneBlend=0,scrubDirection=1,switchMotion=null,formSeries=[],formGeometry=[],motionFrame=0,lastFrameTime=0,settleTimer=null,motionOrigin='init';
   let chartY=value=>0,inTick=false;
   let hintFade=null,previewYear=null;
+  let mounted=false,linkedYearAnimation;
   let policyHTML='',policyPending='',policyOpacity=0,policyPhase=null,policyElapsed=0,policyFrom=0;
   const switchDuration=680;
   let touchStart = null, resizeFrame = 0,suppressProductClick=false;
   const termNames = {fins:'Fins (FIN)', 'fin (dried)':'Dried fins (DFN)', 'fin (wet)':'Wet fins (FFN)'};
+  const termCodes = {fins:'FIN','fin (dried)':'DFN','fin (wet)':'FFN'};
   const terms=Object.keys(termNames);
   const filters = () => ({term:q('term').value,reporter:q('reporter').value,source:q('source').value});
   const caption=(next,includeAllSources=true)=>{
@@ -155,7 +153,13 @@ function mount(root, options = {}) {
     else if(includeAllSources)parts.push('All sources');
     return parts.join(' · ');
   };
-  const chartCaption=next=>`${caption(next,linked||!options.intro)}${next==='annual'&&!linked?' · kg':''}`;
+  function chartCaption(next){
+    if(linked&&options.intro){
+      const {term,reporter,source}=filters();
+      return `${termCodes[term]} · CITES ${reporter==='E'?'exporter':'importer'} reports · ${source==='W'?'Wild (W)':'All sources'}`;
+    }
+    return `${caption(next,linked||!options.intro)}${next==='annual'&&!linked?' · kg':''}`;
+  }
   q('year').innerHTML='<span class="dv-year-frame" data-role="year-current" aria-hidden="true"></span><span class="dv-year-frame" data-role="year-next" aria-hidden="true"></span>';
   if(!linked)q('years').innerHTML = D.YEARS.map(year => `<button data-year="${year}" aria-label="View ${year}" aria-pressed="false">${year}</button>`).join('');
 
@@ -209,16 +213,19 @@ function mount(root, options = {}) {
       f.yearOpacity=1;f.yearOffset=0;f.contextOpacity=1-.5*Math.sin(Math.PI*t)**2;f.transitioning=true;
 
     }
-    if(!switchMotion){q('chart-label').style.opacity=f.yearOpacity;q('chart-label').textContent=chartCaption(f.view);}
+    if(!linked&&!switchMotion){q('chart-label').style.opacity=f.yearOpacity;q('chart-label').textContent=chartCaption(f.view);}
     sceneBlend=f.blend;
     position=f.position;targetPosition=M.frame(targetProgress,reduced.matches).position;
-    const changedView=view!==f.view,changedYear=selected!==f.year;
+    const previousYear=selected;
+    const changedView=view!==f.view,changedYear=previousYear!==f.year;
     view=f.view;selected=f.year;
     root.dataset.position=position.toFixed(5);root.dataset.progress=progress.toFixed(5);root.dataset.view=view;
     root.dataset.transitioning=String(f.transitioning);
     if(changedView||changedYear||f.transitioning||playing!==null)hideInspect();
     if(changedView||changedYear){
-      if(changedYear)eventIndex=0;update(changedYear&&!f.transitioning);
+      if(changedYear)eventIndex=0;
+      if(linked)updateLinkedYear(mounted?previousYear:selected);
+      else update(changedYear&&!f.transitioning);
       if(changedView)root.dispatchEvent(new CustomEvent('decade:view-change',{bubbles:true,detail:{view,year:selected,origin:motionOrigin}}));
       if(changedYear)root.dispatchEvent(new CustomEvent('decade:year-change',{bubbles:true,detail:{year:selected,position,progress,view,origin:motionOrigin,filters:filters(),demo}}));
     }
@@ -318,6 +325,46 @@ function mount(root, options = {}) {
     }
     chooseYear(next+2015,origin);return true;
   }
+  function cancelLinkedYearAnimation(){
+    linkedYearAnimation?.cancel();
+    linkedYearAnimation=null;
+  }
+  function updateLinkedYear(previousYear=selected){
+    const animate=previousYear!==selected&&!reduced.matches;
+    root.dataset.year=String(selected);
+    const heading=q('forms-year');
+    heading.textContent=String(selected);
+    cancelLinkedYearAnimation();
+    if(animate){
+      const offset=6*Math.sign(selected-previousYear);
+      linkedYearAnimation=heading.animate?.([
+        {opacity:.62,transform:`translateY(${offset}px)`},
+        {opacity:1,transform:'translateY(0)'}
+      ],{duration:210,easing:'cubic-bezier(.2,.7,.25,1)'});
+    }
+    const chart=q('chart');
+    chart.querySelector('[aria-current="true"]')?.removeAttribute('aria-current');
+    chart.querySelector(`[data-year="${selected}"]`)?.setAttribute('aria-current','true');
+    chart.querySelector('.dv-year-indicator').style.transform=`translateX(${chartX(selected-2015)}px)`;
+    updateFormValues(animate);
+  }
+  function updateFormValues(animate=false){
+    formGeometry.forEach((g,i)=>{
+      const entry=formSeries[i].values[selected-2015];
+      const missing=entry.value===null;
+      const number=missing?'No records':D.fmt(entry.value);
+      const weight=missing?number:`${number} kg`;
+      g.value.textContent=linked?weight:number;
+      if(linked&&!missing){
+        // A newly reported bar fades in at its real length. Only two observed values can resize.
+        g.fill.classList.toggle('dv-fill-moving',animate&&!g.row.classList.contains('is-missing'));
+        g.fill.style.transform=`scaleX(${entry.value/g.ceiling})`;
+      }
+      g.row.classList.toggle('is-missing',missing);
+      g.row.setAttribute('aria-label',`${g.name}, ${selected}: ${weight}. View annual trend`);
+      if(!linked||!missing)g.zero.hidden=entry.value!==0;
+    });
+  }
   function update(animate) {
     root.dataset.view=view;
     action('view-annual').setAttribute('aria-pressed',String(view==='annual'));action('view-forms').setAttribute('aria-pressed',String(view==='forms'));
@@ -334,24 +381,12 @@ function mount(root, options = {}) {
     q('items').textContent = entry.rows.length ? D.fmt(entry.rows.length) : '—';
     q('year-note').textContent = entry.value === null ? 'No matching records. Missing does not mean zero trade.' : selected === 2015 ? 'The record starts here.' : previous?.value === null ? 'No previous-year record; year-on-year change is unavailable.' : 'Interpret changes alongside reporting coverage and trade composition.';
     q('chart-label').textContent=chartCaption(view);
+    if(linked&&options.intro)q('chart-label').title=caption(view);
     q('form-metrics').innerHTML='';
     q('chart-legend').hidden=view==='forms';q('chart-key').textContent=view==='forms'?'':'Gaps = no records';
     q('chart-key').hidden=view==='forms'||!data.some(d=>d.value===null);
-    if(linked){
-      q('forms-year').textContent=String(selected);
-      const chart=q('chart');
-      chart.querySelector('[aria-current="true"]')?.removeAttribute('aria-current');
-      chart.querySelector(`[data-year="${selected}"]`)?.setAttribute('aria-current','true');
-    }
-    formGeometry.forEach((g,i)=>{
-      const entry=formSeries[i].values[selected-2015];
-      const weight=entry.value===null?'No records':`${D.fmt(entry.value)} kg`;
-      g.value.textContent=linked?weight:entry.value===null?'No records':D.fmt(entry.value);
-      g.row.classList.toggle('is-missing',entry.value===null);
-      g.row.setAttribute('aria-label',`${g.name}, ${selected}: ${weight}. View annual trend`);
-      g.zero.hidden=entry.value!==0;
-      if(linked)g.fill.style.transform=`scaleX(${(entry.value??0)/g.ceiling})`;
-    });
+    if(linked)updateLinkedYear();
+    else updateFormValues();
     q('navigation-hint').textContent=view==='annual'?'Scroll / swipe to explore · continue to product forms':'Scroll / swipe to explore · reverse to return';
     q('explore-scene').textContent=view==='annual'?'01 / 02':'02 / 02';
     q('year-note').hidden = !!options.intro || entry.value !== null;
@@ -485,22 +520,19 @@ function mount(root, options = {}) {
   function drawColumns(){
     const host=q('chart');
     const w=chartWidth,h=Math.max(88,Math.round(host.clientHeight)),base=h-25;
-    const top=Math.min(51,base-32);
-    const annualPeak=data.reduce((highest,entry)=>{
-      return entry.value!==null&&(!highest||entry.value>highest.value)?entry:highest;
-    },null);
-    const peak=annualPeak?.value??0,step=columnWidth();
-    const max=Math.max(1,peak);
+    const top=Math.min(34,base-30);
+    const step=columnWidth();
+    const max=Math.max(1,...data.map(entry=>entry.value??0));
     const magnitude=10**Math.floor(Math.log10(max));
     const ceiling=Math.ceil(max/magnitude)*magnitude;
     const y=value=>base-value/ceiling*(base-top);
     chartY=y;
     const ticks=[0,ceiling/2,ceiling];
     const plotHeight=base-top;
-    const units=plotHeight>=360?20:plotHeight>=140?10:5;
+    const units=plotHeight>=180?10:5;
     const unit=ceiling/units;
     const pitch=plotHeight/units;
-    const fishWidth=Math.min(64,step*.78);
+    const fishWidth=Math.min(60,step*.76);
     const fishHeight=Math.min(pitch*.87,fishWidth*.48);
     const fishId=`${uid}-fish`;
     const clipId=year=>`${uid}-weight-${year}`;
@@ -509,8 +541,6 @@ function mount(root, options = {}) {
       return `<clipPath id="${clipId(entry.year)}"><rect x="${x-fishWidth/2}" y="${y(entry.value)}" width="${fishWidth}" height="${base-y(entry.value)}"/></clipPath>`;
     }).join('');
     const grid=ticks.map(value=>`<line x1="44" x2="${w-8}" y1="${y(value)}" y2="${y(value)}" class="dv-grid-line"/><text x="38" y="${y(value)+4}" text-anchor="end">${value>=1000?D.fmt(value/1000)+'k':D.fmt(value)}</text>`).join('');
-    const latest=data.at(-1);
-    const highlighted=peak>0?[annualPeak,...(latest!==annualPeak&&latest.value!==null?[latest]:[])]:[];
     const columns=data.map((entry,index)=>{
       const x=chartX(index),value=entry.value,left=x-fishWidth/2;
       const fish=value>0?Array.from({length:Math.min(units,Math.ceil(value/unit))},(_,i)=>
@@ -524,42 +554,14 @@ function mount(root, options = {}) {
       const label=w<420?`’${String(entry.year).slice(-2)}`:entry.year;
       return `<g class="dv-graph-point" data-year="${entry.year}" tabindex="0" role="button" aria-label="${entry.year}, ${value===null?'No records':D.fmt(value)+' kg'}"><rect class="dv-column-slot" x="${x-step/2}" y="3" width="${step}" height="${h-5}"/>${bar}<text x="${x}" y="${h-8}" text-anchor="middle">${label}</text></g>`;
     }).join('');
-    const labels=highlighted.map(entry=>
-      `<g><line class="dv-column-leader" hidden/><text class="dv-column-label" text-anchor="middle">${D.fmt(entry.value)} kg</text></g>`
-    ).join('');
     host.innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="group" aria-label="Annual reported trade, 2015–2024, in kilograms. One fish symbol represents ${D.fmt(unit)} kg." aria-describedby="${uid}-series">
       <defs><symbol id="${fishId}" viewBox="0 0 64 28"><path fill-rule="evenodd" d="${fishOutline}"/></symbol>${clips}</defs>
-      <text x="38" y="12" text-anchor="end">kg</text>
       <g class="dv-fish-key" aria-hidden="true"><use href="#${fishId}" width="20" height="10" y="3"/><text class="dv-fish-unit" x="${w-8}" y="12" text-anchor="end">= ${D.fmt(unit)} kg</text></g>
-      ${grid}${columns}<g class="dv-column-labels" aria-hidden="true">${labels}</g>
+      ${grid}${columns}
+      <line class="dv-year-indicator" x1="-8" x2="8" y1="${h-3}" y2="${h-3}" style="transform:translateX(${chartX(selected-2015)}px)" aria-hidden="true"/>
     </svg>`;
     const unitKey=host.querySelector('.dv-fish-unit');
     host.querySelector('.dv-fish-key use').setAttribute('x',w-33-unitKey.getComputedTextLength());
-
-    let previousLabel=null;
-    host.querySelectorAll('.dv-column-label').forEach((label,index)=>{
-      const entry=highlighted[index],markX=chartX(entry.year-2015),markY=y(entry.value);
-      const width=label.getComputedTextLength(),height=label.getBBox().height;
-      const center=M.clamp(markX,44+width/2,w-8-width/2);
-      const left=center-width/2,right=center+width/2;
-      const positions=data.filter(other=>{
-        const otherX=chartX(other.year-2015);
-        return other.value>0&&otherX+fishWidth/2>=left&&otherX-fishWidth/2<=right;
-      }).map(other=>y(other.value));
-      let baseline=Math.min(markY,...positions)-8;
-      if(previousLabel&&left<previousLabel.right+4&&right>previousLabel.left-4&&Math.abs(baseline-previousLabel.baseline)<height+4){
-        baseline=previousLabel.baseline-height-4;
-      }
-      label.setAttribute('x',center);
-      label.setAttribute('y',baseline);
-      const leader=label.previousElementSibling;
-      if(markY-baseline>12){
-        leader.removeAttribute('hidden');
-        leader.setAttribute('x1',markX);leader.setAttribute('x2',markX);
-        leader.setAttribute('y1',baseline+5);leader.setAttribute('y2',markY-2);
-      }
-      previousLabel={left,right,baseline};
-    });
   }
   function drawForms(){
     const host=q('forms-chart');
@@ -799,6 +801,7 @@ function mount(root, options = {}) {
   function pointerdown(event){if(event.pointerType!=='touch')suppressProductClick=false;if(!event.target.closest('button,a,select,input,dialog,[role="button"]'))root.focus({preventScroll:true});}
   function visibility(){if(document.hidden){pause();settle();}}
   const resizeObserver=new ResizeObserver(()=>{if(resizeFrame)cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{resizeFrame=0;if(!destroyed)rebuild();});});
+  if(linked)reduced.addEventListener('change',cancelLinkedYearAnimation);
   root.addEventListener('wheel',wheel,{passive:false});root.addEventListener('keydown',keydown);root.addEventListener('click',click);root.addEventListener('change',change);root.addEventListener('touchstart',touchstart,{passive:true});root.addEventListener('touchmove',touchmove,{passive:false});root.addEventListener('touchend',touchend,{passive:true});root.addEventListener('touchcancel',touchend,{passive:true});root.addEventListener('pointerdown',pointerdown);root.addEventListener('pointermove',previewMove,{passive:true});root.addEventListener('pointerleave',hideInspect);root.addEventListener('focusin',previewFocus);root.addEventListener('focusout',hideInspect);document.addEventListener('visibilitychange',visibility);resizeObserver.observe(root);resizeObserver.observe(q('chart'));
   const detachAtmosphere=options.sharedFlow?()=>{}:attachAtmosphere(root);
   const flowLayer=options.sharedFlow?null:global.MarineDecadeFlow?.attach(root);
@@ -806,13 +809,14 @@ function mount(root, options = {}) {
   const api={
     setYear:year=>chooseYear(year,'api'),setView:next=>setView(next,'api'),setData,setEvents,setFilters,play,pause:()=>{pause();settle();},
     getState:()=>({year:selected,view,position,targetPosition,progress,targetProgress,transitioning:!!switchMotion||(progress>9&&progress<11),demo,filters:filters(),playing:playing!==null}),
-    destroy(){if(destroyed)return;pause();destroyed=true;root.removeAttribute('aria-describedby');flowLayer?.destroy();detachAtmosphere();clearTimeout(settleTimer);if(motionFrame)cancelAnimationFrame(motionFrame);resizeObserver.disconnect();if(resizeFrame)cancelAnimationFrame(resizeFrame);root.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());root.removeEventListener('wheel',wheel);root.removeEventListener('keydown',keydown);root.removeEventListener('click',click);root.removeEventListener('change',change);root.removeEventListener('touchstart',touchstart);root.removeEventListener('touchmove',touchmove);root.removeEventListener('touchend',touchend);root.removeEventListener('touchcancel',touchend);root.removeEventListener('pointerdown',pointerdown);root.removeEventListener('pointermove',previewMove);root.removeEventListener('pointerleave',hideInspect);root.removeEventListener('focusin',previewFocus);root.removeEventListener('focusout',hideInspect);document.removeEventListener('visibilitychange',visibility);root.innerHTML='';delete root._marineDecade;}
+    destroy(){if(destroyed)return;pause();destroyed=true;root.removeAttribute('aria-describedby');flowLayer?.destroy();detachAtmosphere();if(linked)reduced.removeEventListener('change',cancelLinkedYearAnimation);cancelLinkedYearAnimation();clearTimeout(settleTimer);if(motionFrame)cancelAnimationFrame(motionFrame);resizeObserver.disconnect();if(resizeFrame)cancelAnimationFrame(resizeFrame);root.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());root.removeEventListener('wheel',wheel);root.removeEventListener('keydown',keydown);root.removeEventListener('click',click);root.removeEventListener('change',change);root.removeEventListener('touchstart',touchstart);root.removeEventListener('touchmove',touchmove);root.removeEventListener('touchend',touchend);root.removeEventListener('touchcancel',touchend);root.removeEventListener('pointerdown',pointerdown);root.removeEventListener('pointermove',previewMove);root.removeEventListener('pointerleave',hideInspect);root.removeEventListener('focusin',previewFocus);root.removeEventListener('focusout',hideInspect);document.removeEventListener('visibilitychange',visibility);root.innerHTML='';delete root._marineDecade;}
   };
   root._marineDecade=api;
   if(options.data)setData(options.data);else rebuild();
   if(options.events)setEvents(options.events);
   if(!linked&&(chapterView==='forms'||(!chapterView&&options.view==='forms'))){progress=targetProgress=11;renderMotion();}
   if(options.year)chooseYear(options.year,'api');
+  mounted=true;
   return api;
 }
 global.MarineDecade=Object.freeze({mount});

@@ -8,7 +8,7 @@ function create(){
   cancel();
   const start=global.scrollY,end=Math.max(0,Math.min(start+element.getBoundingClientRect().top,document.documentElement.scrollHeight-global.innerHeight));
   if(reduced.matches||Math.abs(end-start)<1){global.scrollTo({top:end,behavior:'instant'});return;}
-  const duration=Math.min(940,640+Math.abs(end-start)*.18);let began;
+  const duration=Math.min(740,450+Math.abs(end-start)*.15);let began;
   active=true;
   function tick(now){
    if(began===undefined)began=now;

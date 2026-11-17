@@ -1,6 +1,6 @@
 // Reuse the same eight bubbles throughout the dive.
 export function attachBubbles(layer) {
-  const bubbleUrl = new URL('./assets/bubble.png', import.meta.url);
+  const bubbleUrl = new URL('./assets/bubble.webp', import.meta.url);
   let active = false;
 
   function cycle(image, initial = false) {

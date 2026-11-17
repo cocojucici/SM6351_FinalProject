@@ -2,7 +2,7 @@
 
 ## 水下开场
 
-合并后的首页沿用 2026-11-17 版 Sphyrna lewini 网站的 Spline 水下场景、双髻鲨模型、背景图与气泡。部署所需的本地文件存放于 [dist/ocean](dist/ocean/)。Spline 场景无法加载时使用同一套素材内的背景图。
+合并后的首页沿用 2026-11-17 版 Sphyrna lewini 网站的双髻鲨模型、海水背景图和气泡。开场光束由 CSS 绘制，海水图和气泡使用 WebP 文件。部署所需素材存放于 [dist/ocean](dist/ocean/)。
 
 - 场景参考 [The Race Below](https://storytelling.11thhourracing.org/the-race-below)，11th Hour Racing / HLabs。
 - 模型 [Scalloped hammerhead juvenile low poly](https://sketchfab.com/3d-models/scalloped-hammerhead-juvenile-low-poly-f5adc17c922b48feae76aaea98552dd4)。

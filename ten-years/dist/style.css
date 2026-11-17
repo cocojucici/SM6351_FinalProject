@@ -760,6 +760,12 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
 .dv-shell.dv-linked [data-role="chart"] { cursor: default; }
 .dv-shell.dv-linked .dv-column-slot { fill: transparent; }
 .dv-shell.dv-linked .dv-graph-point:focus-visible .dv-column-slot { stroke: var(--dv-accent); stroke-width: 2; }
+.dv-shell.dv-linked .dv-year-indicator {
+  stroke: var(--dv-accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+}
 .dv-shell.dv-linked .dv-column { fill: var(--dv-secondary); opacity: .22; }
 .dv-shell.dv-linked .dv-fish-stack {
   fill: color-mix(in srgb, var(--dv-secondary) 82%, var(--dv-ink));
@@ -771,26 +777,24 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
 .dv-shell.dv-linked [aria-current="true"] :is(.dv-column,.dv-fish-stack) { fill: var(--dv-accent); }
 .dv-shell.dv-linked [aria-current="true"] .dv-column-edge { stroke: var(--dv-ink); opacity: 1; }
 .dv-shell.dv-linked [aria-current="true"] .dv-column-zero { stroke: var(--dv-accent); }
-.dv-shell.dv-linked .dv-column-labels { pointer-events: none; }
-.dv-shell.dv-linked .dv-column-leader { stroke: var(--dv-muted); stroke-opacity: .65; stroke-dasharray: 2 3; }
-.dv-shell.dv-linked .dv-column-label {
-  fill: var(--dv-ink);
-  stroke: var(--dv-bg);
-  stroke-width: 3px;
-  stroke-linejoin: round;
-  paint-order: stroke;
-  font-weight: 500;
+.dv-shell.dv-linked [aria-current="true"] text { fill: var(--dv-text); }
+.dv-shell.dv-linked .dv-inspect {
+  flex-flow: row wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  padding: 6px 10px;
+  background: color-mix(in srgb, var(--dv-surface) 65%, var(--dv-bg));
+  box-shadow: none;
 }
+.dv-shell.dv-linked .dv-inspect strong { font: 500 var(--dv-caption)/1.4 var(--dv-body); }
 .dv-shell.dv-linked .dv-linked-forms {
   align-self: center;
   min-width: 0;
-  padding: 4px 0 6px clamp(18px, 2.7vw, 34px);
-  border-inline-start: 1px solid var(--dv-line);
 }
 .dv-shell.dv-linked .dv-linked-forms h3 {
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   color: var(--dv-ink);
-  font: 500 clamp(38px, 4.2vw, 60px)/1.05 var(--dv-heading);
+  font: 500 clamp(36px, 3.8vw, 52px)/1.05 var(--dv-heading);
   letter-spacing: -.035em;
   font-variant-numeric: tabular-nums;
 }
@@ -801,19 +805,19 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
   opacity: 1;
 }
 .dv-shell.dv-linked .dv-products {
-  --dv-product-image-width: clamp(51px, 6.6vw, 82px);
+  --dv-product-image-width: clamp(46px, 5.6vw, 68px);
   --dv-product-gap: clamp(9px, 1.35vw, 17px);
   display: grid;
 }
 .dv-shell.dv-linked .dv-product {
   display: grid;
   grid-template-columns: var(--dv-product-image-width) minmax(0, 1fr);
-  grid-template-rows: auto 10px;
+  grid-template-rows: auto 6px;
   align-content: center;
   align-items: center;
   gap: 5px var(--dv-product-gap);
   min-width: 0;
-  min-height: 76px;
+  min-height: 63px;
   padding: 5px 0;
   background: none;
   border: 0;
@@ -823,7 +827,7 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
   display: block;
   grid-row: 1 / span 2;
   width: 100%;
-  height: 55px;
+  height: 46px;
   object-fit: contain;
 }
 .dv-shell.dv-linked .dv-product .dv-bar-value {
@@ -841,13 +845,14 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
   grid-row: 2;
   position: relative;
   display: block;
-  height: 8px;
+  height: 5px;
   background: linear-gradient(var(--dv-line), var(--dv-line)) center / 100% 1px no-repeat;
 }
 .dv-shell.dv-linked .dv-product-fill {
   position: absolute;
   inset: 0;
   transform-origin: left center;
+  transform: scaleX(0);
   background: var(--dv-accent);
 }
 .dv-shell.dv-linked .dv-product-zero {
@@ -855,7 +860,7 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
   inset: 0 auto 0 0;
   border-inline-start: 2px solid var(--dv-accent);
 }
-.dv-shell.dv-linked .dv-product.is-missing .dv-product-track { visibility: hidden; }
+.dv-shell.dv-linked .dv-product.is-missing .dv-product-track { opacity: 0; }
 .dv-shell.dv-linked .dv-product-scale {
   display: flex;
   justify-content: space-between;
@@ -870,6 +875,13 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
   padding-top: 16px;
   margin-top: 16px;
 }
+@media(prefers-reduced-motion:no-preference) {
+  .dv-shell.dv-linked .dv-year-indicator { transition: transform 220ms cubic-bezier(.2,.7,.25,1); }
+  .dv-shell.dv-linked :is(.dv-fish-stack, .dv-column, .dv-graph-point text) { transition: fill 150ms ease-out; }
+  .dv-shell.dv-linked .dv-column-edge { transition: stroke 150ms ease-out, opacity 150ms ease-out; }
+  .dv-shell.dv-linked .dv-product-track { transition: opacity 200ms ease-out; }
+  .dv-shell.dv-linked .dv-fill-moving { transition: transform 260ms cubic-bezier(.2,.7,.25,1); }
+}
 @media(max-width:740px) {
   .dv-shell.dv-linked .dv-layout { gap: 5px; }
   .dv-shell.dv-linked .dv-main {
@@ -879,14 +891,12 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
   }
   .dv-shell.dv-linked .dv-chart text { font-size: 11px; }
   .dv-shell.dv-linked .dv-linked-forms {
-    border-inline-start: 0;
     border-top: 1px solid var(--dv-line);
     padding: 8px 0 0;
   }
   .dv-shell.dv-linked .dv-linked-forms h3 { font-size: var(--dv-h3); margin-bottom: 4px; }
   .dv-shell.dv-linked .dv-product { min-height: 46px; padding: 3px 0; row-gap: 2px; }
   .dv-shell.dv-linked .dv-product-image { height: 38px; }
-  .dv-shell.dv-linked .dv-product-track { height: 6px; }
 }
 @media(max-height:510px) {
   .dv-shell.dv-linked .dv-layout { gap: 3px; padding-block: 6px; }

@@ -6,7 +6,7 @@
   z-index: -1;
   height: auto;
   pointer-events: none;
-  background: url("assets/deep-water.png") center 78% / cover no-repeat var(--dv-surface);
+  background: url("assets/deep-water.webp") center 78% / cover no-repeat var(--dv-surface);
   transform: scale(1.2);
   transform-origin: center bottom;
 }
@@ -28,19 +28,28 @@
   pointer-events: none;
 }
 
-.ocean-stage > *, .ocean-spline { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ocean-stage > * { position: absolute; inset: 0; width: 100%; height: 100%; }
 .ocean-surface {
   background:
-    linear-gradient(180deg, transparent, color-mix(in srgb, var(--dv-bg) 58%, transparent)),
-    url("assets/deep-water.png") center 20% / cover no-repeat,
+    linear-gradient(180deg, color-mix(in srgb, var(--dv-surface) 74%, transparent),
+      color-mix(in srgb, var(--dv-bg) 64%, var(--dv-surface))),
+    url("assets/deep-water.webp") center 20% / cover no-repeat,
     var(--dv-surface);
 }
-.ocean-spline { transform: scaleY(-1); filter: brightness(1.45) saturate(1.08); }
+.ocean-rays {
+  --ray: color-mix(in srgb, var(--dv-accent) 42%, var(--dv-ink));
+  background:
+    radial-gradient(ellipse at 97% 0%, color-mix(in srgb, var(--ray) 22%, transparent), transparent 52%),
+    conic-gradient(from 193deg at 98% 0%, transparent, color-mix(in srgb, var(--ray) 21%, transparent) 4deg,
+      transparent 10deg, color-mix(in srgb, var(--ray) 17%, transparent) 15deg,
+      transparent 21deg, color-mix(in srgb, var(--ray) 19%, transparent) 24deg,
+      transparent 29deg, color-mix(in srgb, var(--ray) 12%, transparent) 34deg, transparent 43deg);
+  mask-image: radial-gradient(ellipse 72% 100% at 98% 0%, #000, transparent);
+}
 .ocean-bubbles img {
   position: absolute;
   object-fit: contain;
   opacity: 0;
-  filter: saturate(.25) blur(2px);
 }
 .ocean-fish { opacity: 0; }
 .ocean-story:not([data-motion]) .ocean-stage > * { display: none; }
@@ -117,10 +126,10 @@
 .ocean-reveal-word { display: inline-block; white-space: nowrap; }
 .ocean-data-link { gap: 16px; margin-top: 20px; }
 
-.ocean-page #annual-trade .dv-kicker {
-  margin: 0 0 4px;
-  font-size: var(--dv-caption);
-  letter-spacing: .06em;
+.ocean-page #annual-trade .dv-layout {
+  --trade-gutter: clamp(32px, 5.5svh, 60px);
+  padding-block: max(var(--trade-gutter), env(safe-area-inset-top))
+    max(var(--trade-gutter), env(safe-area-inset-bottom));
 }
 .ocean-page #annual-trade .dv-chapter-link {
   flex: 0 0 44px;
@@ -128,11 +137,18 @@
   border-radius: 50%;
 }
 .ocean-page #annual-trade .dv-plot-heading { margin: 0; }
+.ocean-page #annual-trade .dv-plot-heading > span { text-wrap: balance; }
 .ocean-page #annual-trade .dv-product-fill {
   background: linear-gradient(90deg, var(--dv-secondary), var(--dv-accent));
 }
 .ocean-script-note { padding: 16px; color: #ced6e1; font: 16px Inter, sans-serif; }
 
+@media (max-width: 740px) {
+  .ocean-page #annual-trade .dv-layout { --trade-gutter: clamp(16px, 4svh, 32px); }
+}
+@media (max-height: 510px) {
+  .ocean-page #annual-trade .dv-layout { --trade-gutter: clamp(6px, 10svh - 30px, 24px); }
+}
 @media (max-width: 700px) {
   .ocean-story h1 { font-size: var(--dv-h1); text-wrap: balance; }
   .ocean-story[data-motion] .ocean-depth-content { align-content: start; padding-top: 15svh; }
@@ -141,5 +157,4 @@
 @media (max-height: 460px) {
   .ocean-story h1 { font-size: clamp(36px, 11svh, var(--dv-h1)); }
   .ocean-story[data-motion] .ocean-depth-content { align-content: center; padding-top: 0; }
-  .ocean-page #annual-trade .dv-kicker { margin-bottom: 0; }
 }

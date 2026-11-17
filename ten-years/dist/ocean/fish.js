@@ -3,64 +3,17 @@ import { clone as cloneSkeleton } from './vendor/SkeletonUtils.js';
 import { GLTFLoader } from './vendor/GLTFLoader.js';
 
 export function attachFish(canvas, story) {
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setClearColor(0, 0);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.45;
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  renderer.autoClear = false;
 
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-10, 10, 6, -6, .1, 100);
   const light = new THREE.DirectionalLight(0xc7efff, 3.6);
   const fill = new THREE.DirectionalLight(0x54889d, .55);
-  light.castShadow = true;
-  light.shadow.mapSize.set(1024, 1024);
-  Object.assign(light.shadow.camera, { left: -18, right: 18, top: 18, bottom: -18, near: .5, far: 90 });
-  light.shadow.bias = -.0003;
-  light.shadow.normalBias = .035;
   light.target.position.set(0, -2, 0);
   scene.add(light, light.target, fill, new THREE.HemisphereLight(0x84bbcf, 0x102534, 1.2));
-
-  const rayScene = new THREE.Scene();
-  const rayCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-  const rayTime = { value: 0 };
-  const rays = new THREE.ShaderMaterial({
-    transparent: true,
-    depthWrite: false,
-    depthTest: false,
-    uniforms: { time: rayTime },
-    vertexShader: `
-      varying vec2 positionOnScreen;
-      void main() {
-        positionOnScreen = uv;
-        gl_Position = vec4(position.xy, 0., 1.);
-      }`,
-    fragmentShader: `
-      precision highp float;
-      varying vec2 positionOnScreen;
-      uniform float time;
-
-      void main() {
-        vec2 uv = vec2(positionOnScreen.x, 1. - positionOnScreen.y);
-        float slope = (uv.x - .98) / (uv.y + .12);
-        float envelope = exp(-pow((slope + .55) / .58, 2.));
-        float rays = 0.;
-        for (int i = 0; i < 9; i++) {
-          float f = float(i);
-          float center = -.97 + f * .12 + sin(time * .17 + f * 2.1) * .012;
-          float width = .03 + .008 * sin(f * 3.);
-          rays += exp(-pow((slope - center) / width, 2.)) * (.48 + .15 * sin(time * .23 + f));
-        }
-        float attenuation = exp(-uv.y * 2.6);
-        float glow = exp(-length((uv - vec2(.97, .015)) * vec2(3., 7.)));
-        float alpha = clamp((rays * .11 + envelope * .085) * attenuation + glow * .38, 0., .56);
-        gl_FragColor = vec4(mix(vec3(.17, .55, .66), vec3(.72, .91, .95), glow), alpha);
-      }`
-  });
-  rayScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), rays));
 
   const shark = new THREE.Group();
   const companion = new THREE.Group();
@@ -84,6 +37,8 @@ export function attachFish(canvas, story) {
   let path;
   let ready = false;
   let travel = 0;
+  let compact = false;
+  let cameraAtDepth;
 
   const modelUrl = new URL('./assets/scalloped_hammerhead_juvenile_low_poly.glb', import.meta.url);
   new GLTFLoader().load(modelUrl.href, ({ scene: model, animations }) => {
@@ -99,8 +54,6 @@ export function attachFish(canvas, story) {
       node.material = node.material.clone();
       node.material.roughness = .45;
       node.material.metalness = 0;
-      node.castShadow = true;
-      node.receiveShadow = true;
     });
 
     const secondModel = cloneSkeleton(normalized);
@@ -127,7 +80,10 @@ export function attachFish(canvas, story) {
     camera.top = height / 2;
     camera.bottom = -height / 2;
     camera.updateProjectionMatrix();
-    renderer.setSize(clientWidth, clientHeight, false);
+    compact = clientWidth <= 700;
+    const pixelBudget = compact ? 640_000 : 1_250_000;
+    const scale = Math.min(devicePixelRatio, 1.25, Math.sqrt(pixelBudget / (clientWidth * clientHeight)));
+    renderer.setDrawingBufferSize(clientWidth, clientHeight, scale);
     length = Math.min(9, width * .84) * .8 * 1.05;
     shark.scale.setScalar(length);
     companion.scale.setScalar(length);
@@ -169,9 +125,8 @@ export function attachFish(canvas, story) {
 
   function swimIntoDepth() {
     const t = 1 - Math.pow(1 - story.entrance, 3);
-    const mobile = canvas.clientWidth <= 700;
-    const targetX = mobile ? 0 : width * .25 / camera.zoom;
-    const targetY = mobile ? -height * .22 / camera.zoom : 0;
+    const targetX = compact ? 0 : width * .25 / camera.zoom;
+    const targetY = compact ? -height * .22 / camera.zoom : 0;
     const startX = width * .5 / camera.zoom + length * .6;
     const startY = -height * .5 / camera.zoom - length * .7;
     shark.position.copy(cameraRight)
@@ -184,36 +139,43 @@ export function attachFish(canvas, story) {
   let last = 0;
   let elapsed = 0;
   let frameId = 0;
+  let lastOpacity;
   function frame(now) {
     frameId = requestAnimationFrame(frame);
-    if (!path || now - last < 1000 / 30) return;
-    const dt = Math.min((now - last) / 1000, .06);
+    const gap = now - last;
+    if (!ready || !path || gap + .5 < 1000 / (compact ? 30 : 60)) return;
+    const dt = Math.min(gap / 1000, .06);
     last = now;
-    elapsed += dt;
     const atDepth = story.entrance > 0;
-    applyView(atDepth);
-    if (ready) {
-      companion.visible = !atDepth;
-      if (atDepth) swimIntoDepth();
-      else swimAcrossSurface(dt);
-      for (const mixer of mixers) mixer.update(dt * 1.5);
+    const opacity = atDepth
+      ? THREE.MathUtils.smoothstep(story.entrance, 0, .08)
+      : Math.pow(1 - THREE.MathUtils.clamp(story.intro, 0, 1), Math.log2(5));
+    if (opacity < .015) {
+      if (lastOpacity !== 0) canvas.style.opacity = '0';
+      lastOpacity = 0;
+      return;
     }
 
-    rayTime.value = elapsed;
+    if (cameraAtDepth !== atDepth) {
+      cameraAtDepth = atDepth;
+      applyView(atDepth);
+    }
+    companion.visible = !atDepth;
+    if (atDepth) swimIntoDepth();
+    else swimAcrossSurface(dt);
+    for (const mixer of mixers) mixer.update(dt * 1.5);
+
+    elapsed += dt;
     light.position.copy(cameraRight).multiplyScalar(width * .6).addScaledVector(cameraUp, 12).addScaledVector(cameraFront, 5);
     fill.position.copy(camera.position);
     lightSample.copy(shark.position).project(camera);
     const depth = THREE.MathUtils.clamp((1 - lightSample.y) * .5, 0, 1);
     light.intensity = 4.2 * Math.exp(-depth * .8) * (.96 + .04 * Math.sin(elapsed * .7));
-    renderer.clear();
-    if (!atDepth) renderer.render(rayScene, rayCamera);
-    renderer.clearDepth();
     renderer.render(scene, camera);
 
     // Reveal the canvas after the new camera view and swimming position are drawn.
-    canvas.style.opacity = atDepth
-      ? THREE.MathUtils.smoothstep(story.entrance, 0, .08)
-      : Math.pow(1 - THREE.MathUtils.clamp(story.intro, 0, 1), Math.log2(5));
+    if (lastOpacity !== opacity) canvas.style.opacity = opacity;
+    lastOpacity = opacity;
   }
 
   return {

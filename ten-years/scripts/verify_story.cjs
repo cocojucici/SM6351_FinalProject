@@ -44,3 +44,58 @@ assert.equal(bounded.test.year(),2021,'direct selection commits the year immedia
 bounded.test.scrub(99,'wheel');assert.equal(bounded.test.value(),9);
 bounded.test.scrub(-99,'wheel');assert.equal(bounded.test.value(),0);
 console.log('PASS: one shared timeline; 2024 opens by default; old product link opens the combined view; direct selection commits immediately; playback pauses outside the view.');
+
+const presentation=app.slice(app.indexOf('  function cancelLinkedYearAnimation('),app.indexOf('  function update(animate)'));
+function node(){
+  const classes=new Set();
+  return {
+    style:{}, attributes:{}, classList:{
+      contains:name=>classes.has(name),
+      toggle:(name,on)=>on?classes.add(name):classes.delete(name)
+    },
+    setAttribute(name,value){this.attributes[name]=value;},
+    removeAttribute(name){delete this.attributes[name];}
+  };
+}
+const heading=node(),indicator=node(),column=node(),animations=[];
+heading.animate=(frames,options)=>{
+  const animation={frames,options,cancelled:false,cancel(){this.cancelled=true;}};
+  animations.push(animation);
+  return animation;
+};
+const geometry={name:'Fins',ceiling:100,row:node(),fill:node(),zero:node(),value:node()};
+const reduced={matches:false};
+const stage={
+  root:{dataset:{}}, reduced, chartX:index=>50+index*22,
+  q:name=>name==='forms-year'?heading:{querySelector:selector=>selector==='.dv-year-indicator'?indicator:column},
+  D:{fmt:String}, formGeometry:[geometry],
+  formSeries:[{values:[{value:10},{value:35},{value:null},{value:0},{value:40}]}]
+};
+vm.runInNewContext(`
+  const linked=true;
+  let selected=2015,linkedYearAnimation;
+  ${presentation}
+  globalThis.select=year=>{const previous=selected;selected=year;updateLinkedYear(previous);};
+`,stage);
+stage.select(2015);
+assert.equal(animations.length,0,'initial presentation is static');
+stage.select(2016);
+assert.equal(heading.textContent,'2016');
+assert.equal(indicator.style.transform,'translateX(72px)');
+assert.equal(geometry.fill.style.transform,'scaleX(0.35)');
+assert.equal(geometry.fill.classList.contains('dv-fill-moving'),true);
+stage.select(2017);
+assert.equal(animations[0].cancelled,true,'rapid navigation cancels the previous label animation');
+assert.equal(geometry.value.textContent,'No records');
+assert.equal(geometry.fill.style.transform,'scaleX(0.35)','the disappearing bar fades at its known weight');
+stage.select(2018);
+assert.equal(geometry.value.textContent,'0 kg');
+assert.equal(geometry.zero.hidden,false);
+assert.equal(geometry.fill.classList.contains('dv-fill-moving'),false,'missing data is not an interpolation endpoint');
+reduced.matches=true;
+stage.select(2019);
+assert.equal(geometry.value.textContent,'40 kg');
+assert.equal(geometry.fill.classList.contains('dv-fill-moving'),false);
+assert.equal(animations.length,3);
+assert.equal(animations.at(-1).cancelled,true);
+console.log('PASS: linked year transitions commit immediately, replace interrupted motion, and distinguish missing records from zero.');
