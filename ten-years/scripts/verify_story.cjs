@@ -1,28 +1,46 @@
 const assert=require('assert/strict'),fs=require('fs'),vm=require('vm'),path=require('path');
-const handlers=new Map(),records=new Map();
-const roots=['annual-trade','product-forms'].map(id=>({id,querySelector:()=>({textContent:''}),scrollIntoView(){this.scrolled=true;},focus(){this.focused=true;},contains:()=>false}));
-const emit=(name,target,detail)=>handlers.get(name)?.({target,detail});
-const sandbox={window:{matchMedia:()=>({matches:true})},location:{hash:''},history:{pushState(_a,_b,hash){sandbox.location.hash=hash;}},document:{getElementById:id=>roots.find(r=>r.id===id),addEventListener:(name,fn)=>handlers.set(name,fn)},IntersectionObserver:class{observe(){}}};
-sandbox.MarineDecade={mount(root,options){
- const state={year:2015,filters:{term:'fins',reporter:'E',source:'all'},playing:false},calls={filters:0,data:0,events:0};
- const api={pause(){state.playing=false;},getState:()=>JSON.parse(JSON.stringify(state)),setYear:y=>{state.year=y;},setFilters(next){calls.filters++;Object.assign(state.filters,next);emit('decade:filters-change',root,{filters:state.filters});},setData(data){calls.data++;state.data=data;emit('decade:data-change',root,{data});},setEvents(events){calls.events++;state.events=events;emit('decade:events-change',root,{events});}};
- records.set(root.id,{api,state,calls,options});return api;
-}};
+const handlers=new Map();
+const root={querySelector:()=>null,scrollIntoView(){this.scrolled=true;},focus(){this.focused=true;}};
+const api={pause(){this.paused=true;}};
+let mountOptions,observed,visibility;
+const sandbox={
+ window:{matchMedia:()=>({matches:true}),addEventListener:(name,fn)=>handlers.set(name,fn)},
+ location:{hash:'#product-forms'},
+ history:{replaceState(_a,_b,hash){sandbox.location.hash=hash;}},
+ document:{getElementById:id=>id==='annual-trade'?root:null},
+ IntersectionObserver:class{constructor(fn){visibility=fn;}observe(element){observed=element;}},
+ MarineDecade:{mount(element,options){assert.equal(element,root);mountOptions=options;return api;}}
+};
 vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../dist/story.js'),'utf8'),sandbox);
-const annual=records.get('annual-trade'),forms=records.get('product-forms');
-assert.equal(annual.options.chapterView,'annual');assert.equal(forms.options.chapterView,'forms');
-forms.api.setFilters({reporter:'I',source:'W'});assert.equal(annual.state.filters.reporter,'I');assert.equal(annual.state.filters.source,'W');assert.equal(annual.calls.filters,1);assert.equal(forms.calls.filters,1);
-annual.api.setFilters({term:'fin (wet)'});assert.equal(forms.state.filters.term,'fins','shared filters do not overwrite the hidden product selection');
-emit('decade:navigate',roots[1],{view:'annual',year:2023,filters:forms.state.filters,origin:'api'});assert.equal(annual.state.filters.term,'fin (wet)','ordinary chapter navigation preserves the annual product');assert.equal(annual.state.year,2023);
-emit('decade:navigate',roots[1],{view:'annual',year:2022,filters:{...forms.state.filters,term:'fin (dried)'},origin:'product'});assert.equal(annual.state.filters.term,'fin (dried)');assert.equal(annual.state.year,2022);assert.equal(annual.state.filters.reporter,'I');
-const data=[{Year:2023,Quantity:1}],events=[{title:'Test context'}];annual.api.setData(data);forms.api.setEvents(events);assert.equal(forms.state.data,data);assert.equal(annual.state.events,events);assert.equal(annual.calls.data,1);assert.equal(forms.calls.data,1);assert.equal(annual.calls.events,1);assert.equal(forms.calls.events,1);
-let prevented=false;annual.state.year=2024;
-handlers.get('decade:boundary')({target:roots[0],detail:{origin:'wheel',direction:1},preventDefault(){prevented=true;}});
-assert.equal(prevented,true);assert.equal(forms.state.year,2024,'wheel handoff retains the selected boundary year');assert.equal(sandbox.location.hash,'#product-forms');
-prevented=false;handlers.get('decade:boundary')({target:roots[1],detail:{origin:'wheel',direction:1},preventDefault(){prevented=true;}});assert.equal(prevented,false,'outer edge keeps native scrolling');
-const app=fs.readFileSync(path.join(__dirname,'../dist/app.js'),'utf8');require('../dist/motion.js');
+assert.equal(mountOptions.linked,true);
+assert.equal(mountOptions.year,2024);
+assert.equal(mountOptions.releaseAtBoundary,true);
+assert.equal(sandbox.window.decadeView,api);
+assert.equal(sandbox.window.decadeChapters.annual,sandbox.window.decadeChapters.forms);
+assert.equal(observed,root);
+assert.equal(sandbox.location.hash,'#annual-trade');
+assert.equal(root.scrolled,true);
+assert.equal(root.focused,true);
+visibility([{intersectionRatio:.8}]);assert.equal(api.paused,undefined);
+visibility([{intersectionRatio:.2}]);assert.equal(api.paused,true);
+
+const app=fs.readFileSync(path.join(__dirname,'../dist/app.js'),'utf8');
+require('../dist/motion.js');
+const choose=app.slice(app.indexOf('  function chooseYear('),app.indexOf('  function setView('));
 const scrub=app.slice(app.indexOf('  function scrub('),app.indexOf('  function cancelSwitch('));
-const bounded={M:globalThis.MarineDecadeMotion,pause(){},dismissHint(){},clearTimeout(){},cancelSwitch(){},startMotion(){},settle(){}};
-vm.runInNewContext(`let settleTimer=null,scrubDirection=1,motionOrigin='',targetProgress=8.9,chapterStart=0,chapterEnd=9;${scrub};globalThis.test={scrub,value:()=>targetProgress,forms:()=>{chapterStart=11;chapterEnd=20;targetProgress=11;}};`,bounded);
-bounded.test.scrub(99,'wheel');assert.equal(bounded.test.value(),9);bounded.test.scrub(-99,'wheel');assert.equal(bounded.test.value(),0);bounded.test.forms();bounded.test.scrub(-99,'wheel');assert.equal(bounded.test.value(),11);bounded.test.scrub(99,'wheel');assert.equal(bounded.test.value(),20);
-console.log('PASS: independent chapter bounds; shared filters/data/events without feedback loops; chapter navigation preserves products; product drill-in retains year and reporting scope.');
+const bounded={
+ M:globalThis.MarineDecadeMotion,hideInspect(){},pause(){},dismissHint(){},
+ clearTimeout(){},cancelSwitch(){},settle(){},startMotion(){},
+ q:()=>({textContent:''})
+};
+vm.runInNewContext(`let settleTimer=null,scrubDirection=1,motionOrigin='',targetProgress=8.9,progress=0,selected=2015,chapterStart=0,chapterEnd=9;
+ const linked=true,destroyed=false,view='annual';
+ function renderMotion(){selected=M.frame(progress).year;}
+ ${choose}${scrub}
+ globalThis.test={chooseYear,scrub,year:()=>selected,value:()=>targetProgress};
+`,bounded);
+bounded.test.chooseYear(2021,'click');
+assert.equal(bounded.test.year(),2021,'direct selection commits the year immediately');
+bounded.test.scrub(99,'wheel');assert.equal(bounded.test.value(),9);
+bounded.test.scrub(-99,'wheel');assert.equal(bounded.test.value(),0);
+console.log('PASS: one shared timeline; 2024 opens by default; old product link opens the combined view; direct selection commits immediately; playback pauses outside the view.');

@@ -45,7 +45,7 @@ function attach(root,options={}){
    colors={bg:style.getPropertyValue('--dv-bg').trim(),surface:style.getPropertyValue('--dv-surface').trim(),primary:style.getPropertyValue('--dv-primary').trim(),accent:style.getPropertyValue('--dv-accent').trim(),ink:style.getPropertyValue('--dv-ink').trim(),secondary:style.getPropertyValue('--dv-secondary').trim()};
    maskCtx.setTransform(dpr,0,0,dpr,0,0);maskCtx.clearRect(0,0,width,worldHeight);
    maskCtx.fillStyle=colors.bg;
-   const selectors='.dv-intro-title,.dv-intro-meta,.dv-intro-top,.dv-intro-explore,.dv-heading h1,.dv-heading h2,.dv-chapter-link,.dv-subtitle,.dv-header-actions,.dv-flow-toggle,.dv-toolbar,.dv-year,.dv-amount,.dv-metric,.dv-year-note:not([hidden]),.dv-chart-stage,.dv-chart-note,.dv-forms-note,.dv-policy:not([hidden]),.dv-footer,.dv-bottom:not([hidden])';
+   const selectors='.dv-intro-title,.dv-intro-meta,.dv-intro-explore,.dv-heading h1,.dv-heading h2,.dv-chapter-link,.dv-subtitle,.dv-header-actions,.dv-flow-toggle,.dv-toolbar,.dv-year,.dv-amount,.dv-metric,.dv-year-note:not([hidden]),.dv-chart-stage,.dv-linked-forms,.dv-chart-note,.dv-forms-note,.dv-policy:not([hidden]),.dv-footer,.dv-bottom:not([hidden])';
    const rects=Array.from(root.querySelectorAll(selectors),el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);
    // A feathered surround hides the mask boundary; the opaque core guarantees clean data pixels.
    maskCtx.filter=`blur(${16*dpr}px)`;
@@ -109,7 +109,14 @@ function attach(root,options={}){
  function start(){if(!frame&&allowed()){last=0;frame=requestAnimationFrame(tick);}}
  function sync(){
    stop();surfaces.forEach(surface=>surface.dataset.flowPaused=String(paused||reduced.matches));dirty=true;paint();
-   buttons.forEach(button=>{if(button.dataset?.flowText)button.textContent=reduced.matches?'Static motion':paused?'Resume motion':'Pause motion';button.disabled=reduced.matches;button.setAttribute('aria-pressed',String(!paused&&!reduced.matches));button.setAttribute('aria-label',reduced.matches?'Background flow is static: reduced motion':paused?'Resume background flow':'Pause background flow');button.title=reduced.matches?'Static flow · reduced motion':paused?'Resume flow':'Pause flow';});
+   buttons.forEach(button=>{
+     if(button.dataset?.flowText)button.textContent=reduced.matches?'Static motion':paused?'Resume motion':'Pause motion';
+     button.disabled=reduced.matches;
+     button.setAttribute('aria-pressed',String(!paused&&!reduced.matches));
+     button.setAttribute('aria-label',reduced.matches?'Background flow is static: reduced motion':paused?'Resume background flow':'Pause background flow');
+     if(button.dataset?.tooltip!==undefined)button.dataset.tooltip=paused?'Resume background motion':'Pause background motion';
+     else button.title=reduced.matches?'Static flow · reduced motion':paused?'Resume flow':'Pause flow';
+   });
    start();
  }
  function move(event){

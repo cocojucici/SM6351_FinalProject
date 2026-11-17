@@ -2,6 +2,8 @@
 'use strict';
 const D = global.MarineDecadeData, M = global.MarineDecadeMotion;
 let instanceCount = 0;
+const productImages = {fins:'unspecified-fins', 'fin (dried)':'dried-fins', 'fin (wet)':'wet-fins'};
+const fishOutline='M1 4 14 11C20 6 25 4 31 4L37 0l4 4c9 1 16 5 22 10-6 6-14 10-23 11l-5 3-4-3c-7-1-12-4-17-8L1 24l3-10ZM51 10a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z';
 const markup = `
 <div class="dv-atmosphere" aria-hidden="true"></div><canvas class="dv-flow" data-role="flow-canvas" aria-hidden="true"></canvas><span class="dv-sr-only" data-role="interaction-status" role="status" aria-live="polite" aria-atomic="true"></span>
 <div class="dv-layout">
@@ -61,17 +63,19 @@ function attachAtmosphere(root){
 
 function mount(root, options = {}) {
   if (!(root instanceof HTMLElement)) throw Error('Provide a chapter container element.');
+  const linked = options.linked === true;
   const chapterView=options.chapterView??null;
   if(chapterView&&!['annual','forms'].includes(chapterView))throw Error('Chapter view must be annual or forms.');
-  const chapterStart=chapterView==='forms'?11:0,chapterEnd=chapterView==='annual'?9:20;
+  const chapterStart=!linked&&chapterView==='forms'?11:0,chapterEnd=linked||chapterView==='annual'?9:20;
   if (root._marineDecade) root._marineDecade.destroy();
   const uid = `marine-decade-${++instanceCount}`;
   root.classList.add('dv-shell');
   root.tabIndex = 0;
   root.setAttribute('aria-label',chapterView?(chapterView==='forms'?'Product forms, 2015–2024. Scroll or use arrow keys to explore.':'Annual trade, 2015–2024. Scroll or use arrow keys to explore.'):'A decade of trade. Scroll or use arrow keys to explore.');
   root.innerHTML = markup;
+  root.classList.toggle('dv-linked',linked);
   root.dataset.chapter=chapterView||'';
-  if(chapterView){
+  if(chapterView&&!linked){
     const title=root.querySelector('h1');
     if(chapterView==='forms'){
       const heading=document.createElement('h2');heading.textContent='Product forms';title.replaceWith(heading);
@@ -88,10 +92,31 @@ function mount(root, options = {}) {
   delete root.dataset.explored;
   const instructions=document.createElement('p');
   instructions.id=`${uid}-instructions`;instructions.className='dv-sr-only';
-  instructions.textContent='Scroll or swipe through years. Select a year, use arrow keys, or use Play. Use the chapter arrow to move between Annual trade and Product forms.';
+  instructions.textContent=linked
+    ?'Move across the years or use the arrow keys to update the product forms. Hover over a product image or activate its button to show its annual trend.'
+    :'Scroll or swipe through years. Select a year, use arrow keys, or use Play. Use the chapter arrow to move between Annual trade and Product forms.';
   root.prepend(instructions);root.setAttribute('aria-describedby',instructions.id);
   const q = name => root.querySelector(`[data-role="${name}"]`);
   const action = name => root.querySelector(`[data-action="${name}"]`);
+  if(linked){
+    root.setAttribute('aria-label','Annual trade and product forms, 2015–2024');
+    const heading=document.createElement('h2');
+    heading.textContent='Fin trade';
+    root.querySelector('h1').replaceWith(heading);
+    root.querySelector('.dv-subtitle').hidden=true;
+    root.querySelector('.dv-header-actions').remove();
+    root.querySelector('.dv-toolbar').classList.add('dv-sr-only');
+    q('chart-label').id=`${uid}-series`;
+    action('filters').remove();
+    root.querySelector('.dv-footer').remove();
+    root.querySelector('.dv-policy').remove();
+    const plot=root.querySelector('.dv-plot');
+    plot.insertAdjacentHTML('afterend','<section class="dv-linked-forms" aria-label="Fish fin quantities by form"><h3 data-role="forms-year"></h3></section>');
+    const forms=q('forms-chart');
+    root.querySelector('.dv-linked-forms').append(forms);
+    forms.inert=false;
+    forms.removeAttribute('aria-hidden');
+  }
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   if(!options.data&&!global.MarineDecadeDataset?.records?.length){
     root.innerHTML='<p>Official dataset unavailable. Reload the page or supply a verified dataset.</p>';
@@ -112,31 +137,34 @@ function mount(root, options = {}) {
   const caption=(next,includeAllSources=true)=>{
     const {term,reporter,source}=filters();
     const parts=[reporter==='E'?'Exporter-reported':'Importer-reported'];
-    if(next==='annual')parts.unshift(termNames[term]);
+    if(next==='annual')parts.unshift(linked&&term==='fins'?'Unspecified fins (FIN)':termNames[term]);
     if(source==='W')parts.push('Wild (W)');
     else if(includeAllSources)parts.push('All sources');
     return parts.join(' · ');
   };
-  const chartCaption=next=>`${caption(next,!options.intro)}${next==='annual'?' · kg':''}`;
+  const chartCaption=next=>`${caption(next,linked||!options.intro)}${next==='annual'&&!linked?' · kg':''}`;
   q('year').innerHTML='<span class="dv-year-frame" data-role="year-current" aria-hidden="true"></span><span class="dv-year-frame" data-role="year-next" aria-hidden="true"></span>';
-  q('years').innerHTML = D.YEARS.map(year => `<button data-year="${year}" aria-label="View ${year}" aria-pressed="false">${year}</button>`).join('');
+  if(!linked)q('years').innerHTML = D.YEARS.map(year => `<button data-year="${year}" aria-label="View ${year}" aria-pressed="false">${year}</button>`).join('');
 
   function matchesEvent(e) {
-    const f=filters(),products=view==='forms'?terms:[f.term];
+    const f=filters(),products=linked||view==='forms'?terms:[f.term];
     if(e.annotation_mode==='context_only')return e.products.some(t=>products.includes(t))&&(!e.source_codes||f.source==='all'||e.source_codes.includes(f.source));
     return products.includes(e.term)&&e.unit==='kg'&&e.reporter===f.reporter&&e.source===f.source;
   }
-  function rebuild() {
+  function rebuild(reuseForms=false) {
     hideInspect();
-    data=D.summarize(rows,filters());
-    formSeries=terms.map(term=>({term,values:D.summarize(rows,{...filters(),term})}));
-    draw();drawForms();update(false);renderMotion();
+    const activeFilters=filters();
+    if(!reuseForms)formSeries=terms.map(term=>({term,values:D.summarize(rows,{...activeFilters,term})}));
+    data=formSeries.find(series=>series.term===activeFilters.term).values;
+    draw();
+    if(!reuseForms)drawForms();
+    update(false);renderMotion();
   }
   function startMotion(){
     if(!motionFrame&&!destroyed&&!inTick){lastFrameTime=0;motionFrame=requestAnimationFrame(tick);}
   }
   function dismissHint(){
-    if(root.dataset.explored==='true')return;
+    if(linked||root.dataset.explored==='true')return;
     root.dataset.explored='true';hintFade=0;startMotion();
   }
   function tick(now){
@@ -181,6 +209,8 @@ function mount(root, options = {}) {
       if(changedView)root.dispatchEvent(new CustomEvent('decade:view-change',{bubbles:true,detail:{view,year:selected,origin:motionOrigin}}));
       if(changedYear)root.dispatchEvent(new CustomEvent('decade:year-change',{bubbles:true,detail:{year:selected,position,progress,view,origin:motionOrigin,filters:filters(),demo}}));
     }
+    if(linked)return;
+    paintPolicy(f);
     if(switchMotion){const t=Math.min(1,switchMotion.elapsed/switchDuration);q('chart-label').textContent=t<.5?switchMotion.captionFrom:chartCaption(f.view);q('chart-label').style.opacity=1-Math.sin(Math.PI*t)**2;}
     const base=Math.min(9,Math.floor(position)),fraction=position-base;
     const first=q('year-current'),next=q('year-next');
@@ -200,11 +230,6 @@ function mount(root, options = {}) {
     q('annual-metrics').style.transform=`translate3d(0,${focus.offset}px,0)`;
     q('forms-note').style.opacity=f.blend;q('forms-note').setAttribute('aria-hidden',String(view!=='forms'));
     q('forms-chart').querySelectorAll('[data-form-year]').forEach(el=>{el.style.opacity=[2015,2024,selected].includes(+el.dataset.formYear)||chartWidth>550?'1':'0';});
-    const policy=root.querySelector('.dv-policy');
-    policy.style.opacity=policyOpacity*f.contextOpacity;
-    q('events').style.transform=`translate3d(0,${(1-policyOpacity)*4}px,0)`;
-    policy.inert=f.transitioning||policyPhase==='out'||policyPhase==='wait'||policyOpacity*f.contextOpacity<.3||!policyHTML;
-    policy.setAttribute('aria-hidden',String(policy.inert));
     const annualPosition=progress>9&&!switchMotion?9:position;
     const x=chartX(annualPosition),clip=q('chart').querySelector('.dv-clip'),guide=q('chart').querySelector('.dv-guide');
     if(clip)clip.style.width=`${x+.5}px`;
@@ -221,6 +246,13 @@ function mount(root, options = {}) {
       if(g.tip){g.tip.hidden=state.value===null||state.value===0;g.tip.style.left=`${state.value===null?0:state.value/g.ceiling*100}%`;g.tip.style.opacity=state.opacity;}
     });
     renderTransport();
+  }
+  function paintPolicy(frame){
+    const policy=root.querySelector('.dv-policy');
+    policy.style.opacity=policyOpacity*frame.contextOpacity;
+    q('events').style.transform=`translate3d(0,${(1-policyOpacity)*4}px,0)`;
+    policy.inert=frame.transitioning||policyPhase==='out'||policyPhase==='wait'||policyOpacity*frame.contextOpacity<.3||!policyHTML;
+    policy.setAttribute('aria-hidden',String(policy.inert));
   }
   function settle(){
     clearTimeout(settleTimer);
@@ -240,6 +272,11 @@ function mount(root, options = {}) {
     if(origin!=='api')dismissHint();
     pause();cancelSwitch();clearTimeout(settleTimer);settleTimer=null;
     motionOrigin=origin;targetProgress=M.progressFor(view,Math.round(value));
+    if(linked){
+      progress=targetProgress;renderMotion();
+      if(origin==='click'||origin==='keyboard')q('interaction-status').textContent=`Product forms updated to ${selected}.`;
+      return;
+    }
     // Year controls stay in the active view, including when a scroll transition is interrupted.
     if(M.frame(progress).view!==view)progress=M.progressFor(view,selected);
     startMotion();
@@ -247,6 +284,7 @@ function mount(root, options = {}) {
   function setView(next,origin='api'){
     if(destroyed)return;
     if(!['annual','forms'].includes(next))throw Error('View must be annual or forms.');
+    if(linked)return;
     if(chapterView&&next!==chapterView){
       pause();root.dispatchEvent(new CustomEvent('decade:navigate',{bubbles:true,detail:{view:next,year:selected,filters:filters(),origin}}));return;
     }
@@ -286,40 +324,54 @@ function mount(root, options = {}) {
     q('form-metrics').innerHTML='';
     q('chart-legend').hidden=view==='forms';q('chart-key').textContent=view==='forms'?'':'Gaps = no records';
     q('chart-key').hidden=view==='forms'||!data.some(d=>d.value===null);
+    if(linked){
+      q('forms-year').textContent=String(selected);
+      const chart=q('chart');
+      chart.querySelector('[aria-current="true"]')?.removeAttribute('aria-current');
+      chart.querySelector(`[data-year="${selected}"]`)?.setAttribute('aria-current','true');
+    }
     formGeometry.forEach((g,i)=>{
       const entry=formSeries[i].values[selected-2015];
-      g.value.textContent=entry.value===null?'No records':D.fmt(entry.value);
+      const weight=entry.value===null?'No records':`${D.fmt(entry.value)} kg`;
+      g.value.textContent=linked?weight:entry.value===null?'No records':D.fmt(entry.value);
       g.row.classList.toggle('is-missing',entry.value===null);
-      g.row.setAttribute('aria-label',`${g.name}, ${selected}: ${entry.value===null?'No records':D.fmt(entry.value)+' kg'}. View annual trend`);
+      g.row.setAttribute('aria-label',`${g.name}, ${selected}: ${weight}. View annual trend`);
       g.zero.hidden=entry.value!==0;
+      if(linked)g.fill.style.transform=`scaleX(${(entry.value??0)/g.ceiling})`;
     });
     q('navigation-hint').textContent=view==='annual'?'Scroll / swipe to explore · continue to product forms':'Scroll / swipe to explore · reverse to return';
     q('explore-scene').textContent=view==='annual'?'01 / 02':'02 / 02';
     q('year-note').hidden = !!options.intro || entry.value !== null;
     q('coverage').textContent = `${data.filter(x=>x.value!==null).length} / 10 years with records`;
-    root.querySelectorAll('.dv-years [data-year]').forEach(button => button.setAttribute('aria-pressed', String(+button.dataset.year === selected)));
-    if(root.clientWidth<=700){
-      const strip=q('years'),active=strip.querySelector('[aria-pressed="true"]');
-      if(active)strip.scrollLeft+=active.getBoundingClientRect().left-strip.getBoundingClientRect().left-(strip.clientWidth-active.offsetWidth)/2;
+    if(!linked){
+      root.querySelectorAll('.dv-years [data-year]').forEach(button => button.setAttribute('aria-pressed', String(+button.dataset.year === selected)));
+      if(root.clientWidth<=700){
+        const strip=q('years'),active=strip.querySelector('[aria-pressed="true"]');
+        if(active)strip.scrollLeft+=active.getBoundingClientRect().left-strip.getBoundingClientRect().left-(strip.clientWidth-active.offsetWidth)/2;
+      }
+      action('previous').disabled = selected === 2015;
+      action('next').disabled = selected === 2024;
+      root.querySelectorAll('.dv-graph-point,.dv-form-point').forEach(point => {
+        const active = +point.dataset.year === selected;
+        point.setAttribute('aria-pressed', String(active));
+        const circle = point.querySelector('circle');
+        if (circle) {circle.setAttribute('r',point.classList.contains('dv-form-point')?'3.5':'0');circle.style.fill='';circle.style.stroke='';}
+        point.querySelectorAll('text').forEach(text=>{text.style.fill='';if(text.dataset.axisYear)text.style.opacity=[2015,2024].includes(+point.dataset.year)?'1':'0';});
+      });
     }
-    action('previous').disabled = selected === 2015;
-    action('next').disabled = selected === 2024;
-    root.querySelectorAll('.dv-graph-point,.dv-form-point').forEach(point => {
-      const active = +point.dataset.year === selected;
-      point.setAttribute('aria-pressed', String(active));
-      const circle = point.querySelector('circle');
-      if (circle) {circle.setAttribute('r',point.classList.contains('dv-form-point')?'3.5':'0');circle.style.fill='';circle.style.stroke='';}
-      point.querySelectorAll('text').forEach(text=>{text.style.fill='';if(text.dataset.axisYear)text.style.opacity=[2015,2024].includes(+point.dataset.year)?'1':'0';});
-    });
-    q('table-caption').textContent=`${view==='forms'?'Product forms · ':''}${caption(view)} · kg`;
-    const tableSeries=view==='annual'?[{term:filters().term,values:data}]:formSeries;
+    const tableView=linked?'forms':view;
+    q('table-caption').textContent=`${tableView==='forms'?'Product forms · ':''}${caption(tableView)} · kg`;
+    const tableSeries=tableView==='annual'?[{term:filters().term,values:data}]:formSeries;
     q('table-body').innerHTML=tableSeries.flatMap(({term,values})=>values.map(d=>`<tr><td>${d.year}</td><td>${D.esc(termNames[term])}</td><td>${d.value===null?'No records':D.fmt(d.value)}</td><td>${d.rows.length||'—'}</td></tr>`)).join('');
     renderEvents();
   }
-  function chartX(index) { return 42 + index / 9 * (chartWidth - 64); }
+  function columnWidth(){return (chartWidth-52)/D.YEARS.length;}
+  function chartX(index) { return linked?44+(index+.5)*columnWidth():42+index/9*(chartWidth-64); }
   function hitYear(event){
     const box=q('chart').getBoundingClientRect();
-    return M.nearestYear((event.clientX-box.left)*chartWidth/Math.max(1,box.width),chartWidth);
+    const x=(event.clientX-box.left)*chartWidth/Math.max(1,box.width);
+    if(linked)return D.YEARS[M.clamp(Math.floor((x-44)/columnWidth()),0,D.YEARS.length-1)];
+    return M.nearestYear(x,chartWidth);
   }
   function hideInspect(){
     previewYear=null;q('inspect').hidden=true;
@@ -332,12 +384,14 @@ function mount(root, options = {}) {
     const entry=data[year-2015];if(!entry)return;
     previewYear=year;
     const host=q('chart'),svg=host.querySelector('svg'),mark=host.querySelector('.dv-preview-mark');
-    if(!svg||!mark)return;
-    const h=svg.viewBox.baseVal.height,x=chartX(year-2015),y=entry.value===null?h-30:chartY(entry.value);
-    mark.removeAttribute('hidden');
-    const line=mark.querySelector('line'),circle=mark.querySelector('circle');
-    line.setAttribute('x1',x);line.setAttribute('x2',x);line.setAttribute('y1',16);line.setAttribute('y2',h-26);
-    circle.setAttribute('cx',x);circle.setAttribute('cy',y);circle.style.visibility=entry.value===null?'hidden':'visible';
+    if(!svg)return;
+    const h=svg.viewBox.baseVal.height,x=chartX(year-2015),y=entry.value===null?chartY(0):chartY(entry.value);
+    if(mark){
+      mark.removeAttribute('hidden');
+      const line=mark.querySelector('line'),circle=mark.querySelector('circle');
+      line.setAttribute('x1',x);line.setAttribute('x2',x);line.setAttribute('y1',16);line.setAttribute('y2',h-26);
+      circle.setAttribute('cx',x);circle.setAttribute('cy',y);circle.style.visibility=entry.value===null?'hidden':'visible';
+    }
     q('inspect-year').textContent=options.intro?String(year):`Preview · ${year}`;
     q('inspect-value').textContent=entry.value===null?'No records':`${D.fmt(entry.value)} kg`;
     q('inspect-hint').textContent=keyboard?'Enter to select':'Click to select';
@@ -350,6 +404,17 @@ function mount(root, options = {}) {
   }
   function previewMove(event){
     if(event.pointerType!=='mouse')return;
+    if(linked){
+      const column=event.target.closest('.dv-graph-point');
+      if(column){
+        const year=+column.dataset.year;
+        if(year!==selected)chooseYear(year,'hover');
+        return inspectYear(year);
+      }
+      const image=event.target.closest('.dv-product-image');
+      if(image)inspectProduct(image.closest('[data-product]').dataset.product,'hover');
+      return hideInspect();
+    }
     const yearButton=event.target.closest('.dv-years [data-year]');
     if(yearButton)return inspectYear(+yearButton.dataset.year);
     if(event.target.closest('[data-role="chart"]'))return inspectYear(hitYear(event));
@@ -359,16 +424,22 @@ function mount(root, options = {}) {
     const point=event.target.closest('.dv-graph-point,.dv-years [data-year]');
     if(point)inspectYear(+point.dataset.year,true);
   }
-  function inspectProduct(term){
+  function inspectProduct(term,origin='activate'){
     if(!terms.includes(term))return;
-    pause();hideInspect();q('term').value=term;rebuild();setView('annual','product');
-    if(!chapterView){
-      action('view-annual').focus({preventScroll:true});
+    if(linked){
+      if(filters().term===term)return;
+      setFilters({term});
+    }else{
+      pause();hideInspect();q('term').value=term;rebuild();setView('annual','product');
+      if(!chapterView)action('view-annual').focus({preventScroll:true});
+    }
+    if(origin!=='hover'&&(linked||!chapterView)){
       q('interaction-status').textContent=`Annual quantity · ${termNames[term]} · ${selected}. Reporting side and source unchanged.`;
     }
   }
   function draw() {
     chartWidth = Math.max(260, Math.round(q('chart').clientWidth));
+    if(linked){drawColumns();return;}
     const w=chartWidth,h=Math.max(140,Math.round(q('chart').clientHeight)),top=24,bottom=30;
     const max=Math.max(1,...data.map(d=>d.value??0));
     const magnitude=10**Math.floor(Math.log10(max));
@@ -396,12 +467,119 @@ function mount(root, options = {}) {
     svg+='<circle class="dv-cursor" r="5.5" pointer-events="none" style="visibility:hidden"/><g class="dv-preview-mark" hidden pointer-events="none"><line/><circle r="7"/></g>';
     q('chart').innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="group" aria-label="Annual reported trade, 2015–2024. Fixed vertical scale in kg.${demo?', synthetic demo':''}">${svg}</svg>`;
   }
+  function drawColumns(){
+    const host=q('chart');
+    const w=chartWidth,h=Math.max(88,Math.round(host.clientHeight)),base=h-25;
+    const top=Math.min(51,base-32);
+    const annualPeak=data.reduce((highest,entry)=>{
+      return entry.value!==null&&(!highest||entry.value>highest.value)?entry:highest;
+    },null);
+    const peak=annualPeak?.value??0,step=columnWidth();
+    const max=Math.max(1,peak);
+    const magnitude=10**Math.floor(Math.log10(max));
+    const ceiling=Math.ceil(max/magnitude)*magnitude;
+    const y=value=>base-value/ceiling*(base-top);
+    chartY=y;
+    const ticks=[0,ceiling/2,ceiling];
+    const plotHeight=base-top;
+    const units=plotHeight>=360?20:plotHeight>=140?10:5;
+    const unit=ceiling/units;
+    const pitch=plotHeight/units;
+    const fishWidth=Math.min(64,step*.78);
+    const fishHeight=Math.min(pitch*.87,fishWidth*.48);
+    const fishId=`${uid}-fish`;
+    const clipId=year=>`${uid}-weight-${year}`;
+    const clips=data.filter(entry=>entry.value>0).map(entry=>{
+      const x=chartX(entry.year-2015);
+      return `<clipPath id="${clipId(entry.year)}"><rect x="${x-fishWidth/2}" y="${y(entry.value)}" width="${fishWidth}" height="${base-y(entry.value)}"/></clipPath>`;
+    }).join('');
+    const grid=ticks.map(value=>`<line x1="44" x2="${w-8}" y1="${y(value)}" y2="${y(value)}" class="dv-grid-line"/><text x="38" y="${y(value)+4}" text-anchor="end">${value>=1000?D.fmt(value/1000)+'k':D.fmt(value)}</text>`).join('');
+    const latest=data.at(-1);
+    const highlighted=peak>0?[annualPeak,...(latest!==annualPeak&&latest.value!==null?[latest]:[])]:[];
+    const columns=data.map((entry,index)=>{
+      const x=chartX(index),value=entry.value,left=x-fishWidth/2;
+      const fish=value>0?Array.from({length:Math.min(units,Math.ceil(value/unit))},(_,i)=>
+        `<use href="#${fishId}" x="${left}" y="${base-(i+.5)*pitch-fishHeight/2}" width="${fishWidth}" height="${fishHeight}"/>`
+      ).join(''):'';
+      const bar=value===null?`<text x="${x}" y="${base-8}" text-anchor="middle">—</text>`
+        :value===0?`<line class="dv-column-zero" x1="${x-5}" x2="${x+5}" y1="${base}" y2="${base}"/>`
+        :`<rect class="dv-column" x="${x-1.5}" y="${y(value)}" width="3" height="${base-y(value)}"/>
+          <g class="dv-fish-stack" clip-path="url(#${clipId(entry.year)})" aria-hidden="true">${fish}</g>
+          <line class="dv-column-edge" x1="${x-4}" x2="${x+4}" y1="${y(value)}" y2="${y(value)}" aria-hidden="true"/>`;
+      const label=w<420?`’${String(entry.year).slice(-2)}`:entry.year;
+      return `<g class="dv-graph-point" data-year="${entry.year}" tabindex="0" role="button" aria-label="${entry.year}, ${value===null?'No records':D.fmt(value)+' kg'}"><rect class="dv-column-slot" x="${x-step/2}" y="3" width="${step}" height="${h-5}"/>${bar}<text x="${x}" y="${h-8}" text-anchor="middle">${label}</text></g>`;
+    }).join('');
+    const labels=highlighted.map(entry=>
+      `<g><line class="dv-column-leader" hidden/><text class="dv-column-label" text-anchor="middle">${D.fmt(entry.value)} kg</text></g>`
+    ).join('');
+    host.innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="group" aria-label="Annual reported trade, 2015–2024, in kilograms. One fish symbol represents ${D.fmt(unit)} kg." aria-describedby="${uid}-series">
+      <defs><symbol id="${fishId}" viewBox="0 0 64 28"><path fill-rule="evenodd" d="${fishOutline}"/></symbol>${clips}</defs>
+      <text x="38" y="12" text-anchor="end">kg</text>
+      <g class="dv-fish-key" aria-hidden="true"><use href="#${fishId}" width="20" height="10" y="3"/><text class="dv-fish-unit" x="${w-8}" y="12" text-anchor="end">= ${D.fmt(unit)} kg</text></g>
+      ${grid}${columns}<g class="dv-column-labels" aria-hidden="true">${labels}</g>
+    </svg>`;
+    const unitKey=host.querySelector('.dv-fish-unit');
+    host.querySelector('.dv-fish-key use').setAttribute('x',w-33-unitKey.getComputedTextLength());
+
+    let previousLabel=null;
+    host.querySelectorAll('.dv-column-label').forEach((label,index)=>{
+      const entry=highlighted[index],markX=chartX(entry.year-2015),markY=y(entry.value);
+      const width=label.getComputedTextLength(),height=label.getBBox().height;
+      const center=M.clamp(markX,44+width/2,w-8-width/2);
+      const left=center-width/2,right=center+width/2;
+      const positions=data.filter(other=>{
+        const otherX=chartX(other.year-2015);
+        return other.value>0&&otherX+fishWidth/2>=left&&otherX-fishWidth/2<=right;
+      }).map(other=>y(other.value));
+      let baseline=Math.min(markY,...positions)-8;
+      if(previousLabel&&left<previousLabel.right+4&&right>previousLabel.left-4&&Math.abs(baseline-previousLabel.baseline)<height+4){
+        baseline=previousLabel.baseline-height-4;
+      }
+      label.setAttribute('x',center);
+      label.setAttribute('y',baseline);
+      const leader=label.previousElementSibling;
+      if(markY-baseline>12){
+        leader.removeAttribute('hidden');
+        leader.setAttribute('x1',markX);leader.setAttribute('x2',markX);
+        leader.setAttribute('y1',baseline+5);leader.setAttribute('y2',markY-2);
+      }
+      previousLabel={left,right,baseline};
+    });
+  }
   function drawForms(){
     const host=q('forms-chart');
+    const nameFor=term=>term==='fins'?'Unspecified fins (FIN)':termNames[term];
     const max=Math.max(1,...formSeries.flatMap(s=>s.values.map(d=>d.value??0))),magnitude=10**Math.floor(Math.log10(max));
     const ceiling=Math.ceil(max/magnitude)*magnitude;
-    host.innerHTML=`<div class="dv-bars" role="group" aria-label="Reported product forms in the selected year, separate quantities on a fixed kg scale">${formSeries.map(({term},index)=>`<button type="button" class="dv-bar-row" data-action="inspect-product" data-product="${D.esc(term)}"><span class="dv-bar-heading"><span class="dv-bar-label">${D.esc(term==='fins'?'Fins, unspecified (FIN)':termNames[term])}<span class="dv-bar-arrow" aria-hidden="true"> →</span></span><strong class="dv-bar-value"></strong></span><span class="dv-bar-track" aria-hidden="true"><span class="dv-bar-fill"></span><span class="dv-bar-zero" hidden></span>${options.intro?'<span class="dv-bar-tip" aria-hidden="true" hidden></span>':''}</span></button>`).join('')}<div class="dv-bar-scale" aria-label="Fixed weight scale in kg"><span>0</span><span>${D.fmt(ceiling)} kg</span></div></div>`;
-    formGeometry=Array.from(host.querySelectorAll('.dv-bar-row'),(row,index)=>({row,name:termNames[formSeries[index].term],ceiling,fill:row.querySelector('.dv-bar-fill'),value:row.querySelector('.dv-bar-value'),zero:row.querySelector('.dv-bar-zero'),tip:row.querySelector('.dv-bar-tip')}));
+    if(linked){
+      host.innerHTML=`<div class="dv-products" role="group" aria-label="Separate product weights on a shared scale from 0 to ${D.fmt(ceiling)} kg">${formSeries.map(({term})=>`
+        <button type="button" class="dv-product" data-action="inspect-product" data-product="${D.esc(term)}">
+          <img class="dv-product-image" src="images/${productImages[term]}.webp" alt="" draggable="false">
+          <strong class="dv-bar-value"></strong>
+          <span class="dv-product-track" aria-hidden="true">
+            <span class="dv-product-fill"></span><span class="dv-product-zero" hidden></span>
+          </span>
+        </button>`).join('')}
+        <div class="dv-product-scale" aria-hidden="true"><span>0</span><span>${D.fmt(ceiling)} kg</span></div>
+      </div>`;
+      formGeometry=Array.from(host.querySelectorAll('.dv-product'),row=>({
+        row,name:nameFor(row.dataset.product),ceiling,value:row.querySelector('.dv-bar-value'),
+        fill:row.querySelector('.dv-product-fill'),zero:row.querySelector('.dv-product-zero')
+      }));
+      return;
+    }
+    const barRows=formSeries.map(({term})=>{
+      const name=D.esc(nameFor(term));
+      return `<button type="button" class="dv-bar-row" data-action="inspect-product" data-product="${D.esc(term)}">
+        <span class="dv-bar-heading"><span class="dv-bar-label">${name}<span class="dv-bar-arrow" aria-hidden="true"> →</span></span><strong class="dv-bar-value"></strong></span>
+        <span class="dv-bar-track" aria-hidden="true"><span class="dv-bar-fill"></span><span class="dv-bar-zero" hidden></span>${options.intro?'<span class="dv-bar-tip" aria-hidden="true" hidden></span>':''}</span>
+      </button>`;
+    }).join('');
+    host.innerHTML=`<div class="dv-bars" role="group" aria-label="Reported product forms in the selected year, separate quantities on a fixed kg scale">
+      ${barRows}
+      <div class="dv-bar-scale" aria-label="Fixed weight scale in kg"><span>0</span><span>${D.fmt(ceiling)} kg</span></div>
+    </div>`;
+    formGeometry=Array.from(host.querySelectorAll('.dv-bar-row'),(row,index)=>({row,name:nameFor(formSeries[index].term),ceiling,fill:row.querySelector('.dv-bar-fill'),value:row.querySelector('.dv-bar-value'),zero:row.querySelector('.dv-bar-zero'),tip:row.querySelector('.dv-bar-tip')}));
   }
   function selectedEvents() {
     return demo?[]:events.filter(e=>matchesEvent(e)&&(e.years?e.years.includes(selected):+e.date.slice(0,4)===selected)).sort((a,b)=>a.date.localeCompare(b.date));
@@ -437,6 +615,7 @@ function mount(root, options = {}) {
     }
   }
   function renderEvents() {
+    if(linked)return;
     const matches=selectedEvents();
     if(!matches.length){queuePolicy('');return;}
     eventIndex=Math.min(eventIndex,matches.length-1);
@@ -444,12 +623,17 @@ function mount(root, options = {}) {
     queuePolicy(`<div class="dv-event-text"><p class="dv-event-copy">${D.esc(e.date_label||e.date)} · ${D.esc(e.type)}</p><h3 class="dv-event-title">${D.esc(e.title)}</h3><p class="dv-event-copy">${D.esc(e.scope_short||e.scope)}</p></div><div class="dv-event-links"><a href="${D.esc(url)}" target="_blank" rel="noopener noreferrer">Source ↗</a><button class="dv-text-button" data-action="event-details" aria-label="Policy scope and dates">Details</button></div>${matches.length>1?`<div class="dv-event-pager"><button data-action="event-prev" aria-label="Previous policy event" ${eventIndex===0?'disabled':''}>←</button><span>${eventIndex+1}/${matches.length}</span><button data-action="event-next" aria-label="Next policy event" ${eventIndex===matches.length-1?'disabled':''}>→</button></div>`:''}`);
   }
   function showEvent() {
-    const e=selectedEvents()[eventIndex];if(!e)return;
-    const sources=e.sources||[{title:'Original document',url:e.url,locator:''}];
-    q('event-detail').innerHTML=`<p class="dv-event-copy">${D.esc(e.date_label||e.date)} · ${D.esc(e.type)}</p><h2>${D.esc(e.title)}</h2><h3>Applies to</h3><p>${D.esc(e.scope)}</p><h3>Dates</h3><p>${D.esc(e.date_note||e.date)}</p><h3>Evidence</h3><p>${D.esc(e.evidence||'Provider-supplied event; original document not independently verified.')}</p><ul>${sources.map(r=>`<li><a href="${D.esc(r.url)}" target="_blank" rel="noopener noreferrer">${D.esc(r.title)} ↗</a>${r.locator?`<p>${D.esc(r.locator)}</p>`:''}</li>`).join('')}</ul><p class="dv-statement">Context for a global annual series, not a global restriction. Annual totals cannot isolate trade during a short suspension or demonstrate compliance or policy effectiveness. Selected documented events; an empty year is not evidence of no management measures.</p>`;
+    const matches=selectedEvents();
+    const visible=linked?matches:matches.slice(eventIndex,eventIndex+1);
+    if(!visible.length)return;
+    q('event-detail').innerHTML=visible.map(e=>{
+      const sources=e.sources||[{title:'Original document',url:e.url,locator:''}];
+      return `<section><p class="dv-event-copy">${D.esc(e.date_label||e.date)} · ${D.esc(e.type)}</p><h2>${D.esc(e.title)}</h2><h3>Applies to</h3><p>${D.esc(e.scope)}</p><h3>Dates</h3><p>${D.esc(e.date_note||e.date)}</p><h3>Evidence</h3><p>${D.esc(e.evidence||'Provider-supplied event; original document not independently verified.')}</p><ul>${sources.map(r=>`<li><a href="${D.esc(r.url)}" target="_blank" rel="noopener noreferrer">${D.esc(r.title)} ↗</a>${r.locator?`<p>${D.esc(r.locator)}</p>`:''}</li>`).join('')}</ul></section>`;
+    }).join('')+`<p class="dv-statement">Context for a global annual series, not a global restriction. Annual totals cannot isolate trade during a short suspension or demonstrate compliance or policy effectiveness. Selected documented events; an empty year is not evidence of no management measures.</p>`;
     showDialog('event-dialog');
   }
   function renderTransport(){
+    if(linked)return;
     const active=playing!==null,ended=progress>=chapterEnd-.001;
     const label=active?'Pause':ended?'Replay':'Play',button=action('play');
     button.setAttribute('aria-pressed',String(active));button.setAttribute('aria-label',`${label} timeline`);
@@ -467,7 +651,7 @@ function mount(root, options = {}) {
   }
   function wheel(event){
     if(destroyed||event.ctrlKey||event.metaKey||event.target.closest('dialog,select,input')||Math.abs(event.deltaX)>Math.abs(event.deltaY)||!event.deltaY)return;
-    if(chapterView&&Math.abs(root.getBoundingClientRect().top)>2)return;
+    if((linked||chapterView)&&Math.abs(root.getBoundingClientRect().top)>2)return;
     const direction=Math.sign(event.deltaY);
     const boundary=(targetProgress>=chapterEnd&&direction>0)||(targetProgress<=chapterStart&&direction<0);
     if(boundary&&options.releaseAtBoundary){const released=root.dispatchEvent(new CustomEvent('decade:boundary',{bubbles:true,cancelable:!!chapterView,detail:{direction,year:selected,view,origin:'wheel'}}));if(!released)event.preventDefault();return;}
@@ -538,7 +722,7 @@ function mount(root, options = {}) {
   function touchend(){if(touchStart){const previous=touchStart;touchStart=null;settle();if(previous.boundary&&previous.distance>=50)root.dispatchEvent(new CustomEvent('decade:boundary',{bubbles:true,detail:{direction:previous.boundary,year:selected,view,origin:'touch'}}));}}
   function exportCSV() {
     const f=filters();
-    const series=view==='annual'?[{term:f.term,values:data}]:formSeries;
+    const series=!linked&&view==='annual'?[{term:f.term,values:data}]:formSeries;
     const csv='Data_mode,Year,Term,Unit,Reporter.type,Source,Quantity,Data_rows\r\n'+series.flatMap(({term,values})=>values.map(d=>[q('provenance').hidden?'IMPORTED':'CITES_OFFICIAL_EXTRACT',d.year,term,'kg',f.reporter,f.source,d.value===null?'':d.value,d.rows.length].join(','))).join('\r\n');
     const url=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}));
     const link=document.createElement('a');link.href=url;link.download=`${demo?'DEMO-':''}Sphyrna-lewini-2015-2024.csv`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -548,7 +732,8 @@ function mount(root, options = {}) {
     pause();
     const parsed=D.normalize(raw);
     rows=parsed.rows;demo=false;
-    q('mode').textContent='Imported data';
+    const mode=q('mode');
+    if(mode)mode.textContent='Imported data';
     q('bottom-note').textContent='Locally imported. Source and completeness require provider verification.';
     q('provenance').hidden=true;
     rebuild();root.dispatchEvent(new CustomEvent('decade:data-change',{bubbles:true,detail:{data:raw}}));return {retained:rows.length,excluded:parsed.excluded};
@@ -572,7 +757,8 @@ function mount(root, options = {}) {
       if(next[name]!==undefined&&!allowed.includes(next[name]))throw Error(`Invalid ${name} filter.`);
     }
     pause();for(const name of ['term','reporter','source'])if(next[name]!==undefined)q(name).value=next[name];
-    eventIndex=0;rebuild();
+    const onlyProduct=linked&&next.term!==undefined&&next.reporter===undefined&&next.source===undefined;
+    eventIndex=0;rebuild(onlyProduct);
     root.dispatchEvent(new CustomEvent('decade:filters-change',{bubbles:true,detail:{filters:filters()}}));
   }
   async function change(event) {
@@ -601,7 +787,7 @@ function mount(root, options = {}) {
   root.addEventListener('wheel',wheel,{passive:false});root.addEventListener('keydown',keydown);root.addEventListener('click',click);root.addEventListener('change',change);root.addEventListener('touchstart',touchstart,{passive:true});root.addEventListener('touchmove',touchmove,{passive:false});root.addEventListener('touchend',touchend,{passive:true});root.addEventListener('touchcancel',touchend,{passive:true});root.addEventListener('pointerdown',pointerdown);root.addEventListener('pointermove',previewMove,{passive:true});root.addEventListener('pointerleave',hideInspect);root.addEventListener('focusin',previewFocus);root.addEventListener('focusout',hideInspect);document.addEventListener('visibilitychange',visibility);resizeObserver.observe(root);resizeObserver.observe(q('chart'));
   const detachAtmosphere=options.sharedFlow?()=>{}:attachAtmosphere(root);
   const flowLayer=options.sharedFlow?null:global.MarineDecadeFlow?.attach(root);
-  if(!flowLayer&&!options.sharedFlow)action('flow').hidden=true;
+  if(!flowLayer&&!options.sharedFlow)action('flow')?.setAttribute('hidden','');
   const api={
     setYear:year=>chooseYear(year,'api'),setView:next=>setView(next,'api'),setData,setEvents,setFilters,play,pause:()=>{pause();settle();},
     getState:()=>({year:selected,view,position,targetPosition,progress,targetProgress,transitioning:!!switchMotion||(progress>9&&progress<11),demo,filters:filters(),playing:playing!==null}),
@@ -610,7 +796,7 @@ function mount(root, options = {}) {
   root._marineDecade=api;
   if(options.data)setData(options.data);else rebuild();
   if(options.events)setEvents(options.events);
-  if(chapterView==='forms'||(!chapterView&&options.view==='forms')){progress=targetProgress=11;renderMotion();}
+  if(!linked&&(chapterView==='forms'||(!chapterView&&options.view==='forms'))){progress=targetProgress=11;renderMotion();}
   if(options.year)chooseYear(options.year,'api');
   return api;
 }

@@ -1,16 +1,16 @@
 # A decade of trade — real CITES data
 
-Two independent full-screen chapters for scalloped hammerhead (*Sphyrna lewini*) trade, 2015–2024: annual trade, then product forms. Scroll between chapters or use the heading arrows; each chapter retains its own year and playback controls. Both use the same frozen official CITES extract, with no synthetic-data fallback.
+The standalone page explores reported scalloped hammerhead (*Sphyrna lewini*) fin trade from 2015 to 2024. The particle opening leads to a single data screen with annual trade linked to a product-weight comparison. Both charts use the same frozen official CITES extract.
 
-## Current chapter layout
+## Current chart layout
 
-The page now contains separate `#annual-trade` and `#product-forms` sections. Chart tabs, repeated species text in the second chapter, permanent exploration hints and the CITES badge have been removed. Main-view labels are shortened to Data, Details, All and Explored. Important unit, missing-data and biomass context remains available.
+The annual chart stacks fish symbols for all ten years. Each fish represents the weight shown in the chart key, and the top marker indicates the exact weight. The peak and the 2024 figure are annotated when available. Moving the mouse across the columns immediately updates the product chart. The starting year is 2024. Wheel and swipe browse years, and the columns also support touch and keyboard activation.
 
-Each chapter scrubs/plays only within its own 2015–2024 range and replays locally. Wheel input at its year boundary can scroll into the next section; heading arrows and keyboard/touch boundary gestures also navigate. Direct arrows preserve the selected year; ordinary navigation preserves the annual product, while product drill-in explicitly selects that product. Reporting side/source and imported data/events synchronize across chapters without feedback loops. Playback pauses when a chapter leaves view.
+The product chart sits beside the years on desktop and below them on narrow screens. It shows the current year and three specimen illustrations for FIN, DFN, and FFN. Each image identifies a bar and its exact reported weight. All three bars share a fixed kg scale across years for the reporting side and source. An observed zero is marked at the origin, and a missing observation reads “No records.” Hovering over a product image or activating its button changes the series above at the displayed year. The standalone charts open on exporter-reported data for all sources. The embedding API can change the reporting side and source together for both charts.
 
-`story.js` mounts both chapters using `chapterView` and coordinates navigation/state. `window.decadeChapters.annual` and `.forms` expose their APIs; `window.decadeView` remains an alias for the annual chapter. The unconfigured `MarineDecade.mount` API still supports the original two-scene mode for embedders. Run `node scripts/verify_story.cjs` alongside the existing checks.
+`window.decadeView` is the shared standalone instance. The previous `window.decadeChapters.annual` and `.forms` handles both refer to that instance. The former `#product-forms` address opens the combined screen at `#annual-trade`. The unconfigured `MarineDecade.mount` API still supports the original two-scene mode for embedders.
 
-Browser QA verified shared importer/wild-source filters, product drill-in with preserved year/scope, local playback ending at 2024, wheel navigation into the next chapter, and 375×667 / 320×568 layouts. Current captures: `preview-chapters-annual-desktop.jpg`, `preview-chapters-products-desktop.jpg`, `preview-chapters-annual-mobile.jpg` and `preview-chapters-products-mobile.jpg`.
+The following sections document previous iterations and the underlying data and embedding API.
 
 ## Previous composition
 

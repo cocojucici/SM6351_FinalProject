@@ -704,10 +704,6 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
 @media(prefers-reduced-motion:reduce){html:has(.decade-story-page){scroll-behavior:auto}}
 /* A single sculptural opening, with the charts kept on their own clear stages. */
 .decade-story-page .dv-intro{height:100svh;min-height:500px;padding:40px 4%;touch-action:pan-y pinch-zoom;overflow:hidden;display:block}
-.decade-story-page .dv-intro-top{width:max-content;margin-left:auto}
-.decade-story-page .dv-intro-top button{border:0;background:none;padding:10px 0 10px 12px;min-height:44px;font:500 var(--dv-button)/1.25 var(--dv-body);color:var(--dv-text)}
-.decade-story-page .dv-intro-top button[aria-pressed=false]{color:var(--dv-accent)}
-.decade-story-page .dv-intro-top button:disabled{display:none}
 .decade-story-page .dv-intro-title{position:absolute;top:30%;left:4%;margin:0;font:500 96px/1.05 var(--dv-heading);letter-spacing:-.04em;color:var(--dv-ink);width:max-content;max-width:90%}
 .decade-story-page .dv-intro-title>span{display:block;margin-top:24px;font:400 var(--dv-lead)/1.5 var(--dv-body);letter-spacing:0;color:var(--dv-text)}
 .decade-story-page .dv-intro-period{white-space:nowrap}
@@ -735,3 +731,172 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
 .decade-story-page .dv-bar-tip{position:absolute;top:-2px;bottom:-2px;width:2px;margin-left:-1px;background:var(--dv-ink);opacity:.75;box-shadow:0 0 5px var(--dv-accent);pointer-events:none}
 .decade-story-page .dv-bar-tip[hidden]{display:none}
 .decade-story-page .dv-bar-fill{background:linear-gradient(90deg,var(--dv-secondary),var(--dv-accent))}
+
+/* Standalone view: annual columns and the current year's product weights. */
+.dv-shell.dv-linked .dv-layout {
+  gap: 8px;
+  width: min(100%, 1280px);
+  margin-inline: auto;
+  padding: clamp(12px, 3svh, 28px) max(16px, 4vw) max(8px, env(safe-area-inset-bottom));
+}
+.dv-shell.dv-linked :is(.dv-focus, .dv-views, .dv-chart-note, .dv-bottom) {
+  display: none;
+}
+.dv-shell.dv-linked .dv-heading { display: block; }
+.dv-shell.dv-linked .dv-heading h2 {
+  font: 500 var(--dv-h2)/1.15 var(--dv-heading);
+  letter-spacing: -.025em;
+}
+.dv-shell.dv-linked .dv-toolbar { display: block; margin: 0; }
+.dv-shell.dv-linked .dv-plot-heading { font-size: var(--dv-caption); }
+.dv-shell.dv-linked .dv-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(258px, 28%);
+  gap: clamp(24px, 4vw, 52px);
+  margin: 0;
+}
+.dv-shell.dv-linked .dv-plot { padding: 0; min-height: 100px; }
+.dv-shell.dv-linked .dv-chart-stage { min-height: 100px; }
+.dv-shell.dv-linked [data-role="chart"] { cursor: default; }
+.dv-shell.dv-linked .dv-column-slot { fill: transparent; }
+.dv-shell.dv-linked .dv-graph-point:focus-visible .dv-column-slot { stroke: var(--dv-accent); stroke-width: 2; }
+.dv-shell.dv-linked .dv-column { fill: var(--dv-secondary); opacity: .22; }
+.dv-shell.dv-linked .dv-fish-stack {
+  fill: color-mix(in srgb, var(--dv-secondary) 82%, var(--dv-ink));
+  pointer-events: none;
+}
+.dv-shell.dv-linked .dv-fish-key { fill: var(--dv-accent); pointer-events: none; }
+.dv-shell.dv-linked .dv-column-edge { stroke: var(--dv-accent); stroke-width: 1; opacity: .55; pointer-events: none; }
+.dv-shell.dv-linked .dv-column-zero { stroke: var(--dv-secondary); stroke-width: 2; }
+.dv-shell.dv-linked [aria-current="true"] :is(.dv-column,.dv-fish-stack) { fill: var(--dv-accent); }
+.dv-shell.dv-linked [aria-current="true"] .dv-column-edge { stroke: var(--dv-ink); opacity: 1; }
+.dv-shell.dv-linked [aria-current="true"] .dv-column-zero { stroke: var(--dv-accent); }
+.dv-shell.dv-linked .dv-column-labels { pointer-events: none; }
+.dv-shell.dv-linked .dv-column-leader { stroke: var(--dv-muted); stroke-opacity: .65; stroke-dasharray: 2 3; }
+.dv-shell.dv-linked .dv-column-label {
+  fill: var(--dv-ink);
+  stroke: var(--dv-bg);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  font-weight: 500;
+}
+.dv-shell.dv-linked .dv-linked-forms {
+  align-self: center;
+  min-width: 0;
+  padding: 4px 0 6px clamp(18px, 2.7vw, 34px);
+  border-inline-start: 1px solid var(--dv-line);
+}
+.dv-shell.dv-linked .dv-linked-forms h3 {
+  margin: 0 0 14px;
+  color: var(--dv-ink);
+  font: 500 clamp(38px, 4.2vw, 60px)/1.05 var(--dv-heading);
+  letter-spacing: -.035em;
+  font-variant-numeric: tabular-nums;
+}
+.dv-shell.dv-linked .dv-forms-chart {
+  position: static;
+  height: auto;
+  min-height: 0;
+  opacity: 1;
+}
+.dv-shell.dv-linked .dv-products {
+  --dv-product-image-width: clamp(51px, 6.6vw, 82px);
+  --dv-product-gap: clamp(9px, 1.35vw, 17px);
+  display: grid;
+}
+.dv-shell.dv-linked .dv-product {
+  display: grid;
+  grid-template-columns: var(--dv-product-image-width) minmax(0, 1fr);
+  grid-template-rows: auto 10px;
+  align-content: center;
+  align-items: center;
+  gap: 5px var(--dv-product-gap);
+  min-width: 0;
+  min-height: 76px;
+  padding: 5px 0;
+  background: none;
+  border: 0;
+  text-align: left;
+}
+.dv-shell.dv-linked .dv-product-image {
+  display: block;
+  grid-row: 1 / span 2;
+  width: 100%;
+  height: 55px;
+  object-fit: contain;
+}
+.dv-shell.dv-linked .dv-product .dv-bar-value {
+  grid-column: 2;
+  grid-row: 1;
+  max-width: 100%;
+  color: var(--dv-ink);
+  font: 500 clamp(var(--dv-caption), 1.4vw, 18px)/1.3 var(--dv-body);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.dv-shell.dv-linked .dv-product.is-missing .dv-bar-value { color: var(--dv-muted); font-weight: 400; }
+.dv-shell.dv-linked .dv-product-track {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  display: block;
+  height: 8px;
+  background: linear-gradient(var(--dv-line), var(--dv-line)) center / 100% 1px no-repeat;
+}
+.dv-shell.dv-linked .dv-product-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background: var(--dv-accent);
+}
+.dv-shell.dv-linked .dv-product-zero {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-inline-start: 2px solid var(--dv-accent);
+}
+.dv-shell.dv-linked .dv-product.is-missing .dv-product-track { visibility: hidden; }
+.dv-shell.dv-linked .dv-product-scale {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-inline-start: calc(var(--dv-product-image-width) + var(--dv-product-gap));
+  color: var(--dv-muted);
+  font: 400 var(--dv-caption)/1.4 var(--dv-body);
+  font-variant-numeric: tabular-nums;
+}
+.dv-shell.dv-linked [data-role="event-detail"] section + section {
+  border-top: 1px solid var(--dv-line);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+@media(max-width:740px) {
+  .dv-shell.dv-linked .dv-layout { gap: 5px; }
+  .dv-shell.dv-linked .dv-main {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+  .dv-shell.dv-linked .dv-chart text { font-size: 11px; }
+  .dv-shell.dv-linked .dv-linked-forms {
+    border-inline-start: 0;
+    border-top: 1px solid var(--dv-line);
+    padding: 8px 0 0;
+  }
+  .dv-shell.dv-linked .dv-linked-forms h3 { font-size: var(--dv-h3); margin-bottom: 4px; }
+  .dv-shell.dv-linked .dv-product { min-height: 46px; padding: 3px 0; row-gap: 2px; }
+  .dv-shell.dv-linked .dv-product-image { height: 38px; }
+  .dv-shell.dv-linked .dv-product-track { height: 6px; }
+}
+@media(max-height:510px) {
+  .dv-shell.dv-linked .dv-layout { gap: 3px; padding-block: 6px; }
+  .dv-shell.dv-linked .dv-heading h2 { font-size: var(--dv-h3); }
+  .dv-shell.dv-linked .dv-plot,
+  .dv-shell.dv-linked .dv-chart-stage { min-height: 88px; }
+  .dv-shell.dv-linked .dv-linked-forms h3 { font-size: var(--dv-h3); margin-bottom: 4px; }
+  .dv-shell.dv-linked .dv-product { min-height: 44px; padding-block: 3px; }
+  .dv-shell.dv-linked .dv-product-image { height: 34px; }
+}
+@media(max-height:365px) {
+  .decade-story-page .dv-shell.dv-linked { min-height: 365px; }
+}
