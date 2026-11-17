@@ -1,6 +1,6 @@
 # A decade of trade — real CITES data
 
-The standalone page explores reported scalloped hammerhead (*Sphyrna lewini*) fin trade from 2015 to 2024. The particle opening leads to a single data screen with annual trade linked to a product-weight comparison. Both charts use the same frozen official CITES extract.
+The page opens with the underwater scenes from the supplied Sphyrna lewini website. The species introduction leads to a single data screen with annual trade linked to a product-weight comparison. Both charts use the same frozen official CITES extract for 2015 to 2024.
 
 ## Current chart layout
 
@@ -34,11 +34,13 @@ The first chart-stage refinement gives the plots a wider desktop column, a restr
 
 Localhost visual QA covered 1280×720, 1024×768, 390×844, 375×667, 844×390 and 320×568. Phone missing-data copy now spans the summary width. At phone heights of 620px or less, years use a horizontally scrollable strip that keeps the selected year visible; policy dates and scope remain available in the Scope & dates dialog, while the compact row shows the title and source/details controls. Compact product bars use smaller spacing to avoid label/track overlap. Browser checks included view/year selection, keyboard navigation, playback to its endpoint, product filtering and policy details. Preview captures are saved as `preview-stage-desktop.jpg`, `preview-stage-mobile.jpg` and `preview-stage-small-phone.jpg`.
 
-Open `dist/index.html` directly, or run:
+Run a local server from the `ten-years` directory to preview the full page, including the 3D models:
 
 ```sh
 python3 -m http.server 8765 --directory dist
 ```
+
+Open [http://localhost:8765/](http://localhost:8765/).
 
 Scroll down/up to move continuously through two scenes. Global progress 0–9 explores annual quantities, 9–11 crossfades to Product forms, and 11–20 explores product forms. The year fades out during the scroll transition and resets to 2015 in the second view; reversing retraces the transition. Releasing at the exact transition midpoint completes toward the scrolling direction. View buttons crossfade while preserving the selected year; year buttons/arrows remain local to the active view. Touch movement follows the same timeline. On release, motion settles smoothly to a nearby year. Year buttons, arrow keys and playback remain available. Annual figures remain actual year totals; animation positions do not create additional observed quantities. Missing intervals are not connected.
 

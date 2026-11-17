@@ -14,21 +14,26 @@ if(sharedFlow){
  main.before(canvas);
  window.decadeFlow=window.MarineDecadeFlow.attach(main,{viewport:true,canvas,intro,sculpture:!!intro,surfaces:[root],themeRoot:root});
 }
-function showCharts(){
- if(chapterScroll)chapterScroll.to(root);
- else root.scrollIntoView({behavior:reduced.matches?'instant':'smooth'});
- root.focus({preventScroll:true});
+function followChapter(event,target){
+ if(!target||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+ event.preventDefault();
+ if(chapterScroll)chapterScroll.to(target);
+ else target.scrollIntoView({behavior:reduced.matches?'instant':'smooth'});
+ target.focus({preventScroll:true});
+ const hash='#'+target.id;
+ if(location.hash!==hash)history.pushState(null,'',hash);
 }
 intro?.addEventListener('click',event=>{
- if(!event.target.closest('.dv-intro-explore'))return;
- event.preventDefault();
- showCharts();
- if(location.hash!=='#annual-trade')history.pushState(null,'','#annual-trade');
+ if(event.target.closest('a[href="#annual-trade"]'))followChapter(event,root);
+ if(event.target.closest('a[href="#page-two"]'))followChapter(event,document.getElementById('page-two'));
 });
+root.querySelector('a[href="#ocean-intro"]')?.addEventListener('click',event=>followChapter(event,intro));
 function followProductLink(){
  if(location.hash!=='#product-forms')return;
  history.replaceState(null,'','#annual-trade');
- showCharts();
+ chapterScroll?.cancel();
+ root.scrollIntoView({behavior:'instant'});
+ root.focus({preventScroll:true});
 }
 window.addEventListener('hashchange',followProductLink);
 followProductLink();

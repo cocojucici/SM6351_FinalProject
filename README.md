@@ -3,7 +3,17 @@
 - [專案設計規範](design/DESIGN-STANDARD.md)：色彩、字體、電腦／手機字級與實作約定。
 - [字體參考圖](design/reference/typography.png)
 - [互動時間軸說明](ten-years/README.md)
-- [開啟頁面](ten-years/dist/index.html)
+- [合併後的首頁](ten-years/dist/index.html)
+
+## 本機預覽
+
+在專案根目錄執行以下指令，再開啟瀏覽器中的 [http://localhost:8765/](http://localhost:8765/)。
+
+```sh
+python3 -m http.server 8765 --directory ten-years/dist
+```
+
+首頁會依序呈現水下開場、雙髻鯊介紹及 2015–2024 年 CITES 魚鰭貿易圖表。開場的 Spline 水下背景需要連線，載入失敗時會顯示隨專案提供的水下背景圖。
 
 ## GitHub Pages 部署
 

@@ -1,0 +1,145 @@
+.ocean-page main { gap: 0; }
+
+.ocean-page .ocean-deep {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  height: auto;
+  pointer-events: none;
+  background: url("assets/deep-water.png") center 78% / cover no-repeat var(--dv-surface);
+  transform: scale(1.2);
+  transform-origin: center bottom;
+}
+
+.ocean-page .ocean-story {
+  --ocean-gutter: max(6vw, 20px);
+  height: auto;
+  overflow: clip;
+  touch-action: pan-y pinch-zoom;
+  background: transparent;
+}
+
+.ocean-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  margin-bottom: -100svh;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ocean-stage > *, .ocean-spline { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ocean-surface {
+  background:
+    linear-gradient(180deg, transparent, color-mix(in srgb, var(--dv-bg) 58%, transparent)),
+    url("assets/deep-water.png") center 20% / cover no-repeat,
+    var(--dv-surface);
+}
+.ocean-spline { transform: scaleY(-1); filter: brightness(1.45) saturate(1.08); }
+.ocean-bubbles img {
+  position: absolute;
+  object-fit: contain;
+  opacity: 0;
+  filter: saturate(.25) blur(2px);
+}
+.ocean-fish { opacity: 0; }
+.ocean-story:not([data-motion]) .ocean-stage > * { display: none; }
+
+.ocean-intro-panel,
+.ocean-depth { position: relative; min-height: 100svh; }
+.ocean-story[data-motion] :is(.ocean-intro-panel, .ocean-depth) { height: 200svh; }
+.ocean-intro-content,
+.ocean-depth-content {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  padding-inline: var(--ocean-gutter);
+  display: grid;
+  align-content: center;
+}
+
+.ocean-story h1 {
+  max-width: none;
+  text-align: center;
+  font-size: clamp(50px, 7vw, var(--dv-h1));
+  background: linear-gradient(180deg, var(--dv-text), var(--dv-ink) 55%, var(--dv-muted));
+  background-clip: text;
+  color: transparent;
+}
+.ocean-story h1 > span,
+.ocean-story h1 > i {
+  display: block;
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+.ocean-story h1 > i { font-style: italic; }
+
+.ocean-story :is(.ocean-skip, .ocean-data-link) {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font: 500 var(--dv-button)/1.25 var(--dv-body);
+}
+.ocean-skip {
+  position: absolute;
+  top: max(18px, env(safe-area-inset-top));
+  right: var(--ocean-gutter);
+}
+.ocean-story .ocean-cue {
+  position: absolute;
+  inset: auto 0 max(24px, env(safe-area-inset-bottom));
+  width: 52px;
+  height: 52px;
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: var(--dv-ink);
+}
+.ocean-story[data-motion] .ocean-cue { animation: ocean-float 2.6s ease-in-out infinite; }
+.ocean-cue svg { width: 24px; height: 30px; }
+@keyframes ocean-float {
+  0%, 100% { transform: translateY(-3px); }
+  50% { transform: translateY(3px); }
+}
+
+.ocean-depth-content { justify-items: start; }
+.ocean-depth-content p {
+  max-width: min(44vw, 35ch);
+  margin: 0;
+  color: var(--dv-text);
+  font: 400 clamp(var(--dv-lead), 2.3vw, var(--dv-h3))/1.45 var(--dv-body);
+  text-wrap: pretty;
+}
+.ocean-reveal-word { display: inline-block; white-space: nowrap; }
+.ocean-data-link { gap: 16px; margin-top: 20px; }
+
+.ocean-page #annual-trade .dv-kicker {
+  margin: 0 0 4px;
+  font-size: var(--dv-caption);
+  letter-spacing: .06em;
+}
+.ocean-page #annual-trade .dv-chapter-link {
+  flex: 0 0 44px;
+  border: 1px solid var(--dv-line);
+  border-radius: 50%;
+}
+.ocean-page #annual-trade .dv-plot-heading { margin: 0; }
+.ocean-page #annual-trade .dv-product-fill {
+  background: linear-gradient(90deg, var(--dv-secondary), var(--dv-accent));
+}
+.ocean-script-note { padding: 16px; color: #ced6e1; font: 16px Inter, sans-serif; }
+
+@media (max-width: 700px) {
+  .ocean-story h1 { font-size: var(--dv-h1); text-wrap: balance; }
+  .ocean-story[data-motion] .ocean-depth-content { align-content: start; padding-top: 15svh; }
+  .ocean-depth-content p { max-width: 36ch; }
+}
+@media (max-height: 460px) {
+  .ocean-story h1 { font-size: clamp(36px, 11svh, var(--dv-h1)); }
+  .ocean-story[data-motion] .ocean-depth-content { align-content: center; padding-top: 0; }
+  .ocean-page #annual-trade .dv-kicker { margin-bottom: 0; }
+}

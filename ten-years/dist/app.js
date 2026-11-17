@@ -101,11 +101,24 @@ function mount(root, options = {}) {
   if(linked){
     root.setAttribute('aria-label','Annual trade and product forms, 2015–2024');
     const heading=document.createElement('h2');
+    if(options.intro){
+      const period=document.createElement('p');
+      period.className='dv-kicker';
+      period.textContent='CITES · 2015–2024';
+      root.querySelector('.dv-heading').prepend(period);
+      const link=document.createElement('a');
+      link.className='dv-chapter-link';
+      link.href='#ocean-intro';
+      link.textContent='↑';
+      link.setAttribute('aria-label','Back to the surface');
+      link.title='Back to the surface';
+      root.querySelector('.dv-header').append(link);
+    }
     heading.textContent='Fin trade';
     root.querySelector('h1').replaceWith(heading);
     root.querySelector('.dv-subtitle').hidden=true;
     root.querySelector('.dv-header-actions').remove();
-    root.querySelector('.dv-toolbar').classList.add('dv-sr-only');
+    if(!options.intro)root.querySelector('.dv-toolbar').classList.add('dv-sr-only');
     q('chart-label').id=`${uid}-series`;
     action('filters').remove();
     root.querySelector('.dv-footer').remove();
@@ -405,6 +418,8 @@ function mount(root, options = {}) {
   function previewMove(event){
     if(event.pointerType!=='mouse')return;
     if(linked){
+      // The page can scroll the chart under a stationary pointer during a chapter jump.
+      if(options.intro&&event.movementX===0&&event.movementY===0)return;
       const column=event.target.closest('.dv-graph-point');
       if(column){
         const year=+column.dataset.year;

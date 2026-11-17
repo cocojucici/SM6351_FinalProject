@@ -1,5 +1,13 @@
 # 视觉资产
 
+## 水下开场
+
+合并后的首页沿用 2026-11-17 版 Sphyrna lewini 网站的 Spline 水下场景、双髻鲨模型、背景图与气泡。部署所需的本地文件存放于 [dist/ocean](dist/ocean/)。Spline 场景无法加载时使用同一套素材内的背景图。
+
+- 场景参考 [The Race Below](https://storytelling.11thhourracing.org/the-race-below)，11th Hour Racing / HLabs。
+- 模型 [Scalloped hammerhead juvenile low poly](https://sketchfab.com/3d-models/scalloped-hammerhead-juvenile-low-poly-f5adc17c922b48feae76aaea98552dd4)。
+- 第三方素材和库遵循各自的原有授权。
+
 ## 产品形式配图
 
 项目页面使用三张内置图像生成器制作的标本风格示意图，对应 CITES 申报类别。FIN 配图用通用鱼鳍指代未细分的类别。
@@ -24,7 +32,7 @@
 
 ## 历史视觉资产（当前单页不使用）
 
-`reference-assets/hammerhead-hero.png` — 内置 ImageGen 生成，2026-11-04。用作章节情绪插画，不作为真实照片或物种证据。页面已标注 AI 生成。
+旧版双髻鲨章节插画由 ImageGen 于 2026-11-04 生成。
 
 最终提示词：
 
