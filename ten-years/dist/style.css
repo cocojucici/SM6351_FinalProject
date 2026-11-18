@@ -732,52 +732,106 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
 .decade-story-page .dv-bar-tip[hidden]{display:none}
 .decade-story-page .dv-bar-fill{background:linear-gradient(90deg,var(--dv-secondary),var(--dv-accent))}
 
-/* Standalone view: annual columns and the current year's product weights. */
+/* Linked trade chapter, laid out as a single plate. */
+.dv-shell.dv-linked {
+  --dv-trade-rule: color-mix(in srgb, var(--dv-muted) 29%, transparent);
+  --dv-measure-line: color-mix(in srgb, var(--dv-muted) 43%, transparent);
+  --dv-measure-ink: color-mix(in srgb, var(--dv-secondary) 31%, var(--dv-ink));
+  --dv-trade-heading-space: clamp(68px, 10svh, 84px);
+}
+.decade-story-page .dv-shell.dv-linked { display: grid; align-items: center; }
 .dv-shell.dv-linked .dv-layout {
-  gap: 8px;
-  width: min(100%, 1280px);
+  width: min(100%, 1480px);
+  max-height: 880px;
   margin-inline: auto;
-  padding: clamp(12px, 3svh, 28px) max(16px, 4vw) max(8px, env(safe-area-inset-bottom));
+  padding: clamp(12px, 3svh, 28px) clamp(16px, 4.5vw, 72px) max(8px, env(safe-area-inset-bottom));
 }
 .dv-shell.dv-linked :is(.dv-focus, .dv-views, .dv-chart-note, .dv-bottom) {
   display: none;
 }
-.dv-shell.dv-linked .dv-heading { display: block; }
+.dv-shell.dv-linked .dv-header {
+  align-items: center;
+  padding-bottom: clamp(10px, 2.5svh, 22px);
+  border-bottom: 1px solid var(--dv-trade-rule);
+}
+.dv-shell.dv-linked .dv-heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px clamp(20px, 3vw, 44px);
+}
 .dv-shell.dv-linked .dv-heading h2 {
   font: 500 var(--dv-h2)/1.15 var(--dv-heading);
-  letter-spacing: -.025em;
+  letter-spacing: -.03em;
 }
 .dv-shell.dv-linked .dv-toolbar { display: block; margin: 0; }
-.dv-shell.dv-linked .dv-plot-heading { font-size: var(--dv-caption); }
+.dv-shell.dv-linked .dv-plot-heading {
+  color: var(--dv-muted);
+  font: 400 var(--dv-caption)/1.4 var(--dv-body);
+  letter-spacing: .015em;
+}
 .dv-shell.dv-linked .dv-main {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(258px, 28%);
-  gap: clamp(24px, 4vw, 52px);
-  margin: 0;
+  grid-template-columns: minmax(0, 1fr) minmax(294px, 34%);
+  gap: clamp(24px, 3vw, 48px);
+  margin: clamp(14px, 3.5svh, 34px) 0 0;
 }
-.dv-shell.dv-linked .dv-plot { padding: 0; min-height: 100px; }
+.dv-shell.dv-linked .dv-plot { padding: 0; min-height: 0; }
+.dv-shell.dv-linked .dv-linked-summary {
+  flex-shrink: 0;
+  min-height: var(--dv-trade-heading-space);
+  padding-bottom: 8px;
+}
+.dv-shell.dv-linked .dv-amount-label {
+  display: block;
+  margin: 0 0 5px;
+  color: var(--dv-muted);
+  font: 500 var(--dv-caption)/1.4 var(--dv-body);
+  font-variant-numeric: tabular-nums;
+}
+.dv-shell.dv-linked .dv-amount { white-space: normal; }
+.dv-shell.dv-linked .dv-quantity {
+  font-size: clamp(24px, 3vw, 39px);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+.dv-shell.dv-linked .dv-amount > [data-role="quantity-unit"] {
+  display: inline;
+  font-size: var(--dv-caption);
+  color: var(--dv-muted);
+}
 .dv-shell.dv-linked .dv-chart-stage { min-height: 100px; }
 .dv-shell.dv-linked [data-role="chart"] { cursor: default; }
+.dv-shell.dv-linked .dv-chart text { fill: var(--dv-muted); font-variant-numeric: tabular-nums; }
+.dv-shell.dv-linked .dv-grid-line { stroke: var(--dv-trade-rule); stroke-opacity: 1; }
+.dv-shell.dv-linked .dv-baseline { stroke: var(--dv-measure-line); }
 .dv-shell.dv-linked .dv-column-slot { fill: transparent; }
 .dv-shell.dv-linked .dv-graph-point:focus-visible .dv-column-slot { stroke: var(--dv-accent); stroke-width: 2; }
 .dv-shell.dv-linked .dv-year-indicator {
-  stroke: var(--dv-accent);
-  stroke-width: 2;
-  stroke-linecap: round;
+  stroke: var(--dv-ink);
+  stroke-width: 1.5;
   pointer-events: none;
 }
-.dv-shell.dv-linked .dv-column { fill: var(--dv-secondary); opacity: .22; }
-.dv-shell.dv-linked .dv-fish-stack {
-  fill: color-mix(in srgb, var(--dv-secondary) 82%, var(--dv-ink));
+.dv-shell.dv-linked .dv-column {
+  stroke: color-mix(in srgb, var(--dv-muted) 36%, transparent);
+  stroke-width: 1;
+}
+.dv-shell.dv-linked .dv-column-top { stop-color: var(--dv-measure-ink); stop-opacity: .47; }
+.dv-shell.dv-linked .dv-column-bottom { stop-color: var(--dv-secondary); stop-opacity: .28; }
+.dv-shell.dv-linked .dv-column-selected-top { stop-color: var(--dv-measure-ink); stop-opacity: .87; }
+.dv-shell.dv-linked .dv-column-selected-bottom { stop-color: var(--dv-secondary); stop-opacity: .47; }
+.dv-shell.dv-linked .dv-column-edge {
+  stroke: var(--dv-measure-ink);
+  stroke-width: 1;
+  opacity: .72;
   pointer-events: none;
 }
-.dv-shell.dv-linked .dv-fish-key { fill: var(--dv-accent); pointer-events: none; }
-.dv-shell.dv-linked .dv-column-edge { stroke: var(--dv-accent); stroke-width: 1; opacity: .55; pointer-events: none; }
-.dv-shell.dv-linked .dv-column-zero { stroke: var(--dv-secondary); stroke-width: 2; }
-.dv-shell.dv-linked [aria-current="true"] :is(.dv-column,.dv-fish-stack) { fill: var(--dv-accent); }
-.dv-shell.dv-linked [aria-current="true"] .dv-column-edge { stroke: var(--dv-ink); opacity: 1; }
-.dv-shell.dv-linked [aria-current="true"] .dv-column-zero { stroke: var(--dv-accent); }
-.dv-shell.dv-linked [aria-current="true"] text { fill: var(--dv-text); }
+.dv-shell.dv-linked .dv-column-zero { stroke: var(--dv-muted); stroke-width: 2; }
+.dv-shell.dv-linked [aria-current="true"] .dv-column { fill: var(--dv-selected-fill); stroke: var(--dv-measure-line); }
+.dv-shell.dv-linked [aria-current="true"] .dv-column-edge { stroke: var(--dv-text); opacity: 1; }
+.dv-shell.dv-linked [aria-current="true"] .dv-column-zero { stroke: var(--dv-text); }
+.dv-shell.dv-linked [aria-current="true"] text { fill: var(--dv-text); font-weight: 500; }
 .dv-shell.dv-linked .dv-inspect {
   flex-flow: row wrap;
   align-items: baseline;
@@ -788,77 +842,117 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
 }
 .dv-shell.dv-linked .dv-inspect strong { font: 500 var(--dv-caption)/1.4 var(--dv-body); }
 .dv-shell.dv-linked .dv-linked-forms {
-  align-self: center;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
+  min-height: 0;
+  padding-inline-start: clamp(16px, 2vw, 30px);
+  border-inline-start: 1px solid var(--dv-trade-rule);
 }
-.dv-shell.dv-linked .dv-linked-forms h3 {
-  margin: 0 0 10px;
+.dv-shell.dv-linked .dv-forms-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+  min-height: var(--dv-trade-heading-space);
+  padding-top: 18px;
+  padding-bottom: 10px;
+}
+.dv-shell.dv-linked .dv-forms-heading h3 {
+  margin: 0;
   color: var(--dv-ink);
-  font: 500 clamp(36px, 3.8vw, 52px)/1.05 var(--dv-heading);
-  letter-spacing: -.035em;
+  font: 500 var(--dv-h3)/1.25 var(--dv-heading);
+  letter-spacing: -.015em;
+}
+.dv-shell.dv-linked [data-role="forms-year"] {
+  color: var(--dv-muted);
+  font: 500 var(--dv-caption)/1.4 var(--dv-body);
   font-variant-numeric: tabular-nums;
+  letter-spacing: .04em;
 }
 .dv-shell.dv-linked .dv-forms-chart {
   position: static;
+  display: flex;
   height: auto;
   min-height: 0;
+  padding-top: 10px;
   opacity: 1;
 }
 .dv-shell.dv-linked .dv-products {
-  --dv-product-image-width: clamp(46px, 5.6vw, 68px);
-  --dv-product-gap: clamp(9px, 1.35vw, 17px);
+  --dv-product-image-width: clamp(42px, 5.5vw, 82px);
+  --dv-product-gap: clamp(10px, 1.4vw, 22px);
+  flex: 1;
+  min-width: 0;
   display: grid;
+  grid-template-rows: repeat(3, minmax(min-content, 1fr)) auto;
 }
 .dv-shell.dv-linked .dv-product {
   display: grid;
   grid-template-columns: var(--dv-product-image-width) minmax(0, 1fr);
-  grid-template-rows: auto 6px;
-  align-content: center;
   align-items: center;
-  gap: 5px var(--dv-product-gap);
+  column-gap: var(--dv-product-gap);
   min-width: 0;
-  min-height: 63px;
-  padding: 5px 0;
+  min-height: 44px;
+  padding: 8px 0;
   background: none;
   border: 0;
+  border-block-start: 1px solid var(--dv-trade-rule);
   text-align: left;
 }
 .dv-shell.dv-linked .dv-product-image {
   display: block;
-  grid-row: 1 / span 2;
   width: 100%;
-  height: 46px;
+  height: clamp(42px, 8.5svh, 76px);
   object-fit: contain;
+  filter: saturate(.68);
+}
+.dv-shell.dv-linked .dv-product-data {
+  display: grid;
+  gap: clamp(4px, 1svh, 10px);
+  min-width: 0;
+}
+.dv-shell.dv-linked .dv-product-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, max-content);
+  align-items: baseline;
+  column-gap: 8px;
+}
+.dv-shell.dv-linked .dv-product .dv-bar-label {
+  color: var(--dv-text);
+  font: 400 var(--dv-caption)/1.3 var(--dv-body);
 }
 .dv-shell.dv-linked .dv-product .dv-bar-value {
-  grid-column: 2;
-  grid-row: 1;
   max-width: 100%;
   color: var(--dv-ink);
-  font: 500 clamp(var(--dv-caption), 1.4vw, 18px)/1.3 var(--dv-body);
+  font: 500 clamp(var(--dv-caption), 1.2vw, 16px)/1.3 var(--dv-body);
+  text-align: right;
   white-space: normal;
   overflow-wrap: anywhere;
 }
-.dv-shell.dv-linked .dv-product.is-missing .dv-bar-value { color: var(--dv-muted); font-weight: 400; }
+.dv-shell.dv-linked .dv-product.is-missing .dv-bar-value { color: var(--dv-muted); font-size: var(--dv-caption); font-weight: 400; }
 .dv-shell.dv-linked .dv-product-track {
-  grid-column: 2;
-  grid-row: 2;
   position: relative;
   display: block;
-  height: 5px;
-  background: linear-gradient(var(--dv-line), var(--dv-line)) center / 100% 1px no-repeat;
+  height: 8px;
 }
 .dv-shell.dv-linked .dv-product-fill {
   position: absolute;
-  inset: 0;
-  transform-origin: left center;
-  transform: scaleX(0);
-  background: var(--dv-accent);
+  inset: 3px auto 2px 0;
+  width: 0;
+  background: linear-gradient(90deg, var(--dv-line), var(--dv-measure-ink));
+}
+.dv-shell.dv-linked .dv-product-fill::after {
+  content: '';
+  position: absolute;
+  inset: -2px -1px -1px auto;
+  width: 2px;
+  background: var(--dv-measure-ink);
 }
 .dv-shell.dv-linked .dv-product-zero {
   position: absolute;
   inset: 0 auto 0 0;
-  border-inline-start: 2px solid var(--dv-accent);
+  border-inline-start: 1px solid var(--dv-muted);
 }
 .dv-shell.dv-linked .dv-product.is-missing .dv-product-track { opacity: 0; }
 .dv-shell.dv-linked .dv-product-scale {
@@ -866,10 +960,22 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
   justify-content: space-between;
   gap: 8px;
   margin-inline-start: calc(var(--dv-product-image-width) + var(--dv-product-gap));
+  min-height: 28px;
+  padding-top: 6px;
+  border-top: 1px solid var(--dv-measure-line);
   color: var(--dv-muted);
-  font: 400 var(--dv-caption)/1.4 var(--dv-body);
+  font: 400 12px/1.4 var(--dv-body);
   font-variant-numeric: tabular-nums;
 }
+.dv-shell.dv-linked .dv-product-scale > span { position: relative; }
+.dv-shell.dv-linked .dv-product-scale > span::before {
+  content: '';
+  position: absolute;
+  inset: -6px auto auto 0;
+  height: 4px;
+  border-inline-start: 1px solid var(--dv-measure-line);
+}
+.dv-shell.dv-linked .dv-product-scale > span:last-child::before { inset-inline: auto 0; }
 .dv-shell.dv-linked [data-role="event-detail"] section + section {
   border-top: 1px solid var(--dv-line);
   padding-top: 16px;
@@ -877,36 +983,55 @@ html:has(.decade-story-page){scroll-behavior:auto;scroll-snap-type:none}
 }
 @media(prefers-reduced-motion:no-preference) {
   .dv-shell.dv-linked .dv-year-indicator { transition: transform 220ms cubic-bezier(.2,.7,.25,1); }
-  .dv-shell.dv-linked :is(.dv-fish-stack, .dv-column, .dv-graph-point text) { transition: fill 150ms ease-out; }
   .dv-shell.dv-linked .dv-column-edge { transition: stroke 150ms ease-out, opacity 150ms ease-out; }
-  .dv-shell.dv-linked .dv-product-track { transition: opacity 200ms ease-out; }
-  .dv-shell.dv-linked .dv-fill-moving { transition: transform 260ms cubic-bezier(.2,.7,.25,1); }
+  .dv-shell.dv-linked .dv-scale-stable .dv-product-track { transition: opacity 200ms ease-out; }
+  .dv-shell.dv-linked .dv-fill-moving { transition: width 260ms cubic-bezier(.2,.7,.25,1); }
 }
 @media(max-width:740px) {
-  .dv-shell.dv-linked .dv-layout { gap: 5px; }
+  .decade-story-page .dv-shell.dv-linked { min-height: 460px; }
+  .dv-shell.dv-linked .dv-header { align-items: flex-start; }
+  .dv-shell.dv-linked .dv-heading { flex-direction: column; }
   .dv-shell.dv-linked .dv-main {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr) auto;
-    gap: 8px;
+    grid-template-rows: minmax(min-content, 1fr) auto;
+    gap: clamp(12px, 2.5svh, 22px);
   }
-  .dv-shell.dv-linked .dv-chart text { font-size: 11px; }
-  .dv-shell.dv-linked .dv-linked-forms {
-    border-top: 1px solid var(--dv-line);
-    padding: 8px 0 0;
-  }
-  .dv-shell.dv-linked .dv-linked-forms h3 { font-size: var(--dv-h3); margin-bottom: 4px; }
-  .dv-shell.dv-linked .dv-product { min-height: 46px; padding: 3px 0; row-gap: 2px; }
-  .dv-shell.dv-linked .dv-product-image { height: 38px; }
+  .dv-shell.dv-linked .dv-linked-summary { min-height: 0; }
+  .dv-shell.dv-linked .dv-chart text { font-size: 12px; }
+  .dv-shell.dv-linked .dv-linked-forms { padding-inline-start: 0; border-inline-start: 0; }
+  .dv-shell.dv-linked .dv-forms-heading { min-height: 0; padding: 0 0 8px; }
+  .dv-shell.dv-linked .dv-forms-chart { padding-top: 0; }
+  .dv-shell.dv-linked .dv-product { min-height: 46px; padding: 4px 0; }
+  .dv-shell.dv-linked .dv-product-image { height: 36px; }
+}
+@media(max-width:360px) {
+  .dv-shell.dv-linked .dv-header { gap: 6px; }
+  .dv-shell.dv-linked .dv-plot-heading { letter-spacing: 0; }
 }
 @media(max-height:510px) {
-  .dv-shell.dv-linked .dv-layout { gap: 3px; padding-block: 6px; }
+  .dv-shell.dv-linked { --dv-trade-heading-space: 56px; }
+  .dv-shell.dv-linked .dv-layout { padding-block: 6px; }
+  .dv-shell.dv-linked .dv-header { padding-bottom: 6px; }
+  .dv-shell.dv-linked .dv-main { margin-top: 8px; }
   .dv-shell.dv-linked .dv-heading h2 { font-size: var(--dv-h3); }
-  .dv-shell.dv-linked .dv-plot,
+  .dv-shell.dv-linked .dv-quantity { font-size: 24px; }
   .dv-shell.dv-linked .dv-chart-stage { min-height: 88px; }
-  .dv-shell.dv-linked .dv-linked-forms h3 { font-size: var(--dv-h3); margin-bottom: 4px; }
-  .dv-shell.dv-linked .dv-product { min-height: 44px; padding-block: 3px; }
+  .dv-shell.dv-linked .dv-forms-heading { padding-bottom: 6px; }
+  .dv-shell.dv-linked .dv-product { min-height: 44px; padding-block: 4px; }
   .dv-shell.dv-linked .dv-product-image { height: 34px; }
 }
-@media(max-height:365px) {
+@media (min-width:540px) and (max-width:740px) and (max-height:510px) {
+  .decade-story-page .dv-shell.dv-linked { min-height: 320px; }
+  .dv-shell.dv-linked .dv-main {
+    grid-template-columns: minmax(0, 1fr) minmax(248px, 40%);
+    grid-template-rows: minmax(0, 1fr);
+  }
+  .dv-shell.dv-linked .dv-heading { flex-direction: row; align-items: baseline; }
+  .dv-shell.dv-linked .dv-linked-summary,
+  .dv-shell.dv-linked .dv-forms-heading { min-height: var(--dv-trade-heading-space); }
+  .dv-shell.dv-linked .dv-forms-heading { padding-top: 12px; }
+  .dv-shell.dv-linked .dv-forms-chart { padding-top: 10px; }
+}
+@media(min-width:741px) and (max-height:365px) {
   .decade-story-page .dv-shell.dv-linked { min-height: 365px; }
 }

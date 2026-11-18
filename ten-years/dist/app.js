@@ -3,7 +3,6 @@
 const D = global.MarineDecadeData, M = global.MarineDecadeMotion;
 let instanceCount = 0;
 const productImages = {fins:'unspecified-fins', 'fin (dried)':'dried-fins', 'fin (wet)':'wet-fins'};
-const fishOutline='M1 4 14 11C20 6 25 4 31 4L37 0l4 4c9 1 16 5 22 10-6 6-14 10-23 11l-5 3-4-3c-7-1-12-4-17-8L1 24l3-10ZM51 10a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z';
 const markup = `
 <div class="dv-atmosphere" aria-hidden="true"></div><canvas class="dv-flow" data-role="flow-canvas" aria-hidden="true"></canvas><span class="dv-sr-only" data-role="interaction-status" role="status" aria-live="polite" aria-atomic="true"></span>
 <div class="dv-layout">
@@ -114,13 +113,20 @@ function mount(root, options = {}) {
     root.querySelector('h1').replaceWith(heading);
     root.querySelector('.dv-subtitle').hidden=true;
     root.querySelector('.dv-header-actions').remove();
-    if(!options.intro)root.querySelector('.dv-toolbar').classList.add('dv-sr-only');
+    const toolbar=root.querySelector('.dv-toolbar');
+    if(options.intro)heading.parentElement.append(toolbar);
+    else toolbar.classList.add('dv-sr-only');
     q('chart-label').id=`${uid}-series`;
     action('filters').remove();
     root.querySelector('.dv-footer').remove();
     root.querySelector('.dv-policy').remove();
     const plot=root.querySelector('.dv-plot');
-    plot.insertAdjacentHTML('afterend','<section class="dv-linked-forms" aria-label="Fish fin quantities by form"><h3 data-role="forms-year"></h3></section>');
+    plot.insertAdjacentHTML('afterbegin','<div class="dv-linked-summary"></div>');
+    q('amount-label').id=`${uid}-amount-label`;
+    root.querySelector('.dv-linked-summary').append(q('amount-label'),q('quantity').parentElement);
+    plot.insertAdjacentHTML('afterend',`<section class="dv-linked-forms" aria-labelledby="${uid}-forms-title">
+      <header class="dv-forms-heading"><h3 id="${uid}-forms-title">Product forms</h3><span data-role="forms-year"></span></header>
+    </section>`);
     const forms=q('forms-chart');
     root.querySelector('.dv-linked-forms').append(forms);
     forms.inert=false;
@@ -138,25 +144,26 @@ function mount(root, options = {}) {
   let chartY=value=>0,inTick=false;
   let hintFade=null,previewYear=null;
   let mounted=false,linkedYearAnimation;
+  let linkedFormsCeiling=0;
   let policyHTML='',policyPending='',policyOpacity=0,policyPhase=null,policyElapsed=0,policyFrom=0;
   const switchDuration=680;
   let touchStart = null, resizeFrame = 0,suppressProductClick=false;
   const termNames = {fins:'Fins (FIN)', 'fin (dried)':'Dried fins (DFN)', 'fin (wet)':'Wet fins (FFN)'};
-  const termCodes = {fins:'FIN','fin (dried)':'DFN','fin (wet)':'FFN'};
   const terms=Object.keys(termNames);
+  const productName=term=>term==='fins'?'Unspecified fins (FIN)':termNames[term];
   const filters = () => ({term:q('term').value,reporter:q('reporter').value,source:q('source').value});
   const caption=(next,includeAllSources=true)=>{
     const {term,reporter,source}=filters();
     const parts=[reporter==='E'?'Exporter-reported':'Importer-reported'];
-    if(next==='annual')parts.unshift(linked&&term==='fins'?'Unspecified fins (FIN)':termNames[term]);
+    if(next==='annual')parts.unshift(linked?productName(term):termNames[term]);
     if(source==='W')parts.push('Wild (W)');
     else if(includeAllSources)parts.push('All sources');
     return parts.join(' · ');
   };
   function chartCaption(next){
     if(linked&&options.intro){
-      const {term,reporter,source}=filters();
-      return `${termCodes[term]} · CITES ${reporter==='E'?'exporter':'importer'} reports · ${source==='W'?'Wild (W)':'All sources'}`;
+      const {reporter,source}=filters();
+      return `CITES ${reporter==='E'?'exporter':'importer'} reports · ${source==='W'?'Wild (W)':'All sources'}`;
     }
     return `${caption(next,linked||!options.intro)}${next==='annual'&&!linked?' · kg':''}`;
   }
@@ -332,6 +339,7 @@ function mount(root, options = {}) {
   function updateLinkedYear(previousYear=selected){
     const animate=previousYear!==selected&&!reduced.matches;
     root.dataset.year=String(selected);
+    updateAmount(data[selected-2015]);
     const heading=q('forms-year');
     heading.textContent=String(selected);
     cancelLinkedYearAnimation();
@@ -348,7 +356,30 @@ function mount(root, options = {}) {
     chart.querySelector('.dv-year-indicator').style.transform=`translateX(${chartX(selected-2015)}px)`;
     updateFormValues(animate);
   }
+  function updateAmount(entry){
+    const {term}=filters();
+    const name=linked?productName(term):termNames[term];
+    q('quantity').textContent=entry.value===null?'No records':D.fmt(entry.value);
+    q('quantity-unit').hidden=entry.value===null;
+    q('amount-label').textContent=`${selected} · ${name}`;
+  }
   function updateFormValues(animate=false){
+    if(linked){
+      const max=Math.max(1,...formSeries.map(series=>series.values[selected-2015].value??0));
+      const step=10**Math.floor(Math.log10(max))/5;
+      const ceiling=Math.ceil(max/step)*step;
+      const scaleChanged=ceiling!==linkedFormsCeiling;
+      const bars=q('product-bars');
+      if(scaleChanged){
+        linkedFormsCeiling=ceiling;
+        const maxLabel=`${D.fmt(ceiling)} kg`;
+        q('forms-scale-max').textContent=maxLabel;
+        bars.setAttribute('aria-label',`Separate product weights on a shared scale from 0 to ${maxLabel}`);
+      }
+      // Interpolate only between values that share the same axis.
+      animate=animate&&!scaleChanged;
+      bars.classList.toggle('dv-scale-stable',animate);
+    }
     formGeometry.forEach((g,i)=>{
       const entry=formSeries[i].values[selected-2015];
       const missing=entry.value===null;
@@ -358,7 +389,8 @@ function mount(root, options = {}) {
       if(linked&&!missing){
         // A newly reported bar fades in at its real length. Only two observed values can resize.
         g.fill.classList.toggle('dv-fill-moving',animate&&!g.row.classList.contains('is-missing'));
-        g.fill.style.transform=`scaleX(${entry.value/g.ceiling})`;
+        g.fill.style.width=`${entry.value/linkedFormsCeiling*100}%`;
+        g.fill.hidden=entry.value===0;
       }
       g.row.classList.toggle('is-missing',missing);
       g.row.setAttribute('aria-label',`${g.name}, ${selected}: ${weight}. View annual trend`);
@@ -371,9 +403,7 @@ function mount(root, options = {}) {
     q('product-setting').hidden=view==='forms';
     const entry = data[selected - 2015], previous = data[selected - 2016];
     root.dataset.year = String(selected);
-    q('quantity').textContent = entry.value === null ? 'No records' : D.fmt(entry.value);
-    q('quantity-unit').hidden = entry.value === null;
-    q('amount-label').textContent = `${selected} · ${termNames[q('term').value]}`;
+    if(!linked)updateAmount(entry);
     const comparable = entry.value !== null && previous && previous.value !== null && previous.value !== 0;
     const change = comparable ? (entry.value / previous.value - 1) * 100 : null;
     q('change').textContent = change === null ? 'N/A' : `${change >= 0 ? '+' : ''}${change.toFixed(1)}%`;
@@ -519,74 +549,64 @@ function mount(root, options = {}) {
   }
   function drawColumns(){
     const host=q('chart');
-    const w=chartWidth,h=Math.max(88,Math.round(host.clientHeight)),base=h-25;
-    const top=Math.min(34,base-30);
+    const w=chartWidth,h=Math.max(88,Math.round(host.clientHeight)),base=h-28,top=10;
     const step=columnWidth();
+    const width=Math.min(58,step*.57);
     const max=Math.max(1,...data.map(entry=>entry.value??0));
     const magnitude=10**Math.floor(Math.log10(max));
     const ceiling=Math.ceil(max/magnitude)*magnitude;
     const y=value=>base-value/ceiling*(base-top);
     chartY=y;
     const ticks=[0,ceiling/2,ceiling];
-    const plotHeight=base-top;
-    const units=plotHeight>=180?10:5;
-    const unit=ceiling/units;
-    const pitch=plotHeight/units;
-    const fishWidth=Math.min(60,step*.76);
-    const fishHeight=Math.min(pitch*.87,fishWidth*.48);
-    const fishId=`${uid}-fish`;
-    const clipId=year=>`${uid}-weight-${year}`;
-    const clips=data.filter(entry=>entry.value>0).map(entry=>{
-      const x=chartX(entry.year-2015);
-      return `<clipPath id="${clipId(entry.year)}"><rect x="${x-fishWidth/2}" y="${y(entry.value)}" width="${fishWidth}" height="${base-y(entry.value)}"/></clipPath>`;
-    }).join('');
-    const grid=ticks.map(value=>`<line x1="44" x2="${w-8}" y1="${y(value)}" y2="${y(value)}" class="dv-grid-line"/><text x="38" y="${y(value)+4}" text-anchor="end">${value>=1000?D.fmt(value/1000)+'k':D.fmt(value)}</text>`).join('');
+    const grid=ticks.map(value=>`<line x1="44" x2="${w-8}" y1="${y(value)}" y2="${y(value)}" class="dv-grid-line${value===0?' dv-baseline':''}"/><text x="36" y="${y(value)+4}" text-anchor="end">${value>=1000?D.fmt(value/1000)+'k':D.fmt(value)}</text>`).join('');
     const columns=data.map((entry,index)=>{
-      const x=chartX(index),value=entry.value,left=x-fishWidth/2;
-      const fish=value>0?Array.from({length:Math.min(units,Math.ceil(value/unit))},(_,i)=>
-        `<use href="#${fishId}" x="${left}" y="${base-(i+.5)*pitch-fishHeight/2}" width="${fishWidth}" height="${fishHeight}"/>`
-      ).join(''):'';
+      const x=chartX(index),value=entry.value,left=x-width/2;
       const bar=value===null?`<text x="${x}" y="${base-8}" text-anchor="middle">—</text>`
         :value===0?`<line class="dv-column-zero" x1="${x-5}" x2="${x+5}" y1="${base}" y2="${base}"/>`
-        :`<rect class="dv-column" x="${x-1.5}" y="${y(value)}" width="3" height="${base-y(value)}"/>
-          <g class="dv-fish-stack" clip-path="url(#${clipId(entry.year)})" aria-hidden="true">${fish}</g>
-          <line class="dv-column-edge" x1="${x-4}" x2="${x+4}" y1="${y(value)}" y2="${y(value)}" aria-hidden="true"/>`;
+        :`<rect class="dv-column" fill="url(#${uid}-column-fill)" x="${left}" y="${y(value)}" width="${width}" height="${base-y(value)}"/>
+          <line class="dv-column-edge" x1="${left}" x2="${left+width}" y1="${y(value)}" y2="${y(value)}" aria-hidden="true"/>`;
       const label=w<420?`’${String(entry.year).slice(-2)}`:entry.year;
       return `<g class="dv-graph-point" data-year="${entry.year}" tabindex="0" role="button" aria-label="${entry.year}, ${value===null?'No records':D.fmt(value)+' kg'}"><rect class="dv-column-slot" x="${x-step/2}" y="3" width="${step}" height="${h-5}"/>${bar}<text x="${x}" y="${h-8}" text-anchor="middle">${label}</text></g>`;
     }).join('');
-    host.innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="group" aria-label="Annual reported trade, 2015–2024, in kilograms. One fish symbol represents ${D.fmt(unit)} kg." aria-describedby="${uid}-series">
-      <defs><symbol id="${fishId}" viewBox="0 0 64 28"><path fill-rule="evenodd" d="${fishOutline}"/></symbol>${clips}</defs>
-      <g class="dv-fish-key" aria-hidden="true"><use href="#${fishId}" width="20" height="10" y="3"/><text class="dv-fish-unit" x="${w-8}" y="12" text-anchor="end">= ${D.fmt(unit)} kg</text></g>
+    host.innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="group" aria-label="Annual reported trade, 2015–2024, in kilograms." aria-describedby="${uid}-amount-label ${uid}-series" style="--dv-selected-fill: url(#${uid}-selected-fill)">
+      <defs>
+        <linearGradient id="${uid}-column-fill" x2="0%" y2="100%">
+          <stop class="dv-column-top"/><stop class="dv-column-bottom" offset="100%"/>
+        </linearGradient>
+        <linearGradient id="${uid}-selected-fill" x2="0%" y2="100%">
+          <stop class="dv-column-selected-top"/><stop class="dv-column-selected-bottom" offset="100%"/>
+        </linearGradient>
+      </defs>
       ${grid}${columns}
       <line class="dv-year-indicator" x1="-8" x2="8" y1="${h-3}" y2="${h-3}" style="transform:translateX(${chartX(selected-2015)}px)" aria-hidden="true"/>
     </svg>`;
-    const unitKey=host.querySelector('.dv-fish-unit');
-    host.querySelector('.dv-fish-key use').setAttribute('x',w-33-unitKey.getComputedTextLength());
   }
   function drawForms(){
     const host=q('forms-chart');
-    const nameFor=term=>term==='fins'?'Unspecified fins (FIN)':termNames[term];
-    const max=Math.max(1,...formSeries.flatMap(s=>s.values.map(d=>d.value??0))),magnitude=10**Math.floor(Math.log10(max));
-    const ceiling=Math.ceil(max/magnitude)*magnitude;
     if(linked){
-      host.innerHTML=`<div class="dv-products" role="group" aria-label="Separate product weights on a shared scale from 0 to ${D.fmt(ceiling)} kg">${formSeries.map(({term})=>`
+      linkedFormsCeiling=0;
+      host.innerHTML=`<div class="dv-products" data-role="product-bars" role="group">${formSeries.map(({term})=>`
         <button type="button" class="dv-product" data-action="inspect-product" data-product="${D.esc(term)}">
           <img class="dv-product-image" src="images/${productImages[term]}.webp" alt="" draggable="false">
-          <strong class="dv-bar-value"></strong>
-          <span class="dv-product-track" aria-hidden="true">
-            <span class="dv-product-fill"></span><span class="dv-product-zero" hidden></span>
+          <span class="dv-product-data">
+            <span class="dv-product-heading"><span class="dv-bar-label">${D.esc(productName(term))}</span><strong class="dv-bar-value"></strong></span>
+            <span class="dv-product-track" aria-hidden="true">
+              <span class="dv-product-fill"></span><span class="dv-product-zero" hidden></span>
+            </span>
           </span>
         </button>`).join('')}
-        <div class="dv-product-scale" aria-hidden="true"><span>0</span><span>${D.fmt(ceiling)} kg</span></div>
+        <div class="dv-product-scale" aria-hidden="true"><span>0</span><span data-role="forms-scale-max"></span></div>
       </div>`;
       formGeometry=Array.from(host.querySelectorAll('.dv-product'),row=>({
-        row,name:nameFor(row.dataset.product),ceiling,value:row.querySelector('.dv-bar-value'),
+        row,name:productName(row.dataset.product),value:row.querySelector('.dv-bar-value'),
         fill:row.querySelector('.dv-product-fill'),zero:row.querySelector('.dv-product-zero')
       }));
       return;
     }
+    const max=Math.max(1,...formSeries.flatMap(s=>s.values.map(d=>d.value??0))),magnitude=10**Math.floor(Math.log10(max));
+    const ceiling=Math.ceil(max/magnitude)*magnitude;
     const barRows=formSeries.map(({term})=>{
-      const name=D.esc(nameFor(term));
+      const name=D.esc(productName(term));
       return `<button type="button" class="dv-bar-row" data-action="inspect-product" data-product="${D.esc(term)}">
         <span class="dv-bar-heading"><span class="dv-bar-label">${name}<span class="dv-bar-arrow" aria-hidden="true"> →</span></span><strong class="dv-bar-value"></strong></span>
         <span class="dv-bar-track" aria-hidden="true"><span class="dv-bar-fill"></span><span class="dv-bar-zero" hidden></span>${options.intro?'<span class="dv-bar-tip" aria-hidden="true" hidden></span>':''}</span>
@@ -596,7 +616,7 @@ function mount(root, options = {}) {
       ${barRows}
       <div class="dv-bar-scale" aria-label="Fixed weight scale in kg"><span>0</span><span>${D.fmt(ceiling)} kg</span></div>
     </div>`;
-    formGeometry=Array.from(host.querySelectorAll('.dv-bar-row'),(row,index)=>({row,name:nameFor(formSeries[index].term),ceiling,fill:row.querySelector('.dv-bar-fill'),value:row.querySelector('.dv-bar-value'),zero:row.querySelector('.dv-bar-zero'),tip:row.querySelector('.dv-bar-tip')}));
+    formGeometry=Array.from(host.querySelectorAll('.dv-bar-row'),(row,index)=>({row,name:productName(formSeries[index].term),ceiling,fill:row.querySelector('.dv-bar-fill'),value:row.querySelector('.dv-bar-value'),zero:row.querySelector('.dv-bar-zero'),tip:row.querySelector('.dv-bar-tip')}));
   }
   function selectedEvents() {
     return demo?[]:events.filter(e=>matchesEvent(e)&&(e.years?e.years.includes(selected):+e.date.slice(0,4)===selected)).sort((a,b)=>a.date.localeCompare(b.date));

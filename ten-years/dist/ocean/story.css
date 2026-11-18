@@ -126,6 +126,18 @@
 .ocean-reveal-word { display: inline-block; white-space: nowrap; }
 .ocean-data-link { gap: 16px; margin-top: 20px; }
 
+.ocean-page #annual-trade::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--dv-bg) 28%, transparent),
+    color-mix(in srgb, var(--dv-bg) 67%, transparent) 30%,
+    color-mix(in srgb, var(--dv-bg) 56%, transparent)
+  );
+}
 .ocean-page #annual-trade .dv-layout {
   --trade-gutter: clamp(32px, 5.5svh, 60px);
   padding-block: max(var(--trade-gutter), env(safe-area-inset-top))
@@ -133,14 +145,9 @@
 }
 .ocean-page #annual-trade .dv-chapter-link {
   flex: 0 0 44px;
-  border: 1px solid var(--dv-line);
-  border-radius: 50%;
 }
 .ocean-page #annual-trade .dv-plot-heading { margin: 0; }
 .ocean-page #annual-trade .dv-plot-heading > span { text-wrap: balance; }
-.ocean-page #annual-trade .dv-product-fill {
-  background: linear-gradient(90deg, var(--dv-secondary), var(--dv-accent));
-}
 .ocean-script-note { padding: 16px; color: #ced6e1; font: 16px Inter, sans-serif; }
 
 @media (max-width: 740px) {

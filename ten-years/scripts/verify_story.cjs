@@ -63,17 +63,21 @@ heading.animate=(frames,options)=>{
   animations.push(animation);
   return animation;
 };
-const geometry={name:'Fins',ceiling:100,row:node(),fill:node(),zero:node(),value:node()};
+const product=name=>({name,row:node(),fill:node(),zero:node(),value:node()});
+const geometry=product('Fins'),dried=product('Dried fins');
+const quantity=node(),unit=node(),label=node(),scale=node(),bars=node();
+const roles={'forms-year':heading,quantity,'quantity-unit':unit,'amount-label':label,'forms-scale-max':scale,'product-bars':bars};
+const annual=[10,35,null,0,40].map(value=>({value}));
 const reduced={matches:false};
 const stage={
   root:{dataset:{}}, reduced, chartX:index=>50+index*22,
-  q:name=>name==='forms-year'?heading:{querySelector:selector=>selector==='.dv-year-indicator'?indicator:column},
-  D:{fmt:String}, formGeometry:[geometry],
-  formSeries:[{values:[{value:10},{value:35},{value:null},{value:0},{value:40}]}]
+  q:name=>roles[name]??{querySelector:selector=>selector==='.dv-year-indicator'?indicator:column},
+  D:{fmt:String}, data:annual, filters:()=>({term:'fins'}), productName:()=>'Unspecified fins (FIN)', formGeometry:[geometry,dried],
+  formSeries:[{values:annual},{values:[40,40,10,10,null].map(value=>({value}))}]
 };
 vm.runInNewContext(`
   const linked=true;
-  let selected=2015,linkedYearAnimation;
+  let selected=2015,linkedYearAnimation,linkedFormsCeiling=0;
   ${presentation}
   globalThis.select=year=>{const previous=selected;selected=year;updateLinkedYear(previous);};
 `,stage);
@@ -82,15 +86,25 @@ assert.equal(animations.length,0,'initial presentation is static');
 stage.select(2016);
 assert.equal(heading.textContent,'2016');
 assert.equal(indicator.style.transform,'translateX(72px)');
-assert.equal(geometry.fill.style.transform,'scaleX(0.35)');
+assert.equal(label.textContent,'2016 · Unspecified fins (FIN)');
+assert.equal(quantity.textContent,'35');
+assert.equal(unit.hidden,false);
+assert.equal(scale.textContent,'40 kg');
+assert.equal(geometry.fill.style.width,'87.5%');
 assert.equal(geometry.fill.classList.contains('dv-fill-moving'),true);
+assert.equal(dried.fill.style.width,'100%');
 stage.select(2017);
 assert.equal(animations[0].cancelled,true,'rapid navigation cancels the previous label animation');
+assert.equal(quantity.textContent,'No records');
+assert.equal(unit.hidden,true);
 assert.equal(geometry.value.textContent,'No records');
-assert.equal(geometry.fill.style.transform,'scaleX(0.35)','the disappearing bar fades at its known weight');
+assert.equal(scale.textContent,'10 kg');
+assert.equal(dried.fill.classList.contains('dv-fill-moving'),false,'axis changes must not animate between scales');
+assert.equal(bars.classList.contains('dv-scale-stable'),false);
 stage.select(2018);
 assert.equal(geometry.value.textContent,'0 kg');
 assert.equal(geometry.zero.hidden,false);
+assert.equal(geometry.fill.hidden,true,'zero has only its origin marker');
 assert.equal(geometry.fill.classList.contains('dv-fill-moving'),false,'missing data is not an interpolation endpoint');
 reduced.matches=true;
 stage.select(2019);
@@ -98,4 +112,4 @@ assert.equal(geometry.value.textContent,'40 kg');
 assert.equal(geometry.fill.classList.contains('dv-fill-moving'),false);
 assert.equal(animations.length,3);
 assert.equal(animations.at(-1).cancelled,true);
-console.log('PASS: linked year transitions commit immediately, replace interrupted motion, and distinguish missing records from zero.');
+console.log('PASS: linked summary, shared product scale, immediate year selection, and separate missing and zero states.');
