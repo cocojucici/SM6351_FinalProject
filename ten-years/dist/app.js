@@ -73,6 +73,7 @@ function mount(root, options = {}) {
   root.setAttribute('aria-label',chapterView?(chapterView==='forms'?'Product forms, 2015–2024. Scroll or use arrow keys to explore.':'Annual trade, 2015–2024. Scroll or use arrow keys to explore.'):'A decade of trade. Scroll or use arrow keys to explore.');
   root.innerHTML = markup;
   root.classList.toggle('dv-linked',linked);
+  root.classList.remove('dv-trade-separated');
   root.dataset.chapter=chapterView||'';
   if(chapterView&&!linked){
     const title=root.querySelector('h1');
@@ -95,6 +96,8 @@ function mount(root, options = {}) {
     ?'Move across the years or use the arrow keys to update the product forms. Hover over a product image or activate its button to show its annual trend.'
     :'Scroll or swipe through years. Select a year, use arrow keys, or use Play. Use the chapter arrow to move between Annual trade and Product forms.';
   root.prepend(instructions);root.setAttribute('aria-describedby',instructions.id);
+  const chartLabel=root.querySelector('[data-role="chart-label"]');
+  let chapterHeading=null;
   const q = name => root.querySelector(`[data-role="${name}"]`);
   const action = name => root.querySelector(`[data-action="${name}"]`);
   if(linked){
@@ -116,7 +119,7 @@ function mount(root, options = {}) {
     const toolbar=root.querySelector('.dv-toolbar');
     if(options.intro)heading.parentElement.append(toolbar);
     else toolbar.classList.add('dv-sr-only');
-    q('chart-label').id=`${uid}-series`;
+    chartLabel.id=`${uid}-series`;
     action('filters').remove();
     root.querySelector('.dv-footer').remove();
     root.querySelector('.dv-policy').remove();
@@ -131,6 +134,20 @@ function mount(root, options = {}) {
     root.querySelector('.dv-linked-forms').append(forms);
     forms.inert=false;
     forms.removeAttribute('aria-hidden');
+    if(options.headingTarget instanceof HTMLElement){
+      root.querySelector('.dv-layout').prepend(root.querySelector('.dv-views'));
+      chapterHeading=root.querySelector('.dv-heading');
+      options.headingTarget.append(chapterHeading);
+      const back=root.querySelector('.dv-chapter-link');
+      if(back){
+        back.href=`#${options.headingTarget.closest('section[id]').id}`;
+        back.setAttribute('aria-label','Back to fin trade introduction');
+        back.title='Back to fin trade introduction';
+        root.querySelector('.dv-linked-summary').append(back);
+      }
+      root.querySelector('.dv-header').remove();
+      root.classList.add('dv-trade-separated');
+    }
   }
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   if(!options.data&&!global.MarineDecadeDataset?.records?.length){
@@ -220,7 +237,7 @@ function mount(root, options = {}) {
       f.yearOpacity=1;f.yearOffset=0;f.contextOpacity=1-.5*Math.sin(Math.PI*t)**2;f.transitioning=true;
 
     }
-    if(!linked&&!switchMotion){q('chart-label').style.opacity=f.yearOpacity;q('chart-label').textContent=chartCaption(f.view);}
+    if(!linked&&!switchMotion){chartLabel.style.opacity=f.yearOpacity;chartLabel.textContent=chartCaption(f.view);}
     sceneBlend=f.blend;
     position=f.position;targetPosition=M.frame(targetProgress,reduced.matches).position;
     const previousYear=selected;
@@ -238,7 +255,7 @@ function mount(root, options = {}) {
     }
     if(linked)return;
     paintPolicy(f);
-    if(switchMotion){const t=Math.min(1,switchMotion.elapsed/switchDuration);q('chart-label').textContent=t<.5?switchMotion.captionFrom:chartCaption(f.view);q('chart-label').style.opacity=1-Math.sin(Math.PI*t)**2;}
+    if(switchMotion){const t=Math.min(1,switchMotion.elapsed/switchDuration);chartLabel.textContent=t<.5?switchMotion.captionFrom:chartCaption(f.view);chartLabel.style.opacity=1-Math.sin(Math.PI*t)**2;}
     const base=Math.min(9,Math.floor(position)),fraction=position-base;
     const first=q('year-current'),next=q('year-next');
     first.textContent=String(reduced.matches?selected:2015+base);next.textContent=String(Math.min(2024,2016+base));
@@ -319,7 +336,7 @@ function mount(root, options = {}) {
     if(origin!=='api')dismissHint();
     if(next===view&&!switchMotion)return;
     pause();clearTimeout(settleTimer);settleTimer=null;
-    const from=sceneBlend,captionFrom=q('chart-label').textContent;
+    const from=sceneBlend,captionFrom=chartLabel.textContent;
     const year=selected;motionOrigin=origin;
     progress=targetProgress=M.progressFor(next,year);
     switchMotion=reduced.matches?null:{from,to:next==='forms'?1:0,elapsed:0,captionFrom};
@@ -410,8 +427,8 @@ function mount(root, options = {}) {
     q('change').parentElement.hidden = !!options.intro && change === null;
     q('items').textContent = entry.rows.length ? D.fmt(entry.rows.length) : '—';
     q('year-note').textContent = entry.value === null ? 'No matching records. Missing does not mean zero trade.' : selected === 2015 ? 'The record starts here.' : previous?.value === null ? 'No previous-year record; year-on-year change is unavailable.' : 'Interpret changes alongside reporting coverage and trade composition.';
-    q('chart-label').textContent=chartCaption(view);
-    if(linked&&options.intro)q('chart-label').title=caption(view);
+    chartLabel.textContent=chartCaption(view);
+    if(linked&&options.intro)chartLabel.title=caption(view);
     q('form-metrics').innerHTML='';
     q('chart-legend').hidden=view==='forms';q('chart-key').textContent=view==='forms'?'':'Gaps = no records';
     q('chart-key').hidden=view==='forms'||!data.some(d=>d.value===null);
@@ -829,7 +846,7 @@ function mount(root, options = {}) {
   const api={
     setYear:year=>chooseYear(year,'api'),setView:next=>setView(next,'api'),setData,setEvents,setFilters,play,pause:()=>{pause();settle();},
     getState:()=>({year:selected,view,position,targetPosition,progress,targetProgress,transitioning:!!switchMotion||(progress>9&&progress<11),demo,filters:filters(),playing:playing!==null}),
-    destroy(){if(destroyed)return;pause();destroyed=true;root.removeAttribute('aria-describedby');flowLayer?.destroy();detachAtmosphere();if(linked)reduced.removeEventListener('change',cancelLinkedYearAnimation);cancelLinkedYearAnimation();clearTimeout(settleTimer);if(motionFrame)cancelAnimationFrame(motionFrame);resizeObserver.disconnect();if(resizeFrame)cancelAnimationFrame(resizeFrame);root.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());root.removeEventListener('wheel',wheel);root.removeEventListener('keydown',keydown);root.removeEventListener('click',click);root.removeEventListener('change',change);root.removeEventListener('touchstart',touchstart);root.removeEventListener('touchmove',touchmove);root.removeEventListener('touchend',touchend);root.removeEventListener('touchcancel',touchend);root.removeEventListener('pointerdown',pointerdown);root.removeEventListener('pointermove',previewMove);root.removeEventListener('pointerleave',hideInspect);root.removeEventListener('focusin',previewFocus);root.removeEventListener('focusout',hideInspect);document.removeEventListener('visibilitychange',visibility);root.innerHTML='';delete root._marineDecade;}
+    destroy(){if(destroyed)return;pause();destroyed=true;root.removeAttribute('aria-describedby');flowLayer?.destroy();detachAtmosphere();if(linked)reduced.removeEventListener('change',cancelLinkedYearAnimation);cancelLinkedYearAnimation();clearTimeout(settleTimer);if(motionFrame)cancelAnimationFrame(motionFrame);resizeObserver.disconnect();if(resizeFrame)cancelAnimationFrame(resizeFrame);root.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());root.removeEventListener('wheel',wheel);root.removeEventListener('keydown',keydown);root.removeEventListener('click',click);root.removeEventListener('change',change);root.removeEventListener('touchstart',touchstart);root.removeEventListener('touchmove',touchmove);root.removeEventListener('touchend',touchend);root.removeEventListener('touchcancel',touchend);root.removeEventListener('pointerdown',pointerdown);root.removeEventListener('pointermove',previewMove);root.removeEventListener('pointerleave',hideInspect);root.removeEventListener('focusin',previewFocus);root.removeEventListener('focusout',hideInspect);document.removeEventListener('visibilitychange',visibility);chapterHeading?.remove();root.classList.remove('dv-trade-separated');root.innerHTML='';delete root._marineDecade;}
   };
   root._marineDecade=api;
   if(options.data)setData(options.data);else rebuild();

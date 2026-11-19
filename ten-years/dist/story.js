@@ -2,9 +2,10 @@
 'use strict';
 const root=document.getElementById('annual-trade');
 const intro=document.getElementById('ocean-intro');
+const tradeIntro=document.getElementById('trade-intro');
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
 const sharedFlow=!!window.MarineDecadeFlow;
-const api=MarineDecade.mount(root,{linked:true,year:2024,releaseAtBoundary:true,sharedFlow,intro:!!intro});
+const api=MarineDecade.mount(root,{linked:true,year:2024,releaseAtBoundary:true,sharedFlow,intro:!!intro,headingTarget:tradeIntro?.querySelector('.dv-trade-intro-content')});
 const chapterScroll=window.MarineChapterScroll?.create();
 if(sharedFlow){
  const canvas=document.createElement('canvas');
@@ -25,9 +26,13 @@ function followChapter(event,target){
 }
 intro?.addEventListener('click',event=>{
  if(event.target.closest('a[href="#annual-trade"]'))followChapter(event,root);
+ if(event.target.closest('a[href="#trade-intro"]'))followChapter(event,tradeIntro);
  if(event.target.closest('a[href="#page-two"]'))followChapter(event,document.getElementById('page-two'));
 });
-root.querySelector('a[href="#ocean-intro"]')?.addEventListener('click',event=>followChapter(event,intro));
+tradeIntro?.addEventListener('click',event=>{
+ if(event.target.closest('a[href="#annual-trade"]'))followChapter(event,root);
+});
+root.querySelector('.dv-chapter-link')?.addEventListener('click',event=>followChapter(event,tradeIntro||intro));
 function followProductLink(){
  if(location.hash!=='#product-forms')return;
  history.replaceState(null,'','#annual-trade');

@@ -126,6 +126,16 @@
 .ocean-reveal-word { display: inline-block; white-space: nowrap; }
 .ocean-data-link { gap: 16px; margin-top: 20px; }
 
+.ocean-page #trade-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--dv-bg) 52%, transparent),
+    color-mix(in srgb, var(--dv-bg) 18%, transparent));
+}
+.ocean-page #trade-intro .dv-trade-intro-layout { position: relative; }
 .ocean-page #annual-trade::before {
   content: '';
   position: absolute;
