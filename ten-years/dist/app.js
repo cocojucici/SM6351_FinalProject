@@ -136,6 +136,7 @@ function mount(root, options = {}) {
     forms.removeAttribute('aria-hidden');
     if(options.headingTarget instanceof HTMLElement){
       root.querySelector('.dv-layout').prepend(root.querySelector('.dv-views'));
+      root.querySelector('.dv-layout').append(toolbar);
       chapterHeading=root.querySelector('.dv-heading');
       options.headingTarget.append(chapterHeading);
       const back=root.querySelector('.dv-chapter-link');

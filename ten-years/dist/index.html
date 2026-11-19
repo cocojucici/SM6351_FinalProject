@@ -6,8 +6,8 @@
  <meta name="theme-color" content="#010206">
  <title>The Global Trade of Sphyrna lewini</title>
  <meta name="description" content="Dive into the habitat of the scalloped hammerhead and explore a decade of its reported fin trade using CITES data.">
- <link rel="stylesheet" href="style.css?v=trade-chapter">
- <link rel="stylesheet" href="ocean/story.css?v=trade-chapter">
+ <link rel="stylesheet" href="style.css?v=trade-simple">
+ <link rel="stylesheet" href="ocean/story.css?v=trade-scroll">
  <script type="importmap">{"imports":{"three":"./ocean/vendor/three.module.js"}}</script>
 </head>
 <body class="decade-standalone decade-story-page ocean-page">
@@ -39,7 +39,7 @@
   <section id="trade-intro" class="dv-shell dv-trade-intro" tabindex="-1" aria-label="Fin trade introduction">
    <div class="dv-trade-intro-layout">
     <div class="dv-trade-intro-content"><p class="dv-trade-period">2015—2024</p></div>
-    <a class="dv-trade-continue" href="#annual-trade">Explore trade data <span aria-hidden="true">↓</span></a>
+    <a class="dv-trade-continue" href="#annual-trade" aria-label="Explore trade data"><span aria-hidden="true">↓</span></a>
    </div>
   </section>
   <section id="annual-trade" class="dv-shell" tabindex="0" aria-label="Annual trade and product forms, 2015–2024"></section>
@@ -49,7 +49,7 @@
  <script src="data/cites-fins-2015-2024.js"></script>
  <script src="data/cites-management-events.js"></script>
  <script src="motion.js?v=silk-1"></script>
- <script src="app.js?v=trade-chapter"></script>
+ <script src="app.js?v=trade-simple"></script>
  <script src="chapter-scroll.js?v=ocean-story-2"></script>
  <script src="ocean/vendor/gsap.min.js" defer></script>
  <script src="ocean/vendor/ScrollTrigger.min.js" defer></script>

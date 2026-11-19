@@ -56,7 +56,8 @@
 
 .ocean-intro-panel,
 .ocean-depth { position: relative; min-height: 100svh; }
-.ocean-story[data-motion] :is(.ocean-intro-panel, .ocean-depth) { height: 200svh; }
+.ocean-story[data-motion] :is(.ocean-intro-panel, .ocean-depth),
+.ocean-story[data-motion] + .dv-trade-intro { height: 200svh; }
 .ocean-intro-content,
 .ocean-depth-content {
   position: sticky;
@@ -135,7 +136,6 @@
     color-mix(in srgb, var(--dv-bg) 52%, transparent),
     color-mix(in srgb, var(--dv-bg) 18%, transparent));
 }
-.ocean-page #trade-intro .dv-trade-intro-layout { position: relative; }
 .ocean-page #annual-trade::before {
   content: '';
   position: absolute;
